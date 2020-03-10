@@ -7,7 +7,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/platr
   docker:
-    - image: circleci/node:12.15.0
+    - image: circleci/node:12.16.1
 
 cache_key_yarn: &cache_key_yarn
   yarn-packages-{{ checksum "yarn.lock" }}
