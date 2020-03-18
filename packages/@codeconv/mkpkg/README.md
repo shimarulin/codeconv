@@ -1,13 +1,11 @@
-# `@codeconv/pkgen`
+# `@codeconv/mkpkg`
 
-> TODO: description
+> codeconv scaffolding tool to make a node module
 
 ## Usage
 
 ```
-const pkgen = require('@codeconv/pkgen');
-
-// TODO: DEMONSTRATE API
+npx sao npm:@codeconv/mkpkg
 ```
 
 ## Related projects
