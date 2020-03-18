@@ -1,5 +1,5 @@
 {
-  "name": "@codeconv/pkgen",
+  "name": "@codeconv/mkpkg",
   "version": "0.1.5",
   "description": "codeconv standard project template",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/packages/@codeconv/pkgen/#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/packages/@codeconv/mkpkg/#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "keywords": [
     "sao",
