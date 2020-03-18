@@ -126,5 +126,5 @@ workflows:
           filters:
             branches:
               only: master
-          tags:
-            ignore: /.*/
+            tags:
+              ignore: /.*/
