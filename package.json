@@ -14,7 +14,8 @@
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
-    "lint": "lerna run lint --parallel"
+    "lint": "lerna run lint --parallel",
+    "mkpkg": "sao ./packages/@platr/sao-pkgen"
   },
   "husky": {
     "hooks": {
@@ -24,28 +25,25 @@
   },
   "lint-staged": {
     "**/*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "**/*.json": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "**/*.md": [
-      "prettier --parser markdown --prose-wrap always --write",
-      "git add"
+      "prettier --parser markdown --prose-wrap always --write"
     ],
     "**/package.json": [
-      "format-package --write",
-      "git add"
+      "format-package --write"
     ]
   },
   "devDependencies": {
     "eslint": "6.8.0",
     "format-package": "5.2.0",
-    "husky": "4.2.1",
+    "husky": "4.2.3",
     "lerna": "3.20.2",
-    "lint-staged": "10.0.7",
-    "prettier": "1.19.1"
+    "lint-staged": "10.0.8",
+    "prettier": "1.19.1",
+    "sao": "^1.7.0"
   }
 }
