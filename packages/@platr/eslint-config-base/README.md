@@ -1,4 +1,4 @@
-# `@platr/eslint-config-base`
+# `@codeconv/eslint-config-base`
 
 > ESLint config based on [StandardJS](https://standardjs.com/)
 
@@ -8,7 +8,7 @@ Add this to your .eslintrc file:
 
 ```json
 {
-  "extends": ["@platr/base"]
+  "extends": ["@codeconv/base"]
 }
 ```
 

@@ -5,7 +5,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/platr
+  working_directory: ~/codeconv
   docker:
     - image: circleci/node:12.16.1
 
@@ -58,14 +58,14 @@ jobs:
       - *save_ssh
 
       - persist_to_workspace:
-          root: ~/platr
+          root: ~/codeconv
           paths: .
 
   test:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/platr
+          at: ~/codeconv
 
       - run:
           name: Run tests
@@ -75,7 +75,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/platr
+          at: ~/codeconv
 
       - *restore_ssh
 
@@ -89,7 +89,7 @@ jobs:
 
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/platr/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/codeconv/.npmrc
 
       - run:
           name: Publish packages

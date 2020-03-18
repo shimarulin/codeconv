@@ -1,16 +1,16 @@
 {
-  "name": "@platr/eslint-config-base",
+  "name": "@codeconv/eslint-config-base",
   "version": "0.1.5",
-  "description": "ESLint base config for Platr",
+  "description": "codeconv ESLint base config",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shimarulin/platr.git"
+    "url": "git+https://github.com/shimarulin/codeconv.git"
   },
   "bugs": {
-    "url": "https://github.com/shimarulin/platr/issues"
+    "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/platr#readme",
+  "homepage": "https://github.com/shimarulin/codeconv#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "keywords": [
     "eslint"

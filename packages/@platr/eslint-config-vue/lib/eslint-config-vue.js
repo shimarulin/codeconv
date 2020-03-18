@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    require.resolve('@platr/eslint-config-base'),
+    require.resolve('@codeconv/eslint-config-base'),
     'plugin:vue/recommended',
   ],
   env: {

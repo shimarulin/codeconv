@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
   extends: [
-    '@platr/base'
+    '@codeconv/base'
   ]
 }

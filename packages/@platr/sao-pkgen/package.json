@@ -1,16 +1,16 @@
 {
-  "name": "@platr/sao-pkgen",
+  "name": "@codeconv/pkgen",
   "version": "0.1.5",
-  "description": "Platr standard project template",
+  "description": "codeconv standard project template",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shimarulin/platr.git"
+    "url": "git+https://github.com/shimarulin/codeconv.git"
   },
   "bugs": {
-    "url": "https://github.com/shimarulin/platr/issues"
+    "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/platr/packages/@platr/sao-pkgen/#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/packages/@codeconv/pkgen/#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "keywords": [
     "sao",

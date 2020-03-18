@@ -1,11 +1,11 @@
-# `@platr/pkgen`
+# `@codeconv/pkgen`
 
 > TODO: description
 
 ## Usage
 
 ```
-const pkgen = require('@platr/pkgen');
+const pkgen = require('@codeconv/pkgen');
 
 // TODO: DEMONSTRATE API
 ```

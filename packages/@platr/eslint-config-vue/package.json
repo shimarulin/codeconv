@@ -1,16 +1,16 @@
 {
-  "name": "@platr/eslint-config-vue",
+  "name": "@codeconv/eslint-config-vue",
   "version": "0.1.5",
-  "description": "ESLint Vue config for Platr",
+  "description": "codeconv ESLint Vue config",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shimarulin/platr.git"
+    "url": "git+https://github.com/shimarulin/codeconv.git"
   },
   "bugs": {
-    "url": "https://github.com/shimarulin/platr/issues"
+    "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/platr#readme",
+  "homepage": "https://github.com/shimarulin/codeconv#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "keywords": [
     "eslint",
@@ -30,7 +30,7 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "@platr/eslint-config-base": "^0.1.5",
+    "@codeconv/eslint-config-base": "^0.1.5",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2"
   }
