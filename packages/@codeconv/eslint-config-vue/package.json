@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/eslint-config-vue",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "codeconv ESLint Vue config",
   "license": "MIT",
   "repository": {
@@ -30,7 +30,7 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "@codeconv/eslint-config-base": "^0.1.5",
+    "@codeconv/eslint-config-base": "^0.1.6",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2"
   }
