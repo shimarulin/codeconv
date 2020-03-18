@@ -96,7 +96,6 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup
                 - /feature\/.*/
                 - /fix\/.*/
       - test:
@@ -105,7 +104,6 @@ workflows:
           filters:
             branches:
               only:
-                - circleci-project-setup
                 - /feature\/.*/
                 - /fix\/.*/
   deploy:
