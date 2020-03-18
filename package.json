@@ -15,7 +15,7 @@
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
     "lint": "lerna run lint --parallel --",
-    "mkpkg": "sao ./packages/@codeconv/pkgen",
+    "mkpkg": "sao ./packages/@codeconv/mkpkg",
     "pub": "lerna publish",
     "test": "lerna run test --parallel --"
   },

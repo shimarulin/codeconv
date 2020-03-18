@@ -18,7 +18,9 @@
     "package"
   ],
   "files": [
-    "lib"
+    "lib",
+    "templates",
+    "saofile.js"
   ],
   "directories": {
     "lib": "lib",
