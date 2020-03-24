@@ -113,7 +113,8 @@ module.exports = {
       },
     ]
       .map(action => ({
-        ...action, templateDir: 'templates/common',
+        ...action,
+        templateDir: 'templates/common',
       }))
 
     const configurationActions = [
@@ -142,7 +143,8 @@ module.exports = {
       },
     ]
       .map(action => ({
-        ...action, templateDir: 'templates/configuration',
+        ...action,
+        templateDir: 'templates/configuration',
       }))
 
     actions.push(...commonActions)
