@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/shimarulin/codeconv/compare/v0.1.7...v0.2.0) (2020-03-24)
+
+**Note:** Version bump only for package @codeconv/eslint-config-base
+
+
+
+
+
 ## [0.1.6](https://github.com/shimarulin/codeconv/compare/v0.1.5...v0.1.6) (2020-03-18)
 
 **Note:** Version bump only for package @codeconv/eslint-config-base
