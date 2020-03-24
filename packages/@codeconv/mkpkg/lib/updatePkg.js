@@ -19,6 +19,9 @@ module.exports = (
     name,
     description,
     license,
+    workspaces: when(type === 'Monorepo', [
+      `packages/@${name}/*`,
+    ]),
     version: when(type !== 'Monorepo', version),
     homepage: when(origin, getHomepage(urlParts, directory)),
     bugs: when(origin, getBugs(urlParts)),
