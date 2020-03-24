@@ -39,7 +39,7 @@ describe('License', () => {
         generator,
       },
       {
-        license: 'Apache 2.0',
+        license: 'Apache-2.0',
       })
       return true
     })
@@ -56,7 +56,7 @@ describe('License', () => {
     test('License field in "package.json"', async () => {
       const pkg = await readJsonFile(helper)
 
-      expect(pkg.license).toEqual('Apache 2.0')
+      expect(pkg.license).toEqual('Apache-2.0')
     })
   })
 })
