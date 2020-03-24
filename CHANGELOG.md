@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/shimarulin/codeconv/compare/v0.2.0...v0.3.0) (2020-03-24)
+
+
+### Bug Fixes
+
+* **eslint-config-base:** set allowAllPropertiesOnSameLine to false ([452aae7](https://github.com/shimarulin/codeconv/commit/452aae7dd7e9ff4c33f14681b953b00a5f3dcf8f))
+
+
+### Features
+
+* **mkpkg:** set license values according to SPDX license IDs (https://spdx.org/licenses/) ([15d9ff1](https://github.com/shimarulin/codeconv/commit/15d9ff16b8a192dcf95ccd7dfb6b3187fc00a363))
+
+
+
+
+
 # [0.2.0](https://github.com/shimarulin/codeconv/compare/v0.1.7...v0.2.0) (2020-03-24)
 
 
