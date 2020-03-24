@@ -88,15 +88,16 @@ module.exports = {
     ]
   },
   actions () {
+    const version = this.answers.version || defaultVersion
+    const origin = this.answers.origin || defaultProjectUrl
+    const directory = !isNewProject ? path.join(defaultPackagePath, this.outFolder) : this.outFolder
+    origin && url.parse(origin, directory)
     const context = {
       ...this.answers,
-      version: this.answers.version || defaultVersion,
-      origin: this.answers.origin || defaultProjectUrl,
-      directory: !isNewProject ? path.join(defaultPackagePath, this.outFolder) : this.outFolder,
+      version,
+      url,
     }
-    this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), context.directory)
-
-    context.origin && url.parse(context.origin, context.directory)
+    this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), directory)
 
     const actions = []
     const commonActions = [
@@ -113,7 +114,7 @@ module.exports = {
       {
         type: 'modify',
         files: 'package.json',
-        handler: data => require('./lib/updatePkg')(data, context, url),
+        handler: data => require('./lib/updatePkg')(data, context),
       },
     ]
       .map(action => ({

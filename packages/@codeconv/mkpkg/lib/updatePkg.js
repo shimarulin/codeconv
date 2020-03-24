@@ -8,10 +8,8 @@ module.exports = (
     description,
     license,
     version,
-    origin,
-    directory,
+    url,
   },
-  url,
 ) => {
   return {
     name,
@@ -21,8 +19,8 @@ module.exports = (
       `packages/@${name}/*`,
     ]),
     version: when(type !== 'Monorepo', version),
-    homepage: when(origin, url.homepage),
-    bugs: when(origin, url.bugs),
-    repository: when(origin, url.repository),
+    homepage: when(url.urlSource, url.homepage),
+    bugs: when(url.urlSource, url.bugs),
+    repository: when(url.urlSource, url.repository),
   }
 }

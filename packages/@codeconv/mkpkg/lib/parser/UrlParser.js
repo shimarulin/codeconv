@@ -38,13 +38,12 @@ const getProjectFromUrl = (url, owner) => {
 
 class UrlParser {
   constructor (url, path = '') {
-    this.urlSource = ''
-    this.urlPath = ''
-    this.urlType = ''
-
-    this.host = ''
-    this.owner = ''
-    this.project = ''
+    this.urlSource = undefined
+    this.urlPath = undefined
+    this.urlType = undefined
+    this.host = undefined
+    this.owner = undefined
+    this.project = undefined
 
     if (typeof url === 'string') {
       this.parse(url, path)
@@ -52,6 +51,10 @@ class UrlParser {
   }
 
   parse (url, path = '') {
+    if (typeof url !== 'string') {
+      return
+    }
+
     this.urlSource = url
     this.urlPath = path
     this.urlType = getUrlType(this.urlSource)
