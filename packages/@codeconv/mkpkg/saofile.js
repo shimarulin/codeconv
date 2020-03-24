@@ -14,9 +14,10 @@ const {
   defaultVersion,
 } = require('./lib/config')
 const execute = require('./lib/execute')
-const getOrigin = require('./lib/getOrigin')
+const UrlParser = require('./lib/parser/UrlParser')
 
 const isNewProject = moduleType === 'project'
+const url = new UrlParser()
 
 module.exports = {
   templateData () {
@@ -87,13 +88,17 @@ module.exports = {
     ]
   },
   actions () {
+    const version = this.answers.version || defaultVersion
+    const origin = this.answers.origin || defaultProjectUrl
+    const directory = !isNewProject ? path.join(defaultPackagePath, this.outFolder) : this.outFolder
+    origin && url.parse(origin, directory)
     const context = {
       ...this.answers,
-      version: this.answers.version || defaultVersion,
-      origin: this.answers.origin || defaultProjectUrl,
-      directory: !isNewProject ? path.join(defaultPackagePath, this.outFolder) : this.outFolder,
+      version,
+      url,
     }
-    this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), context.directory)
+    this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), directory)
+
     const actions = []
     const commonActions = [
       {
@@ -167,17 +172,16 @@ module.exports = {
       await exec('git', [
         'init',
       ],
-      (type) => `Git init ${type}${type === 'started' ? '...' : ''}`)
+      (status) => `Git init ${status}${status === 'started' ? '...' : ''}`)
 
       if (this.answers.origin) {
-        const remote = getOrigin(this.answers.origin)
         await exec('git', [
           'remote',
           'add',
           'origin',
-          remote,
+          url.remote,
         ],
-        (type) => `Git remote add origin ${remote} ${type}${type === 'started' ? '...' : ''}`)
+        (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
       }
     }
 
@@ -189,8 +193,8 @@ module.exports = {
       ...yarnFlags,
       ...devDependencies,
     ],
-    (type, code, messages) => {
-      switch (type) {
+    (status, code, messages) => {
+      switch (status) {
         case 'started':
           return 'Install development dependencies...'
         case 'succeed':
@@ -206,14 +210,14 @@ module.exports = {
         'add',
         '.',
       ],
-      (type) => `Add files to git ${type}${type === 'started' ? '...' : ''}`)
+      (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`)
 
       await exec('git', [
         'commit',
         '-m',
         'chore: init',
       ],
-      (type) => `Commit changes to git ${type}${type === 'started' ? '...' : ''}`)
+      (status) => `Commit changes to git ${status}${status === 'started' ? '...' : ''}`)
     }
   },
 }
