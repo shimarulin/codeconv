@@ -65,10 +65,10 @@ jobs:
           at: ~/project_workspace
       - run:
           name: Run linters
-          command: yarn lint
+          command: yarn run lint
       - run:
           name: Run tests
-          command: yarn test
+          command: yarn run test
 
   deploy:
     <<: *defaults
@@ -87,7 +87,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project_workspace/.npmrc
       - run:
           name: Publish packages
-          command: yarn pub
+          command: yarn run publish
 
 workflows:
   development:

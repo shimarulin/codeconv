@@ -16,7 +16,7 @@
     "format:pkg": "format-package --write",
     "lint": "lerna run lint --parallel --",
     "mkpkg": "sao ./packages/@codeconv/mkpkg",
-    "pub": "lerna publish",
+    "publish": "lerna publish",
     "test": "lerna run test --parallel --"
   },
   "husky": {
