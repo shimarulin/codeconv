@@ -98,6 +98,7 @@ workflows:
               only:
                 - /feature\/.*/
                 - /fix\/.*/
+                - /refactor\/.*/
                 - /renovate\/.*/
       - test:
           requires:
@@ -107,6 +108,7 @@ workflows:
               only:
                 - /feature\/.*/
                 - /fix\/.*/
+                - /refactor\/.*/
                 - /renovate\/.*/
   deploy:
     jobs:
