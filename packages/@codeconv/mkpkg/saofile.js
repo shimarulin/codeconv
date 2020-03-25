@@ -14,6 +14,7 @@ const {
   defaultVersion,
 } = require('./lib/config')
 const execute = require('./lib/execute')
+const spawn = require('./lib/execute/spawnPromise')
 const UrlParser = require('./lib/parser/UrlParser')
 
 const isNewProject = moduleType === 'project'
@@ -96,6 +97,7 @@ module.exports = {
       ...this.answers,
       version,
       url,
+      isNewProject,
     }
     this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), directory)
 
@@ -114,7 +116,7 @@ module.exports = {
       {
         type: 'modify',
         files: 'package.json',
-        handler: data => require('./lib/updatePkg')(data, context),
+        handler: data => require('./lib/handlers/updatePkg')(data, context),
       },
     ]
       .map(action => ({
@@ -144,7 +146,7 @@ module.exports = {
       {
         type: 'modify',
         files: 'lerna.json',
-        handler: data => require('./lib/updateLerna')(data, context),
+        handler: data => require('./lib/handlers/updateLerna')(data, context),
       },
     ]
       .map(action => ({
@@ -163,12 +165,9 @@ module.exports = {
     const yarnFlags = [
       '-D',
     ]
-    const devDependencies = [
-      'husky',
-      'lint-staged',
-    ]
+    const devDependencies = []
 
-    if (isNewProject) {
+    const gitInit = async () => {
       await exec('git', [
         'init',
       ],
@@ -185,27 +184,7 @@ module.exports = {
       }
     }
 
-    if (this.answers.type === 'Monorepo') {
-      yarnFlags.push('-W')
-    }
-    await exec('yarn', [
-      'add',
-      ...yarnFlags,
-      ...devDependencies,
-    ],
-    (status, code, messages) => {
-      switch (status) {
-        case 'started':
-          return 'Install development dependencies...'
-        case 'succeed':
-          return 'Development dependencies installed'
-        case 'failed':
-          // eslint-disable-next-line no-useless-escape
-          return `Installation development dependencies failed due to error:\n\s\s> Exit code: ${code},\n\s\s> Messages: ${messages.join('\n\s\s\s\s> ')}`
-      }
-    })
-
-    if (isNewProject) {
+    const gitInitialCommit = async () => {
       await exec('git', [
         'add',
         '.',
@@ -215,9 +194,83 @@ module.exports = {
       await exec('git', [
         'commit',
         '-m',
-        'chore: init',
+        `chore${!isNewProject ? `(${this.answers.name})` : ''}: init`,
       ],
-      (status) => `Commit changes to git ${status}${status === 'started' ? '...' : ''}`)
+      (status) => `Commit initial changes to git ${status}${status === 'started' ? '...' : ''}`)
     }
+
+    const yarnInstal = async () => {
+      if (this.answers.type === 'Monorepo') {
+        yarnFlags.push('-W')
+        devDependencies.push('lerna')
+      }
+      if (isNewProject) {
+        devDependencies.push(
+          'husky',
+          'lint-staged',
+          'eslint',
+          'format-package',
+          'prettier',
+        )
+      }
+
+      if (devDependencies.length > 0) {
+        await exec('yarn', [
+          'add',
+          ...yarnFlags,
+          ...devDependencies,
+        ],
+        (status, code, messages) => {
+          switch (status) {
+            case 'started':
+              return 'Install development dependencies...'
+            case 'succeed':
+              return 'Development dependencies installed'
+            case 'failed':
+              // eslint-disable-next-line no-useless-escape
+              return `Installation development dependencies failed due to error:\n\s\s> Exit code: ${code},\n\s\s> Messages: ${messages.join('\n\s\s\s\s> ')}`
+          }
+        })
+      }
+    }
+
+    // const reformatFiles = async () => {
+    //   await exec('npx', [
+    //     'eslint',
+    //     '--ext',
+    //     '.{js,ts}',
+    //     '.',
+    //     '--fix',
+    //   ],
+    //   (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
+    // }
+
+    const gitPostInstallCommit = async () => {
+      const gitStatus = await spawn(this.sao.opts.outDir, 'git', [
+        'status',
+        '--porcelain',
+      ])
+
+      if (gitStatus.messages.length > 0) {
+        await exec('git', [
+          'add',
+          '.',
+        ],
+        (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`)
+
+        await exec('git', [
+          'commit',
+          '-m',
+          `chore${!isNewProject ? `(${this.answers.name})` : ''}: ${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
+        ],
+        (status) => `Commit updates to git ${status}${status === 'started' ? '...' : ''}`)
+      }
+    }
+
+    isNewProject && await gitInit()
+    await gitInitialCommit()
+    await yarnInstal()
+    // isNewProject && await reformatFiles()
+    await gitPostInstallCommit()
   },
 }
