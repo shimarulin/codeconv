@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/eslint-config-typescript",
   "version": "0.3.0",
-  "description": "@codeconv/eslint-config-typescript package",
+  "description": "codeconv ESLint TypeScript config",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/eslint-config-typescript",
@@ -12,6 +12,20 @@
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/eslint-config-typescript#readme",
+  "keywords": [
+    "eslint",
+    "typescript"
+  ],
+  "main": "lib/eslint-config-typescript.js",
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint --ext .{js,ts} ."
   }
