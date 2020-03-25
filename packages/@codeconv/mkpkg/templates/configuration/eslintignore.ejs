@@ -3,3 +3,8 @@ node_modules/
 
 # Configuration files
 !.*rc.js
+
+<% if (typescript || compile) { %>
+# Compiled files
+dist/
+<% } %>

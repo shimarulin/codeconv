@@ -4,3 +4,7 @@
 
 # Dependency directories
 node_modules/
+<% if (typescript || compile) { %>
+# Compiled files
+dist/
+<% } %>

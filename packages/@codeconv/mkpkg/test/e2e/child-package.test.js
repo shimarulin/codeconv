@@ -71,4 +71,28 @@ describe('A call in the monorepo root with default values.', () => {
   test('Child package path', async () => {
     expect(helper.api.opts.outDir).toContain('/packages/@test/output')
   })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toBeUndefined()
+  })
+})
+
+describe('Set private child package', () => {
+  let helper
+
+  beforeAll(async () => {
+    helper = await sao.mock({
+      generator,
+    },
+    {
+      isPrivate: true,
+    })
+    return true
+  })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toEqual(true)
+  })
 })

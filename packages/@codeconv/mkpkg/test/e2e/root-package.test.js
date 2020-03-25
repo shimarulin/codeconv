@@ -46,8 +46,12 @@ describe('Create monorepo root with default options', () => {
 
   test('Name property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-
     expect(pkg.name).toEqual('output')
+  })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toEqual(true)
   })
 })
 

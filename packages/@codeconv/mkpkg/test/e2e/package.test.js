@@ -41,6 +41,11 @@ describe('Use default values', () => {
     const pkg = await readJsonFile(helper)
     expect(pkg.name).toEqual('output')
   })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toBeUndefined()
+  })
 })
 
 describe('Set repository URL with default options', () => {
@@ -93,5 +98,24 @@ describe('GitLab repository URL', () => {
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
     expect(pkg.homepage).toEqual('https://gitlab.com/owner/project')
+  })
+})
+
+describe('Set private package', () => {
+  let helper
+
+  beforeAll(async () => {
+    helper = await sao.mock({
+      generator,
+    },
+    {
+      isPrivate: true,
+    })
+    return true
+  })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toEqual(true)
   })
 })

@@ -86,6 +86,34 @@ module.exports = {
         choices: licenses,
         default: defaultLicense,
       },
+      {
+        name: 'isPrivate',
+        message: 'Do you want to create private package?',
+        type: 'confirm',
+        default: false,
+        when: answers => answers.type !== 'Monorepo',
+      },
+      {
+        name: 'typescript',
+        message: 'Do you need to TypeScript support?',
+        type: 'confirm',
+        default: false,
+        when: answers => !answers.isPrivate,
+      },
+      {
+        name: 'compile',
+        message: 'Do you need to compile ES2015 code?',
+        type: 'confirm',
+        default: false,
+        when: answers => !answers.isPrivate && !answers.typescript,
+      },
+      {
+        name: 'cli',
+        message: 'Do you want to add a CLI',
+        type: 'confirm',
+        default: false,
+        when: answers => !answers.isPrivate,
+      },
     ]
   },
   actions () {

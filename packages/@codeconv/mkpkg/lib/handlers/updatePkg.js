@@ -10,13 +10,14 @@ module.exports = (
     version,
     url,
     isNewProject,
+    isPrivate,
   },
 ) => {
   return {
     name,
     description,
     license,
-    private: when(type === 'Monorepo', true),
+    private: when(type === 'Monorepo' || isPrivate, true),
     scripts: {
       lint: when(type === 'Monorepo', 'lerna run lint --parallel --', 'eslint --ext .{js,ts} .'),
       publish: when(isNewProject, when(type === 'Monorepo', 'lerna publish', '')),
