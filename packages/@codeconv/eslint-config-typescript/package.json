@@ -27,6 +27,6 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint --ext .{js,ts} ."
+    "lint": "eslint --ext .js ."
   }
 }
