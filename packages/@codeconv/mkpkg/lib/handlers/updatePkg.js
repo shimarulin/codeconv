@@ -21,7 +21,7 @@ module.exports = (
     private: when(type === 'Monorepo' || isPrivate, true),
     scripts: {
       lint: when(type === 'Monorepo', 'lerna run lint --parallel --', `eslint --ext .js${typescript ? ',.ts' : ''} .`),
-      publish: when(isNewProject, when(type === 'Monorepo', 'lerna publish', '')),
+      release: when(isNewProject, when(type === 'Monorepo', 'lerna publish', '')),
     },
     workspaces: when(type === 'Monorepo', [
       `packages/@${name}/*`,

@@ -211,6 +211,7 @@ module.exports = {
           'eslint',
           'format-package',
           'prettier',
+          '@codeconv/eslint-config-base',
         )
       }
 
@@ -234,16 +235,16 @@ module.exports = {
       }
     }
 
-    // const reformatFiles = async () => {
-    //   await exec('npx', [
-    //     'eslint',
-    //     '--ext',
-    //     '.{js,ts}',
-    //     '.',
-    //     '--fix',
-    //   ],
-    //   (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
-    // }
+    const runLinters = async () => {
+      await exec('npx', [
+        'eslint',
+        '--ext',
+        '.js,.ts',
+        '.',
+        '--fix',
+      ],
+      (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
+    }
 
     const gitPostInstallCommit = async () => {
       const gitStatus = await spawn(this.sao.opts.outDir, 'git', [
@@ -268,9 +269,9 @@ module.exports = {
     }
 
     isNewProject && await gitInit()
-    await gitInitialCommit()
+    isNewProject && await gitInitialCommit()
     await yarnInstal()
-    // isNewProject && await reformatFiles()
+    isNewProject && await runLinters()
     await gitPostInstallCommit()
   },
 }
