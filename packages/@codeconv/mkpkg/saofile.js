@@ -14,10 +14,12 @@ const {
   defaultVersion,
 } = require('./lib/config')
 const execute = require('./lib/execute')
+const spawn = require('./lib/execute/spawnPromise')
 const UrlParser = require('./lib/parser/UrlParser')
 
 const isNewProject = moduleType === 'project'
 const url = new UrlParser()
+const always = true
 
 module.exports = {
   templateData () {
@@ -96,6 +98,7 @@ module.exports = {
       ...this.answers,
       version,
       url,
+      isNewProject,
     }
     this.sao.opts.outDir = path.resolve(this.outDir.replace(this.outFolder, ''), directory)
 
@@ -114,7 +117,7 @@ module.exports = {
       {
         type: 'modify',
         files: 'package.json',
-        handler: data => require('./lib/updatePkg')(data, context),
+        handler: data => require('./lib/handlers/updatePkg')(data, context),
       },
     ]
       .map(action => ({
@@ -144,7 +147,7 @@ module.exports = {
       {
         type: 'modify',
         files: 'lerna.json',
-        handler: data => require('./lib/updateLerna')(data, context),
+        handler: data => require('./lib/handlers/updateLerna')(data, context),
       },
     ]
       .map(action => ({
@@ -163,61 +166,128 @@ module.exports = {
     const yarnFlags = [
       '-D',
     ]
-    const devDependencies = [
-      'husky',
-      'lint-staged',
-    ]
+    const devDependencies = []
 
-    if (isNewProject) {
+    const gitInit = async () => {
       await exec('git', [
         'init',
       ],
       (status) => `Git init ${status}${status === 'started' ? '...' : ''}`)
-
-      if (this.answers.origin) {
-        await exec('git', [
-          'remote',
-          'add',
-          'origin',
-          url.remote,
-        ],
-        (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
-      }
     }
 
-    if (this.answers.type === 'Monorepo') {
-      yarnFlags.push('-W')
-    }
-    await exec('yarn', [
-      'add',
-      ...yarnFlags,
-      ...devDependencies,
-    ],
-    (status, code, messages) => {
-      switch (status) {
-        case 'started':
-          return 'Install development dependencies...'
-        case 'succeed':
-          return 'Development dependencies installed'
-        case 'failed':
-          // eslint-disable-next-line no-useless-escape
-          return `Installation development dependencies failed due to error:\n\s\s> Exit code: ${code},\n\s\s> Messages: ${messages.join('\n\s\s\s\s> ')}`
-      }
-    })
-
-    if (isNewProject) {
+    const gitRemoteAdd = async () => {
       await exec('git', [
+        'remote',
         'add',
-        '.',
+        'origin',
+        url.remote,
       ],
-      (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`)
-
-      await exec('git', [
-        'commit',
-        '-m',
-        'chore: init',
-      ],
-      (status) => `Commit changes to git ${status}${status === 'started' ? '...' : ''}`)
+      (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
     }
+
+    const yarnInstal = async () => {
+      if (this.answers.type === 'Monorepo') {
+        yarnFlags.push('-W')
+        devDependencies.push('lerna')
+      }
+      if (isNewProject) {
+        devDependencies.push(
+          'husky',
+          'lint-staged',
+          'eslint',
+          'format-package',
+          'prettier',
+          '@codeconv/eslint-config-base',
+        )
+      }
+
+      if (devDependencies.length > 0) {
+        await exec('yarn', [
+          'add',
+          ...yarnFlags,
+          ...devDependencies,
+        ],
+        (status, code, messages) => {
+          switch (status) {
+            case 'started':
+              return 'Install development dependencies...'
+            case 'succeed':
+              return 'Development dependencies installed'
+            case 'failed':
+              // eslint-disable-next-line no-useless-escape
+              return `Installation development dependencies failed due to error:\n\s\s> Exit code: ${code},\n\s\s> Messages: ${messages.join('\n\s\s\s\s> ')}`
+          }
+        })
+      }
+    }
+
+    const runLinters = async () => {
+      await exec('npx', [
+        'eslint',
+        '--ext',
+        '.js,.ts',
+        '.',
+        '--fix',
+      ],
+      (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
+    }
+
+    const gitCommit = async (type) => {
+      const commitTypes = [
+        'init',
+        'done',
+      ]
+      const cliMessages = {
+        add: {
+          init: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
+          done: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
+        },
+        commit: {
+          init: (status) => `Commit initial changes to git ${status}${status === 'started' ? '...' : ''}`,
+          done: (status) => `Commit updates to git ${status}${status === 'started' ? '...' : ''}`,
+        },
+      }
+      const commitMsg = {
+        init: `chore${!isNewProject ? `(${this.answers.name})` : ''}: init`,
+        done: `chore${!isNewProject ? `(${this.answers.name})` : ''}: ${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
+      }
+
+      if (!commitTypes.includes(type)) {
+        return
+      }
+
+      const gitStatus = await spawn(this.sao.opts.outDir, 'git', [
+        'status',
+        '--porcelain',
+      ])
+
+      if (gitStatus.messages.length > 0) {
+        await exec('git', [
+          'add',
+          '.',
+        ],
+        cliMessages.add[type])
+
+        await exec('git', [
+          'commit',
+          '-m',
+          commitMsg[type],
+        ],
+        cliMessages.commit[type])
+      }
+    }
+
+    isNewProject &&
+      await gitInit()
+    isNewProject && this.answers.origin &&
+      await gitRemoteAdd()
+    isNewProject &&
+      await gitCommit('init')
+    always &&
+      await yarnInstal()
+    isNewProject &&
+      await runLinters()
+    always &&
+      await gitCommit(isNewProject ? 'done' : 'init')
   },
 }

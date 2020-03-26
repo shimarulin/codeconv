@@ -71,4 +71,9 @@ describe('A call in the monorepo root with default values.', () => {
   test('Child package path', async () => {
     expect(helper.api.opts.outDir).toContain('/packages/@test/output')
   })
+
+  test('Property "private" in "package.json"', async () => {
+    const pkg = await readJsonFile(helper)
+    expect(pkg.private).toBeUndefined()
+  })
 })
