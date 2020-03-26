@@ -19,6 +19,7 @@ const UrlParser = require('./lib/parser/UrlParser')
 
 const isNewProject = moduleType === 'project'
 const url = new UrlParser()
+const always = true
 
 module.exports = {
   templateData () {
@@ -172,31 +173,16 @@ module.exports = {
         'init',
       ],
       (status) => `Git init ${status}${status === 'started' ? '...' : ''}`)
-
-      if (this.answers.origin) {
-        await exec('git', [
-          'remote',
-          'add',
-          'origin',
-          url.remote,
-        ],
-        (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
-      }
     }
 
-    const gitInitialCommit = async () => {
+    const gitRemoteAdd = async () => {
       await exec('git', [
+        'remote',
         'add',
-        '.',
+        'origin',
+        url.remote,
       ],
-      (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`)
-
-      await exec('git', [
-        'commit',
-        '-m',
-        `chore${!isNewProject ? `(${this.answers.name})` : ''}: init`,
-      ],
-      (status) => `Commit initial changes to git ${status}${status === 'started' ? '...' : ''}`)
+      (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
     }
 
     const yarnInstal = async () => {
@@ -246,7 +232,30 @@ module.exports = {
       (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
     }
 
-    const gitPostInstallCommit = async () => {
+    const gitCommit = async (type) => {
+      const commitTypes = [
+        'init',
+        'done',
+      ]
+      const cliMessages = {
+        add: {
+          init: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
+          done: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
+        },
+        commit: {
+          init: (status) => `Commit initial changes to git ${status}${status === 'started' ? '...' : ''}`,
+          done: (status) => `Commit updates to git ${status}${status === 'started' ? '...' : ''}`,
+        },
+      }
+      const commitMsg = {
+        init: `chore${!isNewProject ? `(${this.answers.name})` : ''}: init`,
+        done: `chore${!isNewProject ? `(${this.answers.name})` : ''}: ${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
+      }
+
+      if (!commitTypes.includes(type)) {
+        return
+      }
+
       const gitStatus = await spawn(this.sao.opts.outDir, 'git', [
         'status',
         '--porcelain',
@@ -257,21 +266,28 @@ module.exports = {
           'add',
           '.',
         ],
-        (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`)
+        cliMessages.add[type])
 
         await exec('git', [
           'commit',
           '-m',
-          `chore${!isNewProject ? `(${this.answers.name})` : ''}: ${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
+          commitMsg[type],
         ],
-        (status) => `Commit updates to git ${status}${status === 'started' ? '...' : ''}`)
+        cliMessages.commit[type])
       }
     }
 
-    isNewProject && await gitInit()
-    isNewProject && await gitInitialCommit()
-    await yarnInstal()
-    isNewProject && await runLinters()
-    await gitPostInstallCommit()
+    isNewProject &&
+      await gitInit()
+    isNewProject && this.answers.origin &&
+      await gitRemoteAdd()
+    isNewProject &&
+      await gitCommit('init')
+    always &&
+      await yarnInstal()
+    isNewProject &&
+      await runLinters()
+    always &&
+      await gitCommit(isNewProject ? 'done' : 'init')
   },
 }
