@@ -225,7 +225,7 @@ module.exports = {
       await exec('npx', [
         'eslint',
         '--ext',
-        '.js,.ts',
+        'js,md',
         '.',
         '--fix',
       ],
