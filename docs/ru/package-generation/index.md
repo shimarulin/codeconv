@@ -1,3 +1,24 @@
+# Генератор Node.js модулей
+
+- базовый (общий) генератор
+- генераторы-дополнения для конкретных задач
+
+Базовый генератор создает модуль с подготовленной общей инфраструктурой для разработки, который может развиваться дальше
+во что-угодно.
+
+включает в себя
+
+- работу с хуками гита и линтингом изменившихся файлов (husky + lint-staged)
+- линтинг и форматирование JS/TS кода (eslint), в том числе внутри Markdown файлов (eslint-plugin-markdown - включить в
+  конфиг @codeconv/eslint-config-base)
+- линтинг и форматирование Markdown файлов (prettier, возможно markdownlint)
+- форматирование файла манифеста package.json (format-package)
+- линтинг текста коммитов (https://github.com/conventional-changelog/commitlint,
+  https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
+  - https://remarkablemark.org/blog/2019/05/29/git-husky-commitlint/
+  - https://www.vojtechruzicka.com/commitlint/
+- управление версиями и публикацией (lerna для монорепозиториев или npm-скрипт с использованием conventional-changelog)
+
 # Структура модуля
 
 ## Типы модулей, проектов и пакетов
