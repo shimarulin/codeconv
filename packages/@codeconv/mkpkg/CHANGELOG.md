@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/shimarulin/codeconv/compare/v0.3.1...v0.4.0) (2020-03-26)
+
+
+### Bug Fixes
+
+* **mkpkg:** fix extensions in lint script ([5ca9435](https://github.com/shimarulin/codeconv/commit/5ca9435cc27958226c18485b00adb8a263cfe4ac))
+* **mkpkg:** remove additional questions from common generator ([ef034e0](https://github.com/shimarulin/codeconv/commit/ef034e00a532691d572f2b147f00d768ec7466ce))
+
+
+### Features
+
+* **mkpkg:** add git hooks and linters ([c292e8d](https://github.com/shimarulin/codeconv/commit/c292e8d767382345b9e39f5f53c8048cd23e5f1f))
+* **mkpkg:** add questions about package type ([7a20006](https://github.com/shimarulin/codeconv/commit/7a200065a50d4e746a669cf708d90fd6d97f9a0b))
+* **mkpkg:** run linters before commit changes ([e586ef5](https://github.com/shimarulin/codeconv/commit/e586ef5c8320a8a4bf0cec942405d71798f87e70))
+
+
+
+
+
 ## [0.3.1](https://github.com/shimarulin/codeconv/compare/v0.3.0...v0.3.1) (2020-03-24)
 
 **Note:** Version bump only for package @codeconv/mkpkg
