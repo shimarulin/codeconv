@@ -2,9 +2,6 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
-    "create": {
-      "license": "MIT"
-    },
     "publish": {
       "allowBranch": ["master"],
       "conventionalCommits": true,
