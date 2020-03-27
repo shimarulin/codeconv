@@ -45,7 +45,8 @@ module.exports = (
       ],
       '**/*.md': [
         'prettier --write',
-        'markdownlint --fix',
+        // https://github.com/igorshubovych/markdownlint-cli/pull/80
+        // 'markdownlint --fix',
         'eslint --fix',
       ],
       '**/*.json': [
