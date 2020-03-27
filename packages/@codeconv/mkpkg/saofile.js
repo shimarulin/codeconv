@@ -197,10 +197,12 @@ module.exports = {
           'husky',
           'lint-staged',
           'eslint',
+          '@codeconv/eslint-config-base',
+          '@commitlint/cli',
+          '@commitlint/config-conventional',
           'format-package',
           'prettier',
           'markdownlint-cli',
-          '@codeconv/eslint-config-base',
         )
       }
 

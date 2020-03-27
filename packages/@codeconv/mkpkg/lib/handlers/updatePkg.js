@@ -30,6 +30,7 @@ module.exports = (
     repository: when(url.urlSource, url.repository),
     husky: when(isNewProject, {
       hooks: {
+        'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
         'pre-commit': 'lint-staged',
         'post-commit': 'git update-index -g',
       },
