@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/shimarulin/codeconv/compare/v0.4.0...v0.5.0) (2020-03-27)
+
+
+### Features
+
+* **lint:** update typescript config to ESLint v7 support ([b8cb6b4](https://github.com/shimarulin/codeconv/commit/b8cb6b45f1da7f7a80bb62d45849e67ae6ed274a))
+
+
+
+
+
 # [0.4.0](https://github.com/shimarulin/codeconv/compare/v0.3.1...v0.4.0) (2020-03-26)
 
 

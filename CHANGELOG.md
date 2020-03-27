@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/shimarulin/codeconv/compare/v0.4.0...v0.5.0) (2020-03-27)
+
+
+### Bug Fixes
+
+* **mkpkg:** remove unused code ([bfb16ad](https://github.com/shimarulin/codeconv/commit/bfb16adaf624257a7d71780aaaf47dd2472d119a))
+* **mkpkg:** template name ([331c8a0](https://github.com/shimarulin/codeconv/commit/331c8a001e26d49ff36eabe8caf5066e59a0d086))
+
+
+### Features
+
+* **lint:** add eslint-plugin-markdown (ESLint v7 support) ([a2f1a14](https://github.com/shimarulin/codeconv/commit/a2f1a14b63cd41353925275e497888096a31f436))
+* **lint:** update typescript config to ESLint v7 support ([b8cb6b4](https://github.com/shimarulin/codeconv/commit/b8cb6b45f1da7f7a80bb62d45849e67ae6ed274a))
+* **mkpkg:** add markdownlint-cli ([2e54f16](https://github.com/shimarulin/codeconv/commit/2e54f160d46f92a32b0eaedb6afe2c5ec34f8bf1))
+
+
+
+
+
 # [0.4.0](https://github.com/shimarulin/codeconv/compare/v0.3.1...v0.4.0) (2020-03-26)
 
 
