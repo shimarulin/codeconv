@@ -44,6 +44,8 @@ module.exports = (
       ],
       '**/*.md': [
         'prettier --write',
+        'markdownlint --fix',
+        'eslint --fix',
       ],
       '**/*.json': [
         'prettier --write',

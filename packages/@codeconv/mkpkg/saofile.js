@@ -142,6 +142,8 @@ module.exports = {
           'gitignore.ejs': '.gitignore',
           'prettierignore.ejs': '.prettierignore',
           'prettierrc.js.ejs': '.prettierrc.js',
+          'markdownlint.json.ejs': '.markdownlint.json',
+          'markdownlintignore.ejs': '.markdownlintignore',
         },
       },
       {
@@ -197,6 +199,7 @@ module.exports = {
           'eslint',
           'format-package',
           'prettier',
+          'markdownlint-cli',
           '@codeconv/eslint-config-base',
         )
       }
