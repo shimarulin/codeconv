@@ -1,7 +1,15 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
   plugins: [
     '@typescript-eslint',
+  ],
+  overrides: [
+    {
+      files: [
+        '**/*.ts',
+        '**/*.tsx',
+      ],
+      parser: '@typescript-eslint/parser',
+    },
   ],
   extends: [
     require.resolve('@codeconv/eslint-config-base'),
