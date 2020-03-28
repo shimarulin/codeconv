@@ -5,8 +5,6 @@ const { readJsonFile } = require('../helpers/readJsonFile')
 
 describe('Use default values', () => {
   const fileList = [
-    '.markdownlintignore',
-    '.markdownlint.json',
     '.editorconfig',
     '.eslintignore',
     '.eslintrc.js',

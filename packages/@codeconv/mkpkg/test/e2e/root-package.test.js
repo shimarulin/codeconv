@@ -5,8 +5,6 @@ const { readJsonFile } = require('../helpers/readJsonFile')
 
 describe('Create monorepo root with default options', () => {
   const fileList = [
-    '.markdownlintignore',
-    '.markdownlint.json',
     '.editorconfig',
     '.eslintignore',
     '.eslintrc.js',
