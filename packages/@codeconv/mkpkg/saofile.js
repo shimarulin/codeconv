@@ -142,8 +142,6 @@ module.exports = {
           'gitignore.ejs': '.gitignore',
           'prettierignore.ejs': '.prettierignore',
           'prettierrc.js.ejs': '.prettierrc.js',
-          'markdownlint.json.ejs': '.markdownlint.json',
-          'markdownlintignore.ejs': '.markdownlintignore',
         },
       },
       {
@@ -197,10 +195,11 @@ module.exports = {
           'husky',
           'lint-staged',
           'eslint',
+          '@codeconv/eslint-config-base',
+          '@commitlint/cli',
+          '@commitlint/config-conventional',
           'format-package',
           'prettier',
-          'markdownlint-cli',
-          '@codeconv/eslint-config-base',
         )
       }
 
