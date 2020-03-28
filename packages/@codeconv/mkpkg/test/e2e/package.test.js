@@ -16,6 +16,7 @@ describe('Use default values', () => {
     'LICENSE',
     'README.md',
     'package.json',
+    'commitlint.config.js',
   ].sort()
   let helper
 
