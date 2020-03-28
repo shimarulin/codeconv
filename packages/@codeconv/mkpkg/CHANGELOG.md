@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/shimarulin/codeconv/compare/v0.5.0...v0.6.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* **mkpkg:** disable markdownlint in git hook to prevent absolute patch error ([ecc2fee](https://github.com/shimarulin/codeconv/commit/ecc2feefc83b9a67c52bc6c8834191a907dbd77b))
+* **mkpkg:** markdownlint temporarily removed ([97e004a](https://github.com/shimarulin/codeconv/commit/97e004a57ea03832fed49858babb9d058520b3a2))
+
+
+### Features
+
+* **mkpkg:** add commitlint ([f3ac9e9](https://github.com/shimarulin/codeconv/commit/f3ac9e9eada31f7ee2621b7ae92362739b0be4c0))
+
+
+
+
+
 # [0.5.0](https://github.com/shimarulin/codeconv/compare/v0.4.0...v0.5.0) (2020-03-27)
 
 
