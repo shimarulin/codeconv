@@ -78,7 +78,7 @@ describe('Set repository URL with default options', () => {
     const pkg = await readJsonFile(helper)
     expect(pkg.repository).toEqual({
       type: 'git',
-      url: 'https://github.com/owner/project.git',
+      url: 'git@github.com:owner/project.git',
     })
   })
 })

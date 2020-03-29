@@ -67,7 +67,7 @@ class UrlParser {
   get repository () {
     return {
       type: 'git',
-      url: `https://${this.host}/${this.owner}/${this.project}.git`,
+      url: this.remote,
       directory: hasSubDir(this.urlPath) ? this.urlPath : undefined,
     }
   }

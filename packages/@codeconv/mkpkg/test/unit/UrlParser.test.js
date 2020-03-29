@@ -44,7 +44,7 @@ describe('Get GitHub URL\'s', () => {
   test('Project repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://github.com/username/project.git',
+      url: 'git@github.com:username/project.git',
     })
   })
 })
@@ -70,7 +70,7 @@ describe('Get GitLab URL\'s', () => {
   test('Project repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://gitlab.com/username/project.git',
+      url: 'git@gitlab.com:username/project.git',
     })
   })
 })
@@ -96,7 +96,7 @@ describe('Get Bitbucket URL\'s', () => {
   test('Project repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://bitbucket.org/username/project.git',
+      url: 'git@bitbucket.org:username/project.git',
     })
   })
 })
@@ -122,7 +122,7 @@ describe('Get unknown hosting URL\'s', () => {
   test('Project repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://git-example.com/username/project.git',
+      url: 'git@git-example.com:username/project.git',
     })
   })
 })
@@ -138,7 +138,7 @@ describe('Get GitHub URL\'s for child package', () => {
   test('Package repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://github.com/username/project.git',
+      url: 'git@github.com:username/project.git',
       directory: 'packages/@test/output',
     })
   })
@@ -155,7 +155,7 @@ describe('Get GitLab URL\'s for child package', () => {
   test('Package repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://gitlab.com/username/project.git',
+      url: 'git@gitlab.com:username/project.git',
       directory: 'packages/@test/output',
     })
   })
@@ -172,7 +172,7 @@ describe('Get Bitbucket URL\'s for child package', () => {
   test('Package repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://bitbucket.org/username/project.git',
+      url: 'git@bitbucket.org:username/project.git',
       directory: 'packages/@test/output',
     })
   })
@@ -189,7 +189,7 @@ describe('Get unknown hosting URL\'s for child package', () => {
   test('Package repository URL object', () => {
     expect(url.repository).toEqual({
       type: 'git',
-      url: 'https://git-example.com/username/project.git',
+      url: 'git@git-example.com:username/project.git',
       directory: 'packages/@test/output',
     })
   })
