@@ -136,6 +136,7 @@ module.exports = {
       {
         type: 'move',
         patterns: {
+          'commitlintrc.ejs': '.commitlintrc.js',
           'editorconfig.ejs': '.editorconfig',
           'eslintignore.ejs': '.eslintignore',
           'eslintrc.js.ejs': '.eslintrc.js',

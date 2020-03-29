@@ -15,7 +15,7 @@ describe('Create monorepo root with default options', () => {
     'LICENSE',
     'README.md',
     'package.json',
-    'commitlint.config.js',
+    '.commitlintrc.js',
 
   ].sort()
   let helper
