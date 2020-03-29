@@ -12,7 +12,7 @@ jest.mock('../../lib/getCwdConfig', () => {
       ],
       repository: {
         type: 'git',
-        url: 'https://gitlab.com/owner/project.git',
+        url: 'git@gitlab.com:owner/project.git',
       },
     },
     lernaConfig: {

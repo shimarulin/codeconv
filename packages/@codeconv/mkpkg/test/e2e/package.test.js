@@ -14,7 +14,7 @@ describe('Use default values', () => {
     'LICENSE',
     'README.md',
     'package.json',
-    'commitlint.config.js',
+    '.commitlintrc.js',
   ].sort()
   let helper
 
@@ -35,7 +35,7 @@ describe('Use default values', () => {
 
   test('Version property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.version).toEqual('0.1.0')
+    expect(pkg.version).toEqual('0.0.0-development')
   })
 
   test('Name property in "package.json"', async () => {
@@ -78,7 +78,7 @@ describe('Set repository URL with default options', () => {
     const pkg = await readJsonFile(helper)
     expect(pkg.repository).toEqual({
       type: 'git',
-      url: 'https://github.com/owner/project.git',
+      url: 'git@github.com:owner/project.git',
     })
   })
 })

@@ -12,7 +12,7 @@ jest.mock('../../lib/getCwdConfig', () => {
       ],
       repository: {
         type: 'git',
-        url: 'git+https://github.com/owner/project.git',
+        url: 'git@github.com:owner/project.git',
       },
     },
     lernaConfig: {
@@ -63,7 +63,7 @@ describe('A call in the monorepo root with default values.', () => {
     const pkg = await readJsonFile(helper)
     expect(pkg.repository).toEqual({
       type: 'git',
-      url: 'https://github.com/owner/project.git',
+      url: 'git@github.com:owner/project.git',
       directory: 'packages/@test/output',
     })
   })

@@ -1,7 +1,7 @@
 const { packageConfig, lernaConfig } = require('./getCwdConfig')
 
 const DEFAULT_LICENSE = 'MIT'
-const DEFAULT_VERSION = '0.1.0'
+const DEFAULT_VERSION = '0.0.0-development'
 const PROJECT_TYPES = [
   'Package',
   'Monorepo',
