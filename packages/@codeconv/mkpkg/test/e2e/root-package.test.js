@@ -43,7 +43,7 @@ describe('Create monorepo root with default options', () => {
   test('Version property in "lerna.json"', async () => {
     const pkg = await readJsonFile(helper, 'lerna.json')
 
-    expect(pkg.version).toEqual('0.1.0')
+    expect(pkg.version).toEqual('0.0.0-development')
   })
 
   test('Name property in "package.json"', async () => {

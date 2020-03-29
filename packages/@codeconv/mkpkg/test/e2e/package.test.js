@@ -35,7 +35,7 @@ describe('Use default values', () => {
 
   test('Version property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.version).toEqual('0.1.0')
+    expect(pkg.version).toEqual('0.0.0-development')
   })
 
   test('Name property in "package.json"', async () => {
