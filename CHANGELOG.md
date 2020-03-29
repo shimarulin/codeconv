@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/shimarulin/codeconv/compare/v0.6.0...v0.6.1) (2020-03-29)
+
+
+### Bug Fixes
+
+* **mkpkg:** change the default version ([33f75fc](https://github.com/shimarulin/codeconv/commit/33f75fc0dd95bf4140882f00b50c8b99632f1aae)), closes [/github.com/semantic-release/semantic-release/blob/master/docs/support/FAQ.md#can-i-set-the-initial-release-version-of-my-package-to-001](https://github.com//github.com/semantic-release/semantic-release/blob/master/docs/support/FAQ.md/issues/can-i-set-the-initial-release-version-of-my-package-to-001)
+* **mkpkg:** change the repository url format ([32bcf10](https://github.com/shimarulin/codeconv/commit/32bcf10c07ead0a8db9ec8c77f65591cb6faf514))
+
+
+
+
+
 # [0.6.0](https://github.com/shimarulin/codeconv/compare/v0.5.0...v0.6.0) (2020-03-28)
 
 
