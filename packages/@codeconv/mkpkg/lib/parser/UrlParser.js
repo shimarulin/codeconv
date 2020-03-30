@@ -61,12 +61,15 @@ class UrlParser {
 
     this.host = getHostFromUrl(this.urlSource, this.urlType)
     this.owner = getOwnerFromUrl(this.urlSource, this.host)
+    // TODO: rename according to https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.1.0/README.md#repository
     this.project = getProjectFromUrl(this.urlSource, this.owner)
   }
 
   get repository () {
     return {
       type: 'git',
+      // TODO: Need to documented. This URL can be used by CI tools.
+      // See https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#repositoryurl
       url: this.remote,
       directory: hasSubDir(this.urlPath) ? this.urlPath : undefined,
     }
