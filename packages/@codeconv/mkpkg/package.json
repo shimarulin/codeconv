@@ -38,6 +38,7 @@
     "cross-spawn": "^7.0.1",
     "lookpath": "^1.0.5",
     "ora": "^4.0.3",
+    "ultra-runner": "^3.2.1",
     "voca": "^1.4.0"
   },
   "devDependencies": {

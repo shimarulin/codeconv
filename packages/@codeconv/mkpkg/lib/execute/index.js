@@ -1,4 +1,4 @@
-const spawnPromise = require('./spawnPromise')
+const { spawnCommand } = require('../runner/CommandRunner')
 const printOut = require('./printOut')
 
 function execute (
@@ -10,7 +10,7 @@ function execute (
   getMsg = (type) => `${command} ${type}`,
 ) {
   return printOut(
-    spawnPromise(outDir, command, args),
+    spawnCommand(outDir, command, args),
     getMsg,
   )
 }

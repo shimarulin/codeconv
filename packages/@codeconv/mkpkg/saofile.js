@@ -13,9 +13,8 @@ const {
   defaultLicense,
   defaultVersion,
 } = require('./lib/config')
-const execute = require('./lib/execute')
-const spawn = require('./lib/execute/spawnPromise')
 const UrlParser = require('./lib/parser/UrlParser')
+const { runCommand, spawnCommand } = require('./lib/runner/CommandRunner')
 
 const isNewProject = moduleType === 'project'
 const url = new UrlParser()
@@ -163,27 +162,20 @@ module.exports = {
     return actions
   },
   async completed () {
-    const exec = execute.bind(null, this.sao.opts.outDir)
+    const run = runCommand.bind(null, this.sao.opts.outDir)
+    const spawn = spawnCommand.bind(null, this.sao.opts.outDir)
     const yarnFlags = [
+      '--silent',
       '-D',
     ]
     const devDependencies = []
 
     const gitInit = async () => {
-      await exec('git', [
-        'init',
-      ],
-      (status) => `Git init ${status}${status === 'started' ? '...' : ''}`)
+      return run('git init')
     }
 
     const gitRemoteAdd = async () => {
-      await exec('git', [
-        'remote',
-        'add',
-        'origin',
-        url.remote,
-      ],
-      (status) => `Git remote add origin ${url.remote} ${status}${status === 'started' ? '...' : ''}`)
+      return run(`git remote add origin ${url.remote}`)
     }
 
     const yarnInstal = async () => {
@@ -205,34 +197,17 @@ module.exports = {
       }
 
       if (devDependencies.length > 0) {
-        await exec('yarn', [
-          'add',
+        return run(`yarn add ${[
           ...yarnFlags,
           ...devDependencies,
-        ],
-        (status, code, messages) => {
-          switch (status) {
-            case 'started':
-              return 'Install development dependencies...'
-            case 'succeed':
-              return 'Development dependencies installed'
-            case 'failed':
-              // eslint-disable-next-line no-useless-escape
-              return `Installation development dependencies failed due to error:\n\s\s> Exit code: ${code},\n\s\s> Messages: ${messages.join('\n\s\s\s\s> ')}`
-          }
+        ].join(' ')}`, {
+          raw: true,
         })
       }
     }
 
     const runLinters = async () => {
-      await exec('npx', [
-        'eslint',
-        '--ext',
-        'js,md',
-        '.',
-        '--fix',
-      ],
-      (status) => `Format JS/TS code ${status}${status === 'started' ? '...' : ''}`)
+      return run('eslint --ext js,md . --fix')
     }
 
     const gitCommit = async (type) => {
@@ -240,16 +215,6 @@ module.exports = {
         'init',
         'done',
       ]
-      const cliMessages = {
-        add: {
-          init: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
-          done: (status) => `Add files to git ${status}${status === 'started' ? '...' : ''}`,
-        },
-        commit: {
-          init: (status) => `Commit initial changes to git ${status}${status === 'started' ? '...' : ''}`,
-          done: (status) => `Commit updates to git ${status}${status === 'started' ? '...' : ''}`,
-        },
-      }
       const commitMsg = {
         init: `chore${!isNewProject ? `(${this.answers.name})` : ''}: init`,
         done: `chore${!isNewProject ? `(${this.answers.name})` : ''}: ${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
@@ -259,24 +224,18 @@ module.exports = {
         return
       }
 
-      const gitStatus = await spawn(this.sao.opts.outDir, 'git', [
+      const gitStatus = await spawn('git', [
         'status',
         '--porcelain',
       ])
 
       if (gitStatus.messages.length > 0) {
-        await exec('git', [
-          'add',
-          '.',
-        ],
-        cliMessages.add[type])
-
-        await exec('git', [
-          'commit',
-          '-m',
-          commitMsg[type],
-        ],
-        cliMessages.commit[type])
+        await run('git add .', {
+          silent: true,
+        })
+        await run(`git commit -m "${commitMsg[type]}"`, {
+          silent: true,
+        })
       }
     }
 

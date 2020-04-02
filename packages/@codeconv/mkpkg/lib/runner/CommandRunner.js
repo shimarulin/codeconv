@@ -1,11 +1,41 @@
 const spawn = require('cross-spawn')
 const { lookpath } = require('lookpath')
+const ultra = require('ultra-runner')
+const { CommandParser } = require('ultra-runner/lib/parser')
+const { Runner, getPackage, findUp } = ultra
 
-const spawnPromise = (
+class CommandRunner extends Runner {
+  constructor (options, cwd) {
+    super(options)
+    this.cwd = cwd
+  }
+
+  async run (cmd, pkg, cwd = this.cwd) {
+    if (!pkg) {
+      const root = findUp('package.json', cwd)
+      if (root) pkg = getPackage(root)
+    }
+    if (pkg) {
+      const parser = new CommandParser(pkg)
+      const command = parser.parse(cmd).setCwd(cwd)
+      return this._run(command)
+    }
+    throw new Error('Could not find package')
+  }
+}
+
+async function runCommand (cwd, cmd, options) {
+  const runner = new CommandRunner(options, cwd)
+  return runner.run(cmd)
+}
+
+async function spawnCommand (
   cwd = process.cwd(),
   command = 'echo',
-  args = [],
-) => {
+  args = [
+    '',
+  ],
+) {
   return new Promise((resolve) => {
     const succeedMessages = []
     const errorMessages = []
@@ -14,7 +44,6 @@ const spawnPromise = (
         const childProcess = spawn(command, args, {
           cwd,
         })
-        // console.log(childProcess)
         childProcess.stdout.on('data', (msg) => {
           succeedMessages.push(msg.toString().replace(/\n$/, ''))
         })
@@ -48,4 +77,8 @@ const spawnPromise = (
   })
 }
 
-module.exports = spawnPromise
+module.exports = {
+  CommandRunner,
+  runCommand,
+  spawnCommand,
+}
