@@ -14,7 +14,7 @@ const {
   defaultVersion,
 } = require('./lib/config')
 const UrlParser = require('./lib/parser/UrlParser')
-const { runCommand, spawnCommand } = require('./lib/runner/CommandRunner')
+const { CommandRunner } = require('./lib/CommandRunner')
 
 const isNewProject = moduleType === 'project'
 const url = new UrlParser()
@@ -162,21 +162,12 @@ module.exports = {
     return actions
   },
   async completed () {
-    const run = runCommand.bind(null, this.sao.opts.outDir)
-    const spawn = spawnCommand.bind(null, this.sao.opts.outDir)
+    const runner = new CommandRunner(this.sao.opts.outDir)
     const yarnFlags = [
       '--silent',
       '-D',
     ]
     const devDependencies = []
-
-    const gitInit = async () => {
-      return run('git init')
-    }
-
-    const gitRemoteAdd = async () => {
-      return run(`git remote add origin ${url.remote}`)
-    }
 
     const yarnInstal = async () => {
       if (this.answers.type === 'Monorepo') {
@@ -197,17 +188,11 @@ module.exports = {
       }
 
       if (devDependencies.length > 0) {
-        return run(`yarn add ${[
+        return runner.run(`yarn add ${[
           ...yarnFlags,
           ...devDependencies,
-        ].join(' ')}`, {
-          raw: true,
-        })
+        ].join(' ')}`)
       }
-    }
-
-    const runLinters = async () => {
-      return run('eslint --ext js,md . --fix')
     }
 
     const gitCommit = async (type) => {
@@ -224,31 +209,24 @@ module.exports = {
         return
       }
 
-      const gitStatus = await spawn('git', [
-        'status',
-        '--porcelain',
-      ])
+      const gitStatus = await runner.spawn('git status --porcelain')
 
       if (gitStatus.messages.length > 0) {
-        await run('git add .', {
-          silent: true,
-        })
-        await run(`git commit -m "${commitMsg[type]}"`, {
-          silent: true,
-        })
+        await runner.run('git add .')
+        await runner.run(`git commit --quiet -m "${commitMsg[type]}"`)
       }
     }
 
     isNewProject &&
-      await gitInit()
+      await runner.run('git init')
     isNewProject && this.answers.origin &&
-      await gitRemoteAdd()
+      await runner.run(`git remote add origin ${url.remote}`)
     isNewProject &&
       await gitCommit('init')
     always &&
       await yarnInstal()
     isNewProject &&
-      await runLinters()
+      await runner.run('npx eslint --ext js,md . --fix')
     always &&
       await gitCommit(isNewProject ? 'done' : 'init')
   },
