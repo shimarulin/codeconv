@@ -10,6 +10,7 @@ const style = {
   info: chalk.cyan,
   time: chalk.blueBright,
 }
+
 const getText = (cmd = '', messages = [], time = 0) => {
   const args = parseCommand(cmd)
   const command = args.shift()
@@ -20,7 +21,9 @@ const getText = (cmd = '', messages = [], time = 0) => {
     .join('')
   return `${style.system('$')} ${style.command(command)} ${style.args(args.join(' '))}${messages.length > 0 ? '\n' : ''}${message}${time !== 0 ? timeRow : ''}`
 }
+
 const parseMessage = (message = '') => message.split('\n').map(msg => msg.trim())
+
 const parseCommand = (cmd = '') => {
   const reducer = (accumulator, currentValue) => {
     const argList = []
