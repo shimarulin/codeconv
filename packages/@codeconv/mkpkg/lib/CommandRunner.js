@@ -5,17 +5,20 @@ const chalk = require('chalk')
 
 const style = {
   system: chalk.blackBright,
-  command: chalk.yellow,
-  args: chalk.magenta,
+  command: chalk.green,
+  args: chalk.yellow,
+  info: chalk.cyan,
+  time: chalk.blueBright,
 }
-const getText = (cmd = '', messages = []) => {
+const getText = (cmd = '', messages = [], time = 0) => {
   const args = parseCommand(cmd)
   const command = args.shift()
+  const timeRow = `\n  ${style.system('└')} ${style.info('Done in')} ${style.time(`${Math.floor(time / 10) / 100}s`)}`
 
   const message = messages
     .map((msg, idx, arr) => `  ${style.system('│')} ${msg}${idx === arr.length - 1 ? '' : '\n'}`)
     .join('')
-  return `${style.system('$')} ${style.command(command)} ${style.args(args.join(' '))}${messages.length > 0 ? '\n' : ''}${message}`
+  return `${style.system('$')} ${style.command(command)} ${style.args(args.join(' '))}${messages.length > 0 ? '\n' : ''}${message}${time !== 0 ? timeRow : ''}`
 }
 const parseMessage = (message = '') => message.split('\n').map(msg => msg.trim())
 const parseCommand = (cmd = '') => {
@@ -56,6 +59,7 @@ class CommandRunner {
   }
 
   async spawn (cmd, spinner) {
+    const dateStart = new Date()
     const args = parseCommand(cmd)
     const command = args.shift()
     const { cwd } = this
@@ -77,7 +81,7 @@ class CommandRunner {
           })
           childProcess.on('exit', (code) => {
             if (code === 0) {
-              spinner && spinner.succeed(getText(cmd, succeedMessages))
+              spinner && spinner.succeed(getText(cmd, succeedMessages, new Date() - dateStart))
               resolve({
                 code,
                 messages: succeedMessages,
