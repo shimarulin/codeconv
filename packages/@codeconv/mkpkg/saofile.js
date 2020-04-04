@@ -164,7 +164,6 @@ module.exports = {
   async completed () {
     const runner = new CommandRunner(this.sao.opts.outDir)
     const yarnFlags = [
-      '--silent',
       '-D',
     ]
     const devDependencies = []
@@ -173,6 +172,9 @@ module.exports = {
       if (this.answers.type === 'Monorepo') {
         yarnFlags.push('-W')
         devDependencies.push('lerna')
+      }
+      if (this.sao.opts.quiet) {
+        yarnFlags.push('--silent')
       }
       if (isNewProject) {
         devDependencies.push(
@@ -213,12 +215,12 @@ module.exports = {
 
       if (gitStatus.messages.length > 0) {
         await runner.run('git add .')
-        await runner.run(`git commit --quiet -m "${commitMsg[type]}"`)
+        await runner.run(`git commit${this.sao.opts.quiet ? ' --quiet' : ''} -m "${commitMsg[type]}"`)
       }
     }
 
     isNewProject &&
-      await runner.run('git init')
+      await runner.run(`git init${this.sao.opts.quiet ? ' --quiet' : ''}`)
     isNewProject && this.answers.origin &&
       await runner.run(`git remote add origin ${url.remote}`)
     isNewProject &&

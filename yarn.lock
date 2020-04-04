@@ -2004,6 +2004,11 @@ cac@^6.3.8:
   resolved "https://registry.yarnpkg.com/cac/-/cac-6.5.7.tgz#3359494ced169f58f4ccdaa64f9b760badddde7a"
   integrity sha512-DjjOqLvoX/oO/snovTNm553kRYWTmIIQBfHQ2UqktbCudoHJuxzvRhjwdCHkXrQwp/lnu3bYyZ+LfaHtwk0Wjw==
 
+cac@^6.5.8:
+  version "6.5.8"
+  resolved "https://registry.yarnpkg.com/cac/-/cac-6.5.8.tgz#b15d183ee478226f846888be74612ac080533667"
+  integrity sha512-jLv2+ps4T2HRVR1k4UlQZoAFvliAhf5LVR0yjPjIaIr/Cw99p/I7CXIEkXtw5q+AkYk4NCFJcF5ErmELSyrZnw==
+
 cacache@^12.0.0, cacache@^12.0.3:
   version "12.0.3"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-12.0.3.tgz#be99abba4e1bf5df461cd5a2c1071fc432573390"
