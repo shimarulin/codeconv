@@ -3,7 +3,8 @@ const path = require('path')
 const cli = require('cac')()
 
 cli
-  .command('[target-directory]', 'Generate a new project to target directory')
+  .command('[directory]', 'Generate a new project to target directory. ' +
+    'If you omit "directory",\n               new project will be generated in the current directory')
   .option(
     '--log',
     'Print actions log',
@@ -19,6 +20,16 @@ cli
 
     await app.run().catch(sao.handleError)
   })
+
+// cli
+//   .command('add <feature>', 'Add a feature provided by mkpkg plugin')
+//   .option(
+//     '--log',
+//     'Print actions log',
+//   )
+//   .action(async (feature, { log }) => {
+//     console.log(feature, log)
+//   })
 
 cli.help()
 
