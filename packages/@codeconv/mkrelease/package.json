@@ -1,0 +1,18 @@
+{
+  "name": "@codeconv/mkrelease",
+  "version": "0.6.1",
+  "description": "codeconv release builder",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/mkrelease",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/mkrelease#readme",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  }
+}
