@@ -18,6 +18,7 @@
   "dependencies": {
     "conventional-changelog-cli": "^2.0.31",
     "conventional-recommended-bump": "^6.0.5",
+    "git-semver-tags": "^3.0.1",
     "ultra-runner": "^3.2.1"
   }
 }
