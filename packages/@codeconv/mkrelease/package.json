@@ -14,5 +14,10 @@
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/mkrelease#readme",
   "scripts": {
     "lint": "eslint --ext js,md ."
+  },
+  "dependencies": {
+    "conventional-changelog-cli": "^2.0.31",
+    "conventional-recommended-bump": "^6.0.5",
+    "ultra-runner": "^3.2.1"
   }
 }

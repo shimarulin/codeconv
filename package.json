@@ -15,7 +15,7 @@
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
     "lint": "lerna run lint --parallel --",
-    "mkpkg": "sao ./packages/@codeconv/mkpkg",
+    "mkpkg": "mkpkg",
     "publish": "lerna publish",
     "test": "lerna run test --parallel --"
   },
@@ -45,7 +45,6 @@
     "husky": "4.2.3",
     "lerna": "3.20.2",
     "lint-staged": "10.0.10",
-    "prettier": "2.0.2",
-    "sao": "^1.7.0"
+    "prettier": "2.0.2"
   }
 }
