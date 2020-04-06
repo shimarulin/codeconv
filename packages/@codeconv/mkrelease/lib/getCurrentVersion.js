@@ -5,14 +5,17 @@ const getCurrentVersion = (initialVersion = '1.0.0') => {
   return new Promise((resolve, reject) => {
     gitSemverTags((err, tags) => {
       if (err) {
-        reject(err)
+        return reject(err)
       }
 
       const gitVersion = [
         ...tags,
-      ].shift()
+      ]
+        .map(tag => semver.clean(tag))
+        .sort(semver.rcompare)
+        .shift()
 
-      resolve(semver.clean(gitVersion || initialVersion))
+      resolve(gitVersion || initialVersion)
     })
   })
 }
