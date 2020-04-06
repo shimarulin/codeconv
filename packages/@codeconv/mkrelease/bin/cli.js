@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { release } = require('../lib/release')
 
 const start = () => {
