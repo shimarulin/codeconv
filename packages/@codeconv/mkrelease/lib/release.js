@@ -1,7 +1,7 @@
 const { getWorkspace } = require('ultra-runner/lib/workspace')
 const { findUp } = require('ultra-runner/lib/package')
 const { getCurrentVersion } = require('./getCurrentVersion')
-const { getIncrementLevel } = require('./getIncrementLevel')
+const { getReleaseType } = require('./getReleaseType')
 const { resolveNextVersion } = require('./resolveNextVersion')
 const { writeVersion } = require('./writeVersion')
 const { writeChangelog } = require('./writeChangelog')
@@ -13,8 +13,8 @@ const release = async () => {
     cwd: root,
   })
   const currentVersion = await getCurrentVersion()
-  const incrementLevel = await getIncrementLevel()
-  const nextVersion = resolveNextVersion(currentVersion, incrementLevel)
+  const releaseType = await getReleaseType(root)
+  const nextVersion = resolveNextVersion(currentVersion, releaseType)
 
   const writeChangesToPkg = async (version, path) => {
     await writeVersion(version, path)

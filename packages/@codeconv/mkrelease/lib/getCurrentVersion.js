@@ -1,4 +1,5 @@
 const gitSemverTags = require('git-semver-tags')
+const semver = require('semver')
 
 const getCurrentVersion = (initialVersion = '1.0.0') => {
   return new Promise((resolve, reject) => {
@@ -11,7 +12,7 @@ const getCurrentVersion = (initialVersion = '1.0.0') => {
         ...tags,
       ].shift()
 
-      resolve(gitVersion || initialVersion)
+      resolve(semver.clean(gitVersion || initialVersion))
     })
   })
 }

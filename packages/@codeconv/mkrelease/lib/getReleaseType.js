@@ -1,6 +1,6 @@
 const conventionalRecommendedBump = require('conventional-recommended-bump')
 
-const getIncrementLevel = (path = process.cwd(), preset = 'angular') => {
+const getReleaseType = (path = process.cwd(), preset = 'angular') => {
   return new Promise((resolve, reject) => {
     conventionalRecommendedBump({
       // For every package https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-recommended-bump#path
@@ -8,7 +8,7 @@ const getIncrementLevel = (path = process.cwd(), preset = 'angular') => {
       preset,
     }, (error, recommendation) => {
       if (!error) {
-        resolve(recommendation)
+        resolve(recommendation.releaseType)
       } else {
         reject(error)
       }
@@ -17,5 +17,5 @@ const getIncrementLevel = (path = process.cwd(), preset = 'angular') => {
 }
 
 module.exports = {
-  getIncrementLevel,
+  getReleaseType,
 }
