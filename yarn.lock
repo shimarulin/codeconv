@@ -3788,7 +3788,7 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-format-package@5.2.0:
+format-package@5.2.0, format-package@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/format-package/-/format-package-5.2.0.tgz#30a6924ee3576c625defeaf82f50749a16cec500"
   integrity sha512-EY9YbjdbJMkfKFFCP57rU2u0NJG7xjoJ3IfrJ15e+lTDkzZbttuRZLMG4mPOAr5r5II7nCeSKER0S+nXbf8iAw==
