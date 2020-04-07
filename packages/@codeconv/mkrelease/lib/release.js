@@ -31,7 +31,7 @@ const release = async () => {
 
   const writeChangesToFs = async (version, directory) => {
     await writeVersion(version, path.resolve(directory, config.manifestFileName), config.manifestFormatOptions)
-    await writeChangelog(path.resolve(directory, config.changelogFileName))
+    await writeChangelog(directory, config.changelogFileName, config.preset, nextVersion)
   }
 
   if (workspace.type === 'recursive' || workspace.type === 'single') {
@@ -42,7 +42,7 @@ const release = async () => {
         .from(workspace.roots.keys())
         .map(directory => writeChangesToFs(nextVersion, directory)),
     )
-    await writeChangelog(path.resolve(workspace.root, config.changelogFileName))
+    await writeChangelog(workspace.root, config.changelogFileName, config.preset, nextVersion)
   }
 
   await writeChangesToGit(nextVersion)
