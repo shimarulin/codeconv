@@ -1,7 +1,7 @@
 const gitSemverTags = require('git-semver-tags')
 const semver = require('semver')
 
-const getCurrentVersion = (initialVersion) => {
+const getCurrentVersion = () => {
   return new Promise((resolve, reject) => {
     gitSemverTags((err, tags) => {
       if (err) {
@@ -15,7 +15,7 @@ const getCurrentVersion = (initialVersion) => {
         .sort(semver.rcompare)
         .shift()
 
-      resolve(gitVersion || initialVersion)
+      resolve(gitVersion)
     })
   })
 }

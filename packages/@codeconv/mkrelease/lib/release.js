@@ -27,7 +27,7 @@ const release = async () => {
   })
   const currentVersion = await getCurrentVersion(config.initialVersion)
   const releaseType = await getReleaseType(root, config.preset)
-  const nextVersion = resolveNextVersion(currentVersion, releaseType)
+  const nextVersion = resolveNextVersion(config.initialVersion, currentVersion, releaseType)
 
   const writeChangesToFs = async (version, directory) => {
     await writeVersion(version, path.resolve(directory, config.manifestFileName), config.manifestFormatOptions)
