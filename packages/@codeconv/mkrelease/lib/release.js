@@ -19,14 +19,14 @@ const defaults = {
   manifestFormatOptions: {},
   changelogFileName: 'CHANGELOG.md',
   initialVersion: '1.0.0',
-  changelogTitle
+  changelogTitle,
 }
 
 const config = {
   ...defaults,
 }
 
-const release = async () => {
+const release = async ({ options: { full } }) => {
   const cfg = await require('conventional-changelog-conventionalcommits')({
     types: [
       {
@@ -83,8 +83,6 @@ const release = async () => {
     ],
   })
 
-  console.log(cfg)
-
   const root = findUp(config.manifestFileName, process.cwd())
   const workspace = await getWorkspace({
     cwd: root,
@@ -95,7 +93,7 @@ const release = async () => {
 
   const writeChangesToFs = async (version, directory) => {
     await writeVersion(version, path.resolve(directory, config.manifestFileName), config.manifestFormatOptions)
-    await writeChangelog(directory, config.changelogFileName, cfg, nextVersion, config.changelogTitle)
+    await writeChangelog(directory, config.changelogFileName, cfg, nextVersion, config.changelogTitle, full)
   }
 
   if (workspace.type === 'recursive' || workspace.type === 'single') {
@@ -106,7 +104,7 @@ const release = async () => {
         .from(workspace.roots.keys())
         .map(directory => writeChangesToFs(nextVersion, directory)),
     )
-    await writeChangelog(workspace.root, config.changelogFileName, cfg, nextVersion, config.changelogTitle)
+    await writeChangelog(workspace.root, config.changelogFileName, cfg, nextVersion, config.changelogTitle, full)
   }
 
   await writeChangesToGit(nextVersion)

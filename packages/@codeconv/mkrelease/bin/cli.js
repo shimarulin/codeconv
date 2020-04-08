@@ -1,13 +1,18 @@
 #!/usr/bin/env node
+const cli = require('cac')()
 const { release } = require('../lib/release')
 
-const start = () => {
-  release()
-    .then(() => {
-    })
-    .catch((e) => {
-      console.dir(e)
-    })
-}
+cli
+  .option(
+    '--full',
+    'Generate full changelog and replace existing changelog file(s)',
+  )
 
-start()
+cli.help()
+
+cli.version(require('../package').version)
+
+release(cli.parse())
+  .catch((e) => {
+    throw e
+  })
