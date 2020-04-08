@@ -1,18 +1,38 @@
 {
   "name": "@codeconv/conventional-changelog-codeconv",
+  "version": "0.6.1",
   "description": "conventional-changelog codeconv preset",
   "license": "MIT",
-  "scripts": {
-    "lint": "eslint --ext js,md ."
+  "repository": {
+    "directory": "packages/@codeconv/conventional-changelog-codeconv",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
   },
-  "version": "0.6.1",
-  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/conventional-changelog-codeconv#readme",
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:shimarulin/codeconv.git",
-    "directory": "packages/@codeconv/conventional-changelog-codeconv"
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/conventional-changelog-codeconv#readme",
+  "keywords": [
+    "conventional-changelog",
+    "conventionalcommits.org",
+    "preset"
+  ],
+  "main": "index.js",
+  "files": [
+    "add-bang-notes.js",
+    "conventional-changelog.js",
+    "conventional-recommended-bump.js",
+    "index.js",
+    "parser-opts.js",
+    "writer-opts.js",
+    "templates"
+  ],
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  },
+  "dependencies": {
+    "compare-func": "^1.3.2",
+    "lodash": "^4.17.15",
+    "q": "^1.5.1"
   }
 }

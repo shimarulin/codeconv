@@ -27,7 +27,7 @@ const config = {
 }
 
 const release = async ({ options: { full } }) => {
-  const cfg = await require('conventional-changelog-conventionalcommits')({
+  const cfg = await require('@codeconv/conventional-changelog-codeconv')({
     types: [
       {
         type: 'feat',
