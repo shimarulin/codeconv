@@ -1,15 +1,17 @@
 const path = require('path')
 const fs = require('fs')
 const conventionalChangelog = require('conventional-changelog')
+const addStream = require('add-stream')
+const tempfile = require('tempfile')
+const replaceStream = require('replacestream')
 
-const writeChangelog = async (directory, fileName, preset, version) => {
+const writeChangelog = async (directory, fileName, config, version, changelogTitle, full = false) => {
   const filePath = path.resolve(directory, fileName)
   const options = {
-    preset,
+    config,
     pkg: {
       path: directory,
     },
-    releaseCount: 0,
   }
   const context = {
     version,
@@ -20,10 +22,58 @@ const writeChangelog = async (directory, fileName, preset, version) => {
   const parserOpts = {}
   const writerOpts = {}
 
-  const changelogStream = conventionalChangelog(options, context, gitRawCommitsOpts, parserOpts, writerOpts)
-  const outStream = fs.createWriteStream(filePath)
-  changelogStream
-    .pipe(outStream)
+  return new Promise((resolve) => {
+    const createFile = () => {
+      const outStream = fs.createWriteStream(filePath)
+      outStream.write(changelogTitle, 'utf-8')
+
+      const changelogStream = conventionalChangelog({
+        ...options,
+        releaseCount: 0,
+      }, context, gitRawCommitsOpts, parserOpts, writerOpts)
+      changelogStream
+        .pipe(outStream)
+        .on('finish', () => {
+          resolve()
+        })
+    }
+
+    const appendToFile = () => {
+      const changelogStream = conventionalChangelog({
+        ...options,
+        releaseCount: 1,
+      }, context, gitRawCommitsOpts, parserOpts, writerOpts)
+
+      const readStream = fs.createReadStream(filePath)
+
+      const tmp = tempfile()
+      const tmpWriteStream = fs.createWriteStream(tmp)
+
+      changelogStream
+        .pipe(addStream(readStream))
+        .pipe(replaceStream(changelogTitle, ''))
+        .pipe(tmpWriteStream)
+        .on('finish', function () {
+          const outStream = fs.createWriteStream(filePath)
+          outStream
+            .write(changelogTitle, 'utf-8')
+          outStream
+            .on('finish', () => {
+              resolve()
+            })
+          fs.createReadStream(tmp)
+            .pipe(outStream)
+        })
+    }
+
+    fs.access(filePath, (err) => {
+      if (err || full) {
+        createFile()
+      } else {
+        appendToFile()
+      }
+    })
+  })
 }
 
 module.exports = {
