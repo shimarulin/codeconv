@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/extendpkg",
   "version": "0.6.1",
-  "description": "CodeConv generator for expanding an existing package",
+  "description": "CodeConv generator for extending an existing package",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/extendpkg",

@@ -1,6 +1,6 @@
 # `@codeconv/extendpkg`
 
-> CodeConv generator for expanding an existing package
+> CodeConv generator for extending an existing package
 
 ## Install
 
@@ -14,6 +14,12 @@ or using yarn:
 
 ```bash
 yarn add @codeconv/extendpkg
+```
+
+## Usage
+
+```bash
+extendpkg <template>
 ```
 
 ## License
