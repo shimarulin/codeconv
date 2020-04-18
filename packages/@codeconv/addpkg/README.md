@@ -1,6 +1,6 @@
 # `@codeconv/addpkg`
 
-> @codeconv/addpkg package
+> CodeConv tool to add local package as dependency (used in monorepo)
 
 ## Install
 
@@ -14,6 +14,12 @@ or using yarn:
 
 ```bash
 yarn add @codeconv/addpkg
+```
+
+## Usage
+
+```bash
+addpkg <pkg-name> [--to <scope>]
 ```
 
 ## License

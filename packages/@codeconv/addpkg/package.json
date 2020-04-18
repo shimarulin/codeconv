@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/addpkg",
   "version": "0.6.1",
-  "description": "@codeconv/addpkg package",
+  "description": "CodeConv tool to add local package as dependency (used in monorepo)",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/addpkg",
