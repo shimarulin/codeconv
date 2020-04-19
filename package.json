@@ -30,7 +30,8 @@
       "prettier --write"
     ],
     "**/*.md": [
-      "prettier --parser markdown --prose-wrap always --write"
+      "prettier --parser markdown --prose-wrap always --write",
+      "eslint --fix"
     ],
     "**/*.{js,ts}": [
       "eslint --fix"

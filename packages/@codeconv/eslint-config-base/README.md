@@ -2,6 +2,12 @@
 
 > ESLint config based on [StandardJS](https://standardjs.com/)
 
+## Additional features
+
+- lint code block in markdown files
+- lint dot files by default
+- ignore compiled code (`dist` directory) by default
+
 ## Install
 
 Using npm:
@@ -23,6 +29,17 @@ Add this to your .eslintrc file:
 ```json
 {
   "extends": ["@codeconv/base"]
+}
+```
+
+or `.eslintrc.js`:
+
+```javascript
+module.exports = {
+  root: true,
+  extends: [
+    '@codeconv/base',
+  ],
 }
 ```
 

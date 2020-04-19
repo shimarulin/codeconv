@@ -16,6 +16,15 @@ module.exports = {
   env: {
     node: true,
   },
+  ignorePatterns: [
+    // Ignore dependency directories
+    'node_modules/',
+    // Ignore compiled code
+    '**/dist',
+    // Don't ignore configuration files
+    '!.*rc.js',
+    '!**/.*rc.js',
+  ],
   rules: {
     'array-element-newline': [
       'error',
