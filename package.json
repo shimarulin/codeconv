@@ -26,21 +26,21 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
-      "eslint --fix"
-    ],
     "**/*.json": [
       "prettier --write"
     ],
     "**/*.md": [
       "prettier --parser markdown --prose-wrap always --write"
     ],
+    "**/*.{js,ts}": [
+      "eslint --fix"
+    ],
     "**/package.json": [
       "format-package --write"
     ]
   },
   "devDependencies": {
-    "eslint": "^7.0.0-alpha.2",
+    "eslint": "^7.0.0-alpha.3",
     "format-package": "5.2.0",
     "husky": "4.2.5",
     "lerna": "3.20.2",

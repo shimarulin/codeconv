@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
   extends: [
-    '@codeconv/base'
-  ]
+    '@codeconv/typescript',
+  ],
 }
