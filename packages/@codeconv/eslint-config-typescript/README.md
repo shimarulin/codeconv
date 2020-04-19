@@ -1,20 +1,32 @@
 # `@codeconv/eslint-config-typescript`
 
-> @codeconv/eslint-config-typescript package
+> CodeConv ESLint config extends `@codeconv/eslint-config-base` for TypeScript
 
 ## Install
 
 Using npm:
 
 ```bash
-npm install @codeconv/eslint-config-typescript
+npm install -D @codeconv/eslint-config-typescript
 ```
 
 or using yarn:
 
 ```bash
-yarn add @codeconv/eslint-config-typescript
+yarn add -D @codeconv/eslint-config-typescript
 ```
+
+## Usage
+
+Add this to your .eslintrc file:
+
+```json
+{
+  "extends": ["@codeconv/typescript"]
+}
+```
+
+Note: We omitted the eslint-config- prefix since it is automatically assumed by ESLint.
 
 ## License
 
