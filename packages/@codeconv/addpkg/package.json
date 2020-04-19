@@ -12,19 +12,20 @@
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/addpkg#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "bin": {
     "mkrelease": "./bin/run"
   },
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "files": [
     "/bin",
-    "/lib"
+    "/dist"
   ],
   "scripts": {
-    "lint": "eslint --ext js,md .",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev readme"
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b && oclif-dev readme"
   },
-  "types": "lib/index.d.ts",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.15.1",

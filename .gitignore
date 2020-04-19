@@ -5,5 +5,8 @@
 # Dependency directories
 node_modules/
 
+# Compiled code
+dist
+
 ### JetBrains IDE's
 .idea
