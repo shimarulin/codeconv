@@ -1,0 +1,19 @@
+{
+  "name": "@codeconv/plugin-release",
+  "version": "0.6.1",
+  "description": "CodeConv 'release' command plugin",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/plugin-release",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-release#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  }
+}
