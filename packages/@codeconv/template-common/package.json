@@ -1,0 +1,19 @@
+{
+  "name": "@codeconv/template-common",
+  "version": "0.6.1",
+  "description": "CodeConv common template for creating a package from scratch",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/template-common",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/template-common#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  }
+}
