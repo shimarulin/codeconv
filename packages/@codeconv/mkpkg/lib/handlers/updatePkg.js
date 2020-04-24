@@ -10,12 +10,15 @@ module.exports = (
     version,
     url,
     isNewProject,
+    author,
+    email,
   },
 ) => {
   return {
     name,
     description,
     license,
+    author: `${author} <${email}>`,
     private: when(type === 'Monorepo', true),
     scripts: {
       lint: when(type === 'Monorepo', 'lerna run lint --parallel --', 'eslint --ext js,md .'),
