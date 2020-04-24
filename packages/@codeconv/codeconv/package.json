@@ -1,0 +1,19 @@
+{
+  "name": "@codeconv/codeconv",
+  "version": "0.6.1",
+  "description": "CodeConv CLI",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/codeconv",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/codeconv#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  }
+}
