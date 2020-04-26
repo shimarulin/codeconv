@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/plugin-extend",
   "version": "0.6.1",
-  "description": "CodeConv 'extend' command plugin",
+  "description": "CodeConv plugin to extend an existing package with a functional template",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/plugin-extend",
