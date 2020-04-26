@@ -31,10 +31,10 @@
     ],
     "**/*.md": [
       "prettier --parser markdown --prose-wrap always --write",
-      "eslint --fix"
+      "eslint --cache --fix"
     ],
     "**/*.{js,ts}": [
-      "eslint --fix"
+      "eslint --cache --fix"
     ],
     "**/package.json": [
       "format-package --write"
