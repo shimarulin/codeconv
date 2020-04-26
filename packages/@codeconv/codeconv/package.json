@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/codeconv",
   "version": "0.6.1",
-  "description": "CodeConv CLI",
+  "description": "CodeConv CLI core",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/codeconv",
