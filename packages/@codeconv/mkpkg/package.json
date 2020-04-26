@@ -42,13 +42,13 @@
     "cac": "^6.5.8",
     "chalk": "^4.0.0",
     "cross-spawn": "^7.0.2",
-    "lookpath": "^1.0.5",
-    "ora": "^4.0.3",
+    "lookpath": "^1.0.6",
+    "ora": "^4.0.4",
     "sao": "^1.7.0",
     "voca": "^1.4.0"
   },
   "devDependencies": {
     "eslint-plugin-jest": "^23.8.2",
-    "jest": "^25.3.0"
+    "jest": "^25.4.0"
   }
 }

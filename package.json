@@ -41,11 +41,11 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.0.0-alpha.3",
+    "eslint": "^7.0.0-rc.0",
     "format-package": "5.2.0",
     "husky": "4.2.5",
     "lerna": "3.20.2",
-    "lint-staged": "10.1.4",
-    "prettier": "2.0.4"
+    "lint-staged": "10.1.7",
+    "prettier": "2.0.5"
   }
 }
