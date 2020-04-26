@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/plugin-release",
   "version": "0.6.1",
-  "description": "CodeConv 'release' command plugin",
+  "description": "CodeConv plugin to release project",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/plugin-release",
