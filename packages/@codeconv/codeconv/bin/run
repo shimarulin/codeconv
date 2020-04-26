@@ -11,4 +11,4 @@ if (dev) {
   })
 }
 
-require(`../${dev ? 'src' : 'dist'}`)
+require(`../${dev ? 'src' : 'dist'}`).run()
