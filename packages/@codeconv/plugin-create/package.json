@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/plugin-create",
   "version": "0.6.1",
-  "description": "CodeConv 'create' command plugin",
+  "description": "CodeConv plugin to create standard project",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/plugin-create",
