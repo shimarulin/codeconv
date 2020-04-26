@@ -1,7 +1,7 @@
 {
   "name": "@codeconv/plugin-add",
   "version": "0.6.1",
-  "description": "CodeConv plugin for command 'add'",
+  "description": "CodeConv plugin to add local package as dependency (used in monorepo)",
   "license": "MIT",
   "repository": {
     "directory": "packages/@codeconv/plugin-add",
@@ -20,6 +20,7 @@
   "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/node": "^13.13.2",
+    "@types/yargs": "^15.0.4",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3"
   }
