@@ -28,6 +28,10 @@ Add this to your .eslintrc file:
 
 Note: We omitted the eslint-config- prefix since it is automatically assumed by ESLint.
 
+### Performance
+
+- [Why typescript-eslint Performance is Slow](https://duncanleung.com/why-slow-plugin-typescript-eslint-performance-issues/)
+
 ## License
 
 [MIT](LICENSE)
