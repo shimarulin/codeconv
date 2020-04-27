@@ -4,6 +4,8 @@ import * as execa from 'execa'
 import * as fg from 'fast-glob'
 import { ExecaReturnValue } from 'execa'
 
+// TODO: need to fix CLI error if cwd not contain node_modules dir
+
 export const getStdout = (value: ExecaReturnValue): string => {
   return value.stdout
 }

@@ -11,4 +11,8 @@ if (dev) {
   })
 }
 
-require(`../${dev ? 'src' : 'dist'}`).run()
+try {
+  require(`../${dev ? 'src' : 'dist'}`).run()
+} catch (e) {
+  console.dir(e)
+}

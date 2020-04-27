@@ -29,6 +29,7 @@ export const run = async (): Promise<void> => {
       ] : [
         'js',
       ],
+      exclude: new RegExp(`${pluginPath}/node_modules/.*`),
     })
   })
 
