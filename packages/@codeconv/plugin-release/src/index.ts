@@ -1,11 +1,11 @@
-import { Argv } from 'yargs'
+import { Arguments, Options } from 'yargs'
 
 export const command = 'release'
 export const describe = 'Make project release'
 
-export const builder = {}
+export const builder: { [key: string]: Options } = {}
 
-export const handler = (argv: Argv): void => {
+export const handler = (argv: Arguments): void => {
   console.log('Run command release')
   console.log(argv)
 }

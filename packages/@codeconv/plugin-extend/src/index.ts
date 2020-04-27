@@ -1,11 +1,11 @@
-import { Argv } from 'yargs'
+import { Arguments, Options } from 'yargs'
 
 export const command = 'extend'
 export const describe = 'Extend an existing package with a functional template'
 
-export const builder = {}
+export const builder: { [key: string]: Options } = {}
 
-export const handler = (argv: Argv): void => {
+export const handler = (argv: Arguments): void => {
   console.log('Run command create')
   console.log(argv)
 }
