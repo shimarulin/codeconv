@@ -2,6 +2,7 @@ import { prompt } from 'inquirer'
 import { Arguments, Options } from 'yargs'
 import { getWorkspace } from 'ultra-runner/lib/workspace'
 import { PackageJsonWithRoot } from 'ultra-runner/lib/package'
+import { yellow, green } from 'chalk'
 
 interface AddCommandAnswers {
   source?: string;
@@ -28,8 +29,11 @@ export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}
   const packages = workspace ? Array.from(workspace.packages.values()) : []
   const packageChoices = packages
     .map(({ name }) => name)
+
   const getPackageDefs = (pkgName: string | undefined): PackageJsonWithRoot | undefined =>
     pkgName ? packages.find(({ name }) => name === pkgName) : undefined
+  const getMsgPrefix = (pkgName: string | undefined): string =>
+    pkgName ? `${yellow(`Package "${pkgName}" not found.`)}\n${green('└')} ` : ''
 
   const source = getPackageDefs(pkg)
   const target = getPackageDefs(to)
@@ -38,14 +42,14 @@ export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}
     {
       type: 'list',
       name: 'source',
-      message: `${pkg ? `Package ${pkg} not found.\n└ ` : ''}Select the package to be add:`,
+      message: `${getMsgPrefix(pkg)}Select the package to be add:`,
       choices: packageChoices,
       when: !source,
     },
     {
       type: 'list',
       name: 'target',
-      message: `${to ? `Package ${to} not found.\n  ` : ''}Select the target package:`,
+      message: `${getMsgPrefix(to)}Select the target package:`,
       choices (answers): string[] {
         return packageChoices.filter(item => item !== answers.source && item !== source?.name)
       },

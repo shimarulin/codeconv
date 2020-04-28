@@ -19,6 +19,7 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "chalk": "^4.0.0",
     "inquirer": "^7.1.0",
     "ultra-runner": "^3.2.1"
   },
