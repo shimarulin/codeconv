@@ -1,10 +1,16 @@
 import { prompt } from 'inquirer'
 import { Arguments, Options } from 'yargs'
 import { getWorkspace } from 'ultra-runner/lib/workspace'
+import { PackageJsonWithRoot } from 'ultra-runner/lib/package'
 
-interface AddAnswers {
+interface AddCommandAnswers {
   source?: string;
   target?: string;
+}
+
+interface AddCommandPackages {
+  source?: PackageJsonWithRoot;
+  target?: PackageJsonWithRoot;
 }
 
 export const command = 'add [pkg]'
@@ -22,24 +28,36 @@ export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}
   const packages = workspace ? Array.from(workspace.packages.values()) : []
   const packageChoices = packages
     .map(({ name }) => name)
+  const getPackageDefs = (pkgName: string | undefined): PackageJsonWithRoot | undefined =>
+    pkgName ? packages.find(({ name }) => name === pkgName) : undefined
 
-  const answers: AddAnswers = await prompt([
+  const source = getPackageDefs(pkg)
+  const target = getPackageDefs(to)
+
+  const answers: AddCommandAnswers = await prompt([
     {
       type: 'list',
       name: 'source',
-      message: 'Select the package to be add:',
+      message: `${pkg ? `Package ${pkg} not found.\n└ ` : ''}Select the package to be add:`,
       choices: packageChoices,
+      when: !source,
     },
     {
       type: 'list',
       name: 'target',
-      message: 'Select the target package:',
+      message: `${to ? `Package ${to} not found.\n  ` : ''}Select the target package:`,
       choices (answers): string[] {
-        return packageChoices.filter(item => item !== answers.source)
+        return packageChoices.filter(item => item !== answers.source && item !== source?.name)
       },
+      when: !target,
     },
   ])
 
+  const resolvedPackages: AddCommandPackages = {
+    source: source || getPackageDefs(answers.source),
+    target: source || getPackageDefs(answers.target),
+  }
+
   console.log('Run command add')
-  console.log(answers)
+  console.log(resolvedPackages)
 }
