@@ -19,9 +19,11 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "enquirer": "^2.3.5"
+    "inquirer": "^7.1.0",
+    "ultra-runner": "^3.2.1"
   },
   "devDependencies": {
+    "@types/inquirer": "^6.5.0",
     "@types/node": "^13.13.4",
     "@types/yargs": "^15.0.4",
     "ts-node": "^8.9.1",
