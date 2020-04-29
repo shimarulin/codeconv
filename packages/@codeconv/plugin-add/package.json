@@ -15,16 +15,20 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint --ext js,md .",
-    "prepack": "rm -rf dist && tsc -b"
+    "prepack": "rm -rf dist && tsc -b",
+    "test": "jest"
   },
   "types": "dist/index.d.ts",
   "dependencies": {
     "chalk": "^4.0.0",
+    "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
     "ultra-runner": "^3.2.1"
   },
   "devDependencies": {
+    "@types/fs-extra": "^8.1.0",
     "@types/inquirer": "^6.5.0",
-    "@types/yargs": "^15.0.4"
+    "@types/yargs": "^15.0.4",
+    "execa": "^4.0.0"
   }
 }
