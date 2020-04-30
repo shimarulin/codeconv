@@ -29,8 +29,17 @@ export const gitInit = async (cwd: string): Promise<void> => {
     cwd,
   })
 }
+
 export const yarnInstall = async (cwd: string): Promise<void> => {
   await command('yarn install', {
     cwd,
   })
+}
+
+// Key codes
+export const keys = {
+  up: '\x1B\x5B\x41',
+  down: '\x1B\x5B\x42',
+  enter: '\x0D',
+  space: '\x20',
 }
