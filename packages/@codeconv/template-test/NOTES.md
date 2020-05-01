@@ -20,12 +20,11 @@ Patch `.eslintrc.json`
 
 ```js
 const eslintrc = require('./eslintrc.json')
-
-if (!eslintrc.extends.some(item => item === 'plugin:jest/recommended')) {
+if (!eslintrc.extends.some((item) => item === 'plugin:jest/recommended')) {
   eslintrc.extends.push('plugin:jest/recommended')
 }
 
-if (!eslintrc.extends.some(item => item === 'plugin:jest/style')) {
+if (!eslintrc.extends.some((item) => item === 'plugin:jest/style')) {
   eslintrc.extends.push('plugin:jest/style')
 }
 ```
