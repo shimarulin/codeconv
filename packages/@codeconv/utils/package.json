@@ -1,0 +1,19 @@
+{
+  "name": "@codeconv/utils",
+  "description": "CodeConv shared utils",
+  "license": "MIT",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  },
+  "version": "0.6.1",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/utils#readme",
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git",
+    "directory": "packages/@codeconv/utils"
+  }
+}
