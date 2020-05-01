@@ -1,5 +1,6 @@
 import { resolve } from 'path'
-import { getTmpRoot, copy, readJson, yarnInstall, execa, keys } from '../helpers/prepare'
+import { getTmpRoot } from '@codeconv/utils'
+import { copy, readJson, yarnInstall, execa, keys } from '../helpers/prepare'
 
 describe('Install packages to package B from the directory "packages/@monorepo/pkg-b"', () => {
   let root: string

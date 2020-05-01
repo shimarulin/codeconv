@@ -24,6 +24,21 @@ export const builder: { [key: string]: Options } = {
   },
 }
 
+/**
+ * Add Package pkg-b to pkg-a
+ * For TypeScript:
+ *
+ * Add to 'pkg-b/tsconfig.json'
+ "compilerOptions": {
+    "composite": true
+  },
+ *
+ * Add to 'pkg-a/tsconfig.json'
+ "references": [{
+    "path": "../pkg-b/tsconfig.json"
+  }]
+ * */
+
 export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}>): Promise<void> => {
   const workspace = await getWorkspace()
   const currentPath = findUp('package.json')

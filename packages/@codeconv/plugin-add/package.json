@@ -20,6 +20,7 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@codeconv/utils": "0.6.1",
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
