@@ -20,6 +20,7 @@ Patch `.eslintrc.json`
 
 ```js
 const eslintrc = require('./eslintrc.json')
+
 if (!eslintrc.extends.some((item) => item === 'plugin:jest/recommended')) {
   eslintrc.extends.push('plugin:jest/recommended')
 }
