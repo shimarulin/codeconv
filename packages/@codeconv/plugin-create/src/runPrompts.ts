@@ -19,7 +19,7 @@ type AddCommandAnswers = {
 }
 type AddCommandAnswerKeys = Extract<keyof AddCommandAnswers, string>
 
-export const questionnaire = async (): Promise<AddCommandAnswers> => {
+export const askUser = async (): Promise<AddCommandAnswers> => {
   const type: PromptObject<AddCommandAnswerKeys> = {
     type: 'text',
     name: 'type',

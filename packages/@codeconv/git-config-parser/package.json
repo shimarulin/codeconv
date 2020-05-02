@@ -1,0 +1,19 @@
+{
+  "name": "@codeconv/git-config-parser",
+  "description": "CodeConv git config parser",
+  "license": "MIT",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  },
+  "version": "0.6.1",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/git-config-parser#readme",
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git",
+    "directory": "packages/@codeconv/git-config-parser"
+  }
+}
