@@ -1,11 +1,20 @@
 import { Arguments, Options } from 'yargs'
+import { questionnaire } from './questionnaire'
 
-export const command = 'create'
+export interface AddCommandArguments {
+  pkg?: string;
+}
+
+export const command = 'create [pkg]'
 export const describe = 'Create standard project or package from template'
 
 export const builder: { [key: string]: Options } = {}
 
-export const handler = (argv: Arguments): void => {
+export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<void> => {
   console.log('Run command create')
-  console.log(argv)
+  console.log(pkg)
+
+  const answers = await questionnaire()
+
+  console.log(answers)
 }
