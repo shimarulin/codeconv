@@ -1,10 +1,10 @@
-import * as path from 'path'
-import * as fs from 'fs'
+import { existsSync } from 'fs'
+import { join } from 'path'
 import * as yargs from 'yargs'
 import { getModuleList } from './resolver'
 
-const project = path.join(__dirname, '../tsconfig.json')
-const dev = fs.existsSync(project)
+const project = join(__dirname, '../tsconfig.json')
+const dev = existsSync(project)
 const program = yargs
 
 export const run = async (): Promise<void> => {
