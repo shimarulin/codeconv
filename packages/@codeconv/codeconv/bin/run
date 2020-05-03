@@ -23,9 +23,9 @@ if (dev) {
   const tsConfig = tsConfigPaths.loadConfig(tsConfigRoot)
 
   if (tsConfig.resultType === 'success') {
-    const { baseUrl, paths } = tsConfig
+    const { absoluteBaseUrl, paths } = tsConfig
     tsConfigPaths.register({
-      baseUrl,
+      baseUrl: absoluteBaseUrl,
       paths,
     })
   } else {

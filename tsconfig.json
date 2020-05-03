@@ -8,7 +8,7 @@
     "baseUrl": "./packages",
     "resolveJsonModule": true,
     "paths": {
-      "@codeconv/*": ["@codeconv/*/src/index.ts"]
+      "@codeconv/*": ["@codeconv/*/src"]
     }
   },
   "exclude": [
