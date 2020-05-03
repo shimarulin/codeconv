@@ -3,8 +3,11 @@
   "description": "CodeConv git config parser",
   "license": "MIT",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint --ext js,md ."
+    "lint": "eslint --ext js,md .",
+    "prepack": "rm -rf dist && tsc -b"
   },
   "version": "0.6.1",
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/git-config-parser#readme",
@@ -15,5 +18,12 @@
     "type": "git",
     "url": "git@github.com:shimarulin/codeconv.git",
     "directory": "packages/@codeconv/git-config-parser"
+  },
+  "dependencies": {
+    "execa": "^4.0.0",
+    "object-path": "^0.11.4"
+  },
+  "devDependencies": {
+    "@types/object-path": "^0.11.0"
   }
 }

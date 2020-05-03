@@ -28,6 +28,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@codeconv/git-config-parser": "0.6.1",
+    "git-url-parse": "^11.1.2",
     "kleur": "^3.0.3",
     "prompts": "^2.3.2"
   }
