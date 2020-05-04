@@ -13,6 +13,10 @@ module.exports = {
         project: [
           '**/tsconfig.json',
         ],
+        projectFolderIgnoreList: [
+          'node_modules',
+          'test',
+        ],
       },
       extends: [
         'plugin:@typescript-eslint/eslint-recommended',
