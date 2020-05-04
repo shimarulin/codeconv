@@ -1,10 +1,18 @@
 import { command } from 'execa'
 import * as objectPath from 'object-path'
 
-type GitConfig = {
-  user: {
-    name: string;
-    email: string;
+export interface User {
+  name: string;
+  email: string;
+}
+
+export interface GitConfig {
+  user: User;
+  remote?: {
+    origin: {
+      url: string;
+      fetch: string;
+    };
   };
 }
 
