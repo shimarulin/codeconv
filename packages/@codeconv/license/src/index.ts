@@ -11,16 +11,6 @@ export interface LicenseMap {
   [key: string]: License;
 }
 
-export interface LicenseChoose {
-  title: string;
-  value: string;
-}
-
 export const licenseMap: LicenseMap = {
   ...spdxLicenses,
 }
-
-export const licenseChooseList: LicenseChoose[] = Object.keys(licenseMap).map((key) => ({
-  title: `${key} - ${licenseMap[key].name}`,
-  value: key,
-}))
