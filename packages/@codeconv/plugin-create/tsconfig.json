@@ -8,7 +8,9 @@
     "src/**/*"
   ],
   "references": [
-    { "path": "../git-config-parser/tsconfig.json" }
+    { "path": "../git-config-parser/tsconfig.json" },
+    { "path": "../license/tsconfig.json" },
+    { "path": "../package-resolver/tsconfig.json" }
   ]
 }
 

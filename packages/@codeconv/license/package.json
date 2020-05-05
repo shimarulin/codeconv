@@ -3,8 +3,11 @@
   "description": "CodeConv license selector",
   "license": "MIT",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint --ext js,md ."
+    "lint": "eslint --ext js,md .",
+    "prepack": "rm -rf dist && tsc -b"
   },
   "version": "0.6.1",
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/license#readme",
@@ -15,5 +18,8 @@
     "type": "git",
     "url": "git@github.com:shimarulin/codeconv.git",
     "directory": "packages/@codeconv/license"
+  },
+  "dependencies": {
+    "spdx-license-list": "^6.2.0"
   }
 }
