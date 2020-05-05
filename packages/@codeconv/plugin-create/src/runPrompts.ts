@@ -1,50 +1,95 @@
 import * as prompts from 'prompts'
-import { PromptObject } from 'prompts'
+import { PromptObject, Choice } from 'prompts'
+import { licenseMap } from '@codeconv/license'
 
-/**
- type Fields = {[key: string]: string | number | string[] | number[]};
+type ProjectType = 'single' | 'monorepo' | 'package'
 
- type Answers<T extends Fields> = { [K in keyof T]: T[K] };
-
- function prompts<T extends Fields, S extends Extract<keyof T, string>>(
-   questions: prompts.PromptObject<S> | Array<prompts.PromptObject<S>>,
-   options?: prompts.Options
- ): Promise<prompts.Answers<T>>;
- * */
-
-type AddCommandAnswers = {
-  name: string;
-  type: string;
-  age: number;
+export interface Overrides {
+  type?: ProjectType;
+  origin?: string;
+  version?: string;
 }
-type AddCommandAnswerKeys = Extract<keyof AddCommandAnswers, string>
 
-export const askUser = async (): Promise<AddCommandAnswers> => {
-  const type: PromptObject<AddCommandAnswerKeys> = {
-    type: 'text',
-    name: 'type',
-    message: 'Project type',
-  }
-  const name: PromptObject<AddCommandAnswerKeys> = {
-    type: 'text',
-    name: 'name',
-    message: 'Project name',
-  }
-  const age: PromptObject<AddCommandAnswerKeys> = {
-    type: 'number',
-    name: 'age',
-    message: 'How old are you?',
-    initial: 0,
-    style: 'default',
-    min: 2,
-    max: 10,
-  }
+export interface Defaults {
+  name?: string;
+  author?: string;
+  email?: string;
+  license?: string;
+  version?: string;
+}
+
+export interface Answers extends Required<Overrides>, Required<Defaults> {
+  description: string;
+}
+
+type AddCommandAnswerKeys = Extract<keyof Answers, string>
+
+const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
+  title: `${key} - ${licenseMap[key].name}`,
+  value: key,
+}))
+
+export const runPrompts = async (overrides: Overrides, defaults: Defaults): Promise<Answers> => {
   const questions: Array<PromptObject<AddCommandAnswerKeys>> = [
-    type,
-    name,
-    age,
+    {
+      type: 'select',
+      name: 'type',
+      message: 'Project type',
+      choices: [
+        {
+          title: 'Single',
+          value: 'single',
+        },
+        {
+          title: 'Monorepo',
+          value: 'monorepo',
+        },
+      ],
+    },
+    {
+      type: 'text',
+      name: 'name',
+      message: 'Project name',
+      initial: defaults.name,
+    },
+    {
+      type: 'text',
+      name: 'description',
+      message: 'Project description',
+    },
+    {
+      type: 'text',
+      name: 'version',
+      message: 'Project version',
+      initial: defaults.version,
+    },
+    {
+      type: 'text',
+      name: 'author',
+      message: 'Author name',
+      initial: defaults.author,
+    },
+    {
+      type: 'text',
+      name: 'email',
+      message: 'Author email',
+      initial: defaults.email,
+    },
+    {
+      type: 'text',
+      name: 'origin',
+      message: 'Git origin URL',
+    },
+    {
+      type: 'autocomplete',
+      name: 'license',
+      message: 'Choose a license',
+      initial: defaults.license,
+      choices: licenseChooseList,
+    },
   ]
 
-  // prompts.override(argv)
+  prompts.override(overrides)
+
   return prompts(questions)
 }

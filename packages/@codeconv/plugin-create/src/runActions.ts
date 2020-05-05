@@ -1,3 +1,3 @@
-export const proceed = async (): Promise<void> => {
+export const runActions = async (): Promise<void> => {
 
 }
