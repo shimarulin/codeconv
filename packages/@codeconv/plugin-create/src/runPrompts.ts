@@ -8,6 +8,7 @@ export interface Overrides {
   type?: ProjectType;
   origin?: string;
   version?: string;
+  namespace?: string;
 }
 
 export interface Defaults {
@@ -16,6 +17,10 @@ export interface Defaults {
   email?: string;
   license?: string;
   version?: string;
+}
+
+export interface PromptContext {
+  namespaces?: string[];
 }
 
 export interface Answers extends Required<Overrides>, Required<Defaults> {
@@ -29,7 +34,23 @@ const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
   value: key,
 }))
 
-export const runPrompts = async (overrides: Overrides, defaults: Defaults): Promise<Answers> => {
+export const runPrompts = async (overrides: Overrides, defaults: Defaults, context: PromptContext): Promise<Answers> => {
+  prompts.override(overrides)
+
+  const hasManyNamespaces = Array.isArray(context.namespaces) && context.namespaces.length > 1
+
+  const { namespace } = await prompts([
+    {
+      type: 'select',
+      name: 'namespace',
+      message: 'Select the namespace',
+      choices: hasManyNamespaces ? context.namespaces?.map((ns): Choice => ({
+        title: ns,
+        value: ns,
+      })) : [],
+    },
+  ])
+
   const questions: Array<PromptObject<AddCommandAnswerKeys>> = [
     {
       type: 'select',
@@ -50,7 +71,7 @@ export const runPrompts = async (overrides: Overrides, defaults: Defaults): Prom
       type: 'text',
       name: 'name',
       message: 'Project name',
-      initial: defaults.name,
+      initial: `${namespace ? `${namespace}/${defaults.name}` : defaults.name}`,
     },
     {
       type: 'text',
@@ -88,8 +109,6 @@ export const runPrompts = async (overrides: Overrides, defaults: Defaults): Prom
       choices: licenseChooseList,
     },
   ]
-
-  prompts.override(overrides)
 
   return prompts(questions)
 }
