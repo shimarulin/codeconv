@@ -4,14 +4,14 @@ import { licenseMap } from '@codeconv/license'
 
 type ProjectType = 'single' | 'monorepo' | 'package'
 
-export interface Overrides {
+export interface PromptOverrides {
   type?: ProjectType;
   origin?: string;
   version?: string;
   namespace?: string;
 }
 
-export interface Defaults {
+export interface PromptDefaults {
   name?: string;
   author?: string;
   email?: string;
@@ -23,7 +23,7 @@ export interface PromptContext {
   namespaces?: string[];
 }
 
-export interface Answers extends Required<Overrides>, Required<Defaults> {
+export interface Answers extends Required<PromptOverrides>, Required<PromptDefaults> {
   description: string;
 }
 
@@ -34,7 +34,7 @@ const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
   value: key,
 }))
 
-export const runPrompts = async (overrides: Overrides, defaults: Defaults, context: PromptContext): Promise<Answers> => {
+export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, context: PromptContext): Promise<Answers> => {
   prompts.override(overrides)
 
   const hasManyNamespaces = Array.isArray(context.namespaces) && context.namespaces.length > 1

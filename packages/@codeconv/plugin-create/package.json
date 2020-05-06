@@ -21,6 +21,7 @@
   "types": "dist/index.d.ts",
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
+    "@types/inquirer": "^6.5.0",
     "@types/node": "^13.13.4",
     "@types/prompts": "^2.0.6",
     "@types/yargs": "^15.0.4",
@@ -35,6 +36,7 @@
     "find-up": "^4.1.0",
     "fs-extra": "^9.0.0",
     "git-url-parse": "^11.1.2",
+    "inquirer": "^7.1.0",
     "kleur": "^3.0.3",
     "prompts": "^2.3.2",
     "ultra-runner": "^3.2.2"

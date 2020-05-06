@@ -1,7 +1,7 @@
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { resolvePackages } from '@codeconv/package-resolver'
-import { runPrompts, Defaults, Overrides, PromptContext } from './runPrompts'
+import { runPrompts, PromptDefaults, PromptOverrides, PromptContext } from './runPromptsInq'
 // import { runActions } from './runActions'
 
 export interface AddCommandArguments {
@@ -32,13 +32,13 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     }),
   }
 
-  const overrides: Overrides = {
+  const overrides: PromptOverrides = {
     type: packagesPath.root ? 'package' : undefined,
     origin: gitConfig.remote?.origin.url,
     namespace: Array.isArray(promptContext.namespaces) && promptContext.namespaces.length === 1 ? promptContext.namespaces[0] : undefined,
     // version: '0.1.6',
   }
-  const defaults: Defaults = {
+  const defaults: PromptDefaults = {
     name: pkg,
     author: gitConfig.user.name,
     email: gitConfig.user.email,
