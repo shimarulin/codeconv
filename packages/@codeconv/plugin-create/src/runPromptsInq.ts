@@ -1,4 +1,4 @@
-import { prompt, ListChoiceOptions, ListQuestion, InputQuestion } from 'inquirer'
+import {prompt, ListChoiceOptions, ListQuestion, InputQuestion, Answers} from 'inquirer'
 import { licenseMap } from '@codeconv/license'
 
 export type ProjectType = 'single' | 'monorepo' | 'package'
@@ -64,7 +64,7 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     type: 'input',
     name: 'name',
     message: 'Project name',
-    default: (answers: Partial<PromptAnswers>) => answers.namespace ? `${answers.namespace}/${defaults.name}` : defaults.name,
+    default: defaults.name,
   }
 
   const description: InputQuestion = {

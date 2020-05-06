@@ -1,7 +1,7 @@
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { resolvePackages } from '@codeconv/package-resolver'
-import { runPrompts, PromptDefaults, PromptOverrides, PromptContext } from './runPromptsInq'
+import { runPrompts, PromptDefaults, PromptOverrides, PromptContext } from './runPrompts'
 // import { runActions } from './runActions'
 
 export interface AddCommandArguments {

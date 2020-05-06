@@ -37,17 +37,15 @@ const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
 export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, context: PromptContext): Promise<Answers> => {
   prompts.override(overrides)
 
-  const hasManyNamespaces = Array.isArray(context.namespaces) && context.namespaces.length > 1
-
   const { namespace } = await prompts([
     {
       type: 'select',
       name: 'namespace',
       message: 'Select the namespace',
-      choices: hasManyNamespaces ? context.namespaces?.map((ns): Choice => ({
+      choices: context.namespaces?.map((ns): Choice => ({
         title: ns,
         value: ns,
-      })) : [],
+      })),
     },
   ])
 
@@ -70,8 +68,11 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     {
       type: 'text',
       name: 'name',
-      message: 'Project name',
-      initial: `${namespace ? `${namespace}/${defaults.name}` : defaults.name}`,
+      message: `Project name${namespace ? ` in "${namespace}" namespace` : ''}`,
+      initial: defaults.name,
+      validate (prev): boolean {
+        return prev.length > 0
+      },
     },
     {
       type: 'text',
@@ -110,5 +111,10 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     },
   ]
 
-  return prompts(questions)
+  const answers = await prompts(questions)
+
+  return {
+    namespace,
+    ...answers,
+  }
 }
