@@ -2,15 +2,29 @@ import { dirname, resolve } from 'path'
 import * as findUp from 'find-up'
 import { readJson } from 'fs-extra'
 
-const PKG_FILE_NAME = 'package.json'
+export const PKG_FILE_NAME = 'package.json'
 // const TSC_FILE_NAME = 'tsconfig.json'
 
 interface Dependencies {
   [key: string]: string;
 }
 
-interface Package {
+export interface Package {
   [key: string]: string | boolean | string[] | object | undefined;
+  name: string;
+  version?: string;
+  description?: string;
+  license?: string;
+  repository: {
+    directory?: string;
+    type: string;
+    url: string;
+  };
+  bugs: {
+    url: string;
+  };
+  homepage: string;
+  author: string;
   workspaces?: string[];
   dependencies?: Dependencies;
   devDependencies?: Dependencies;
