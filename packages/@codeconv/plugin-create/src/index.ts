@@ -1,8 +1,9 @@
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { resolvePackages } from '@codeconv/package-resolver'
+import { licenseMap } from '@codeconv/license'
 import { runPrompts, PromptDefaults, PromptOverrides, PromptContext } from './runPrompts'
-// import { runActions } from './runActions'
+import { runActions, ActionContext } from './runActions'
 
 export interface AddCommandArguments {
   pkg?: string;
@@ -14,6 +15,7 @@ export const describe = 'Create standard project or package from template'
 export const builder: { [key: string]: Options } = {}
 
 export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<void> => {
+  const year = new Date().getFullYear()
   const [
     gitConfig,
     packagesPath,
@@ -48,8 +50,35 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
   // console.log(packagesPath)
 
   const answers = await runPrompts(overrides, defaults, promptContext)
+
   console.log(answers)
-  //
-  // await runActions()
-  //
+  const license = licenseMap[answers.license]
+  const actionContext: ActionContext = {
+    manifest: {
+      name: answers.namespace ? `${answers.namespace}/${answers.name}` : answers.name,
+      version: answers.version,
+      description: answers.description,
+      license: answers.license,
+      repository: {
+        directory: undefined,
+        type: 'git',
+        url: 'git-url',
+      },
+      bugs: {
+        url: 'bugs-url',
+      },
+      homepage: 'home-url',
+      author: `${answers.author} <${answers.email}>`,
+    },
+    license: {
+      ...license,
+      licenseText: license.licenseText
+        .replace('<year>', year.toString())
+        .replace('<copyright holders>', answers.author),
+    },
+  }
+
+  console.log(actionContext)
+
+  await runActions(actionContext)
 }
