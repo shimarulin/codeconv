@@ -18,7 +18,7 @@ module.exports = {
   },
   ignorePatterns: [
     // Ignore dependency directories
-    'node_modules/',
+    'node_modules',
     // Ignore compiled code
     '**/dist',
     // Don't ignore configuration files
