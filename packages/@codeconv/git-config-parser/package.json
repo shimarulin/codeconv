@@ -5,8 +5,17 @@
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "lint": "eslint --ext js,md .",
+    "lint": "eslint --ext js,ts,md .",
     "prepack": "rm -rf dist && tsc -b"
   },
   "version": "0.6.1",
