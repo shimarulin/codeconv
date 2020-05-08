@@ -1,5 +1,6 @@
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
+import { GitUrlParser } from '@codeconv/git-url-parser'
 import { resolvePackages } from '@codeconv/package-resolver'
 import { licenseMap } from '@codeconv/license'
 import { runPrompts, PromptDefaults, PromptOverrides, PromptContext } from './runPrompts'
@@ -36,7 +37,7 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const overrides: PromptOverrides = {
     type: packagesPath.root ? 'package' : undefined,
-    origin: gitConfig.remote?.origin.url,
+    origin: packagesPath.manifest?.repository.url || gitConfig.remote?.origin.url,
     namespace: Array.isArray(promptContext.namespaces) && promptContext.namespaces.length === 1 ? promptContext.namespaces[0] : undefined,
     // version: '0.1.6',
   }
@@ -51,8 +52,9 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const answers = await runPrompts(overrides, defaults, promptContext)
 
-  console.log(answers)
   const license = licenseMap[answers.license]
+  const gitUrl = new GitUrlParser(answers.origin)
+  console.log(answers)
   const actionContext: ActionContext = {
     manifest: {
       name: answers.namespace ? `${answers.namespace}/${answers.name}` : answers.name,
@@ -60,14 +62,12 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
       description: answers.description,
       license: answers.license,
       repository: {
-        directory: undefined,
-        type: 'git',
-        url: 'git-url',
+        ...gitUrl.repository,
       },
       bugs: {
-        url: 'bugs-url',
+        ...gitUrl.bugs,
       },
-      homepage: 'home-url',
+      homepage: gitUrl.homepage,
       author: `${answers.author} <${answers.email}>`,
     },
     license: {

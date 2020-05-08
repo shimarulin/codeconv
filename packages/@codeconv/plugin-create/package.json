@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "@codeconv/git-config-parser": "0.6.1",
+    "@codeconv/git-url-parser": "0.6.1",
     "@codeconv/license": "0.6.1",
     "@codeconv/package-resolver": "0.6.1",
     "ejs": "^3.1.2",
-    "git-url-parse": "^11.1.2",
     "kleur": "^3.0.3",
     "majo": "^0.9.1",
     "prompts": "^2.3.2"
