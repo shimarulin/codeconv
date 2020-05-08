@@ -3,8 +3,22 @@
   "description": "CodeConv Git url parser",
   "license": "MIT",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "lint": "eslint --ext js,md ."
+    "lint": "eslint --ext js,ts,md .",
+    "prepack": "rm -rf dist && tsc -b",
+    "test": "jest"
   },
   "version": "0.6.1",
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/git-url-parser#readme",
