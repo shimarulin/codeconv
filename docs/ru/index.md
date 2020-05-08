@@ -24,3 +24,9 @@
 - процесс внесения коммитов в Git
 - управление исходным кодом
 - управление выпуском версий с привлечением CI/CD
+
+## Спецификации
+
+- http://wiki.commonjs.org/wiki/Packages/1.0#Package_Directory_Layout
+- https://docs.npmjs.com/files/package.json
+- https://docs.npmjs.com/misc/config
