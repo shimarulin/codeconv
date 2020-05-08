@@ -14,7 +14,7 @@
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-add#readme",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint --ext js,md .",
+    "lint": "eslint --ext js,ts,md .",
     "prepack": "rm -rf dist && tsc -b",
     "test": "jest"
   },
