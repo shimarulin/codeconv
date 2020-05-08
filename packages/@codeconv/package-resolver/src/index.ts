@@ -9,17 +9,19 @@ interface Dependencies {
   [key: string]: string;
 }
 
+export interface Repository {
+  directory?: string;
+  type: string;
+  url: string;
+}
+
 export interface Package {
   [key: string]: string | boolean | string[] | object | undefined;
   name: string;
   version?: string;
   description?: string;
   license?: string;
-  repository: {
-    directory?: string;
-    type: string;
-    url: string;
-  };
+  repository: Repository;
   bugs: {
     url: string;
   };
