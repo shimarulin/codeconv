@@ -21,6 +21,10 @@ export interface Package {
   version?: string;
   description?: string;
   license?: string;
+  private?: boolean;
+  publishConfig?: {
+    access: 'public';
+  };
   repository: Repository;
   bugs: {
     url: string;
