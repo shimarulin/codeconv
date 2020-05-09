@@ -69,7 +69,6 @@ export const getModuleList = (predicate: string | string[]): Promise<[string[], 
       .then(resolveNodeModulesDir)
       .then(resolveParentNodeModulesDir)
       .then((nodeModulesDirList) => {
-        console.log(nodeModulesDirList)
         return findModules(nodeModulesDirList, predicate)
       }),
     execa('npm', [
@@ -79,7 +78,6 @@ export const getModuleList = (predicate: string | string[]): Promise<[string[], 
       .then(getStdout)
       .then(resolveNodeModulesDir)
       .then((nodeModulesDirList) => {
-        console.log(nodeModulesDirList)
         return findModules(nodeModulesDirList, predicate)
       }),
   ])
