@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "expose": "mkdir -p ~/.node_modules && ln -s -f \"$(pwd)\"/node_modules/* ~/.node_modules && lerna exec -- yarn link",
+    "lnk": "yarn && ln -s -f \"$(pwd)\"/node_modules/* \"$(npm prefix -g)\"/lib/node_modules && lerna exec -- yarn link",
+    "unlnk": "lerna exec -- yarn unlink && rm -rf node_modules && find \"$(npm prefix -g)\"/lib/node_modules -xtype l -delete",
     "format": "yarn format:json && yarn format:md && yarn format:pkg",
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
@@ -42,17 +44,17 @@
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.4",
-    "eslint": "^7.0.0-rc.0",
-    "eslint-plugin-jest": "^23.8.2",
+    "@types/node": "^13.13.5",
+    "eslint": "^7.0.0",
+    "eslint-plugin-jest": "^23.10.0",
     "format-package": "5.2.0",
     "husky": "4.2.5",
-    "jest": "^25.5.1",
+    "jest": "^26.0.1",
     "lerna": "3.20.2",
-    "lint-staged": "10.1.7",
+    "lint-staged": "10.2.2",
     "prettier": "2.0.5",
-    "ts-jest": "^25.4.0",
-    "ts-node": "^8.9.1",
+    "ts-jest": "^25.5.1",
+    "ts-node": "^8.10.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
   }

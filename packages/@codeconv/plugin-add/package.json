@@ -24,13 +24,13 @@
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
-    "ultra-runner": "^3.2.1"
+    "ultra-runner": "^3.2.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
     "@types/inquirer": "^6.5.0",
     "@types/yargs": "^15.0.4",
-    "execa": "^4.0.0",
+    "execa": "^4.0.1",
     "yargs": "^15.3.1"
   }
 }

@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/ejs": "^3.0.3",
     "@types/fs-extra": "^8.1.0",
-    "@types/prompts": "^2.0.6",
+    "@types/prompts": "^2.0.8",
     "@types/yargs": "^15.0.4"
   },
   "dependencies": {

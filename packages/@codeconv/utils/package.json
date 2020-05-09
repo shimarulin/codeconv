@@ -20,7 +20,7 @@
     "directory": "packages/@codeconv/utils"
   },
   "dependencies": {
-    "execa": "^4.0.0",
+    "execa": "^4.0.1",
     "fs-extra": "^9.0.0"
   },
   "devDependencies": {

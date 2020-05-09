@@ -21,6 +21,8 @@ export const run = async (): Promise<void> => {
     ...localPlugins,
   ]
 
+  console.log(plugins)
+
   plugins.forEach((pluginPath) => {
     program.commandDir(pluginPath, {
       recurse: true,

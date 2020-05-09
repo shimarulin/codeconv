@@ -19,13 +19,13 @@
     "@codeconv/conventional-changelog-codeconv": "^0.6.1",
     "add-stream": "^1.0.0",
     "cac": "^6.5.8",
-    "conventional-changelog": "^3.1.18",
-    "conventional-recommended-bump": "^6.0.5",
+    "conventional-changelog": "^3.1.21",
+    "conventional-recommended-bump": "^6.0.9",
     "format-package": "^5.2.0",
-    "git-semver-tags": "^3.0.1",
+    "git-semver-tags": "^4.0.0",
     "replacestream": "^4.0.3",
     "semver": "^7.3.2",
     "tempfile": "^3.0.0",
-    "ultra-runner": "^3.2.1"
+    "ultra-runner": "^3.2.2"
   }
 }
