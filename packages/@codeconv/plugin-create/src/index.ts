@@ -61,6 +61,10 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
       version: answers.version,
       description: answers.description,
       license: answers.license,
+      private: !answers.publish ? true : undefined,
+      publishConfig: answers.publish ? {
+        access: 'public',
+      } : undefined,
       repository: {
         ...gitUrl.repository,
       },

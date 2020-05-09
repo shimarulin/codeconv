@@ -1,5 +1,5 @@
 import * as prompts from 'prompts'
-import { PromptObject, Choice } from 'prompts'
+import { PromptObject, Choice, PromptType } from 'prompts'
 import { licenseMap } from '@codeconv/license'
 
 type ProjectType = 'single' | 'monorepo' | 'package'
@@ -25,6 +25,7 @@ export interface PromptContext {
 
 export interface Answers extends Required<PromptOverrides>, Required<PromptDefaults> {
   description: string;
+  publish: boolean;
 }
 
 type AddCommandAnswerKeys = Extract<keyof Answers, string>
@@ -53,7 +54,7 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     {
       type: 'select',
       name: 'type',
-      message: 'Project type',
+      message: 'Package type',
       choices: [
         {
           title: 'Single',
@@ -68,7 +69,7 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     {
       type: 'text',
       name: 'name',
-      message: `Project name${namespace ? ` in "${namespace}" namespace` : ''}`,
+      message: `Package name${namespace ? ` in "${namespace}" namespace` : ''}`,
       initial: defaults.name,
       validate (prev): boolean {
         return prev.length > 0
@@ -108,6 +109,14 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
       message: 'Choose a license',
       initial: defaults.license,
       choices: licenseChooseList,
+    },
+    {
+      type: (prev, values): PromptType | null => values.type !== 'monorepo' ? 'toggle' : null,
+      name: 'publish',
+      message: 'Do you want to publish package?',
+      initial: true,
+      active: 'yes',
+      inactive: 'no',
     },
   ]
 
