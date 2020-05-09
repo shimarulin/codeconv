@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { GitUrlParser } from '@codeconv/git-url-parser'
@@ -48,14 +49,17 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     license: 'MIT',
     version: '1.0.0',
   }
-  // console.log(packagesPath)
 
   const answers = await runPrompts(overrides, defaults, promptContext)
 
   const license = licenseMap[answers.license]
   const gitUrl = new GitUrlParser(answers.origin)
-  console.log(answers)
+  const targetPath = packagesPath.root
+    ? resolve(packagesPath.root, 'packages', answers.namespace, (pkg || answers.name))
+    : resolve(process.cwd(), (pkg || answers.name))
+
   const actionContext: ActionContext = {
+    targetPath,
     manifest: {
       name: answers.namespace ? `${answers.namespace}/${answers.name}` : answers.name,
       version: answers.version,
@@ -81,8 +85,6 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
         .replace('<copyright holders>', answers.author),
     },
   }
-
-  console.log(actionContext)
 
   await runActions(actionContext)
 }

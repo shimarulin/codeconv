@@ -40,7 +40,7 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
 
   const { namespace } = await prompts([
     {
-      type: 'select',
+      type: context.namespaces ? 'select' : null,
       name: 'namespace',
       message: 'Select the namespace',
       choices: context.namespaces?.map((ns): Choice => ({

@@ -5,6 +5,7 @@ import { License } from '@codeconv/license'
 import { Package, PKG_FILE_NAME } from '@codeconv/package-resolver'
 
 export interface ActionContext {
+  targetPath: string;
   license: License;
   manifest: Package;
 }
@@ -52,5 +53,5 @@ export const runActions = async (context: ActionContext): Promise<Majo> => {
     .use(unescape)
     .use(transform)
     .use(renderPackageJson)
-    .dest('output')
+    .dest(context.targetPath)
 }
