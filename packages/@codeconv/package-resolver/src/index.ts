@@ -36,31 +36,43 @@ export interface Package {
   devDependencies?: Dependencies;
 }
 
-export interface PackagesPath {
-  root?: string;
-  current?: string;
-  manifest?: Package;
+export interface PackageDescriptor {
+  manifest: Package;
+  path: string;
 }
 
-export const resolvePackages = async (): Promise<PackagesPath> => {
+export interface Packages {
+  root?: PackageDescriptor;
+  current?: PackageDescriptor;
+}
+
+const getPkgDescriptor = async (workingDir: string = process.cwd()): Promise<(PackageDescriptor | undefined)> => {
   const currentPackage = await findUp(PKG_FILE_NAME, {
     type: 'file',
+    cwd: workingDir,
   })
-  const currentPackageDir = currentPackage && dirname(currentPackage)
-  const parentPackage = currentPackageDir && await findUp(PKG_FILE_NAME, {
-    type: 'file',
-    cwd: resolve(currentPackageDir, '../'),
-  })
+  const currentPath = currentPackage && dirname(currentPackage)
+  const currentManifest: Package = currentPackage && await readJson(resolve(currentPackage))
 
-  const parentPackageDir = parentPackage && dirname(parentPackage)
+  return currentPath ? {
+    path: currentPath,
+    manifest: currentManifest,
+  } : undefined
+}
 
-  const current = currentPackageDir
-  const root = parentPackageDir || currentPackageDir
-  const manifest = root && await readJson(resolve(root, PKG_FILE_NAME))
+export const resolvePackages = async (): Promise<PackageDescriptor[]> => {
+  const pkgDescriptors: PackageDescriptor[] = []
 
-  return {
-    root,
-    current,
-    manifest,
+  const runSearch = async (path?: string): Promise<void> => {
+    const workingDir = path && resolve(path, '../')
+    const a = await getPkgDescriptor(workingDir)
+    if (a) {
+      pkgDescriptors.push(a)
+      await runSearch(a.path)
+    }
   }
+
+  await runSearch()
+
+  return pkgDescriptors
 }
