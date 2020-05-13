@@ -4,8 +4,7 @@ import { render } from 'ejs'
 import { License } from '@codeconv/license'
 import { Package, PKG_FILE_NAME } from '@codeconv/package-resolver'
 
-export interface ActionContext {
-  targetPath: string;
+export interface ActionData {
   license: License;
   manifest: Package;
 }
@@ -38,7 +37,7 @@ const transform = (stream: Majo): void => {
   })
 }
 
-export const runActions = async (context: ActionContext): Promise<Majo> => {
+export const runActions = async (data: ActionData, target: string): Promise<Majo> => {
   const stream = majo()
 
   return stream
@@ -47,11 +46,11 @@ export const runActions = async (context: ActionContext): Promise<Majo> => {
     })
     .use((s) => {
       s.meta = {
-        ...context,
+        ...data,
       }
     })
     .use(unescape)
     .use(transform)
     .use(renderPackageJson)
-    .dest(context.targetPath)
+    .dest(target)
 }

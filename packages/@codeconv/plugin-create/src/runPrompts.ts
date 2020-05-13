@@ -19,7 +19,7 @@ export interface PromptDefaults {
   version?: string;
 }
 
-export interface PromptContext {
+export interface PromptData {
   namespaces?: string[];
 }
 
@@ -35,15 +35,15 @@ const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
   value: key,
 }))
 
-export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, context: PromptContext): Promise<Answers> => {
+export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, data: PromptData): Promise<Answers> => {
   prompts.override(overrides)
 
   const { namespace } = await prompts([
     {
-      type: context.namespaces ? 'select' : null,
+      type: data.namespaces ? 'select' : null,
       name: 'namespace',
       message: 'Select the namespace',
-      choices: context.namespaces?.map((ns): Choice => ({
+      choices: data.namespaces?.map((ns): Choice => ({
         title: ns,
         value: ns,
       })),
