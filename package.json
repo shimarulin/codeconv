@@ -16,7 +16,7 @@
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
-    "lint": "lerna run lint --parallel --",
+    "lint": "lerna run lint --",
     "mkpkg": "mkpkg",
     "publish": "lerna publish",
     "test": "lerna run test --parallel --"
