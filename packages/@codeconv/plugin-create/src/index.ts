@@ -85,6 +85,7 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const runner = new CommandRunner(target)
   const status = await runner.exec('git status --porcelain')
+  console.log(status.stdout.length === 0)
 
   await runActions({
     license,
