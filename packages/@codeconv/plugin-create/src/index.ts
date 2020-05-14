@@ -1,79 +1,16 @@
 import { resolve } from 'path'
 import { Arguments, Options } from 'yargs'
-import { getGitConfig, GitConfig } from '@codeconv/git-config-parser'
+import { getGitConfig } from '@codeconv/git-config-parser'
 import { GitUrlParser } from '@codeconv/git-url-parser'
 import { Package, PackageDescriptor, resolvePackages } from '@codeconv/package-resolver'
+import { CommandRunner } from '@codeconv/command-runner'
 import { licenseMap } from '@codeconv/license'
-import { runPrompts, PromptDefaults, PromptOverrides, PromptData, Answers } from './runPrompts'
-import { runActions, ActionData } from './runActions'
+import { runPrompts, PromptDefaults, PromptOverrides, PromptData } from './runPrompts'
+import { runActions } from './runActions'
 
 export interface AddCommandArguments {
   pkg?: string;
 }
-
-interface ConfigContext {
-  config: {
-    year: number;
-    git: GitConfig;
-    packages: PackageDescriptor[];
-    rootPkg?: PackageDescriptor;
-  };
-}
-
-interface PromptContext extends ConfigContext {
-  prompt: {
-    defaults: PromptDefaults;
-    overrides: PromptOverrides;
-    data: PromptData;
-  };
-}
-
-interface AnswersContext extends PromptContext {
-  answers: Answers;
-}
-
-interface ActionContext extends AnswersContext {
-  action: {
-    target: string;
-    data: ActionData;
-  };
-}
-
-interface Context {
-  config: {
-    year: number;
-    git: GitConfig;
-    packages: PackageDescriptor[];
-    rootPkg?: PackageDescriptor;
-  };
-  prompt?: {
-    defaults: PromptDefaults;
-    overrides: PromptOverrides;
-    data: PromptData;
-  };
-  action?: {
-    target: string;
-    data: ActionData;
-  };
-}
-
-interface Ctx {
-  config: {
-    year: number;
-    git: GitConfig;
-    packages: PackageDescriptor[];
-    rootPkg?: PackageDescriptor;
-  };
-  prompt: {
-    defaults: PromptDefaults;
-    overrides: PromptOverrides;
-    context: PromptData;
-  };
-  action: ActionData;
-}
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const pipeline = (...list: Array<(ctx?: Context) => Promise<Context>>) => (acc?: Context | Promise<Context>) => list.reduce((acc, fn) => acc.then(fn), Promise.resolve(acc))
 
 export const command = 'create [pkg]'
 export const describe = 'Create standard project or package from template'
@@ -150,4 +87,15 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     license,
     manifest,
   }, target)
+
+  const runner = new CommandRunner(target)
+
+  await runner.spawn('git', [
+    'config',
+    '-l',
+  ])
+
+  const status = await runner.exec('git status --porcelain')
+
+  console.log(status)
 }
