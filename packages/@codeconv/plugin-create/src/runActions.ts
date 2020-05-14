@@ -3,8 +3,10 @@ import { majo, Majo } from 'majo'
 import { render } from 'ejs'
 import { License } from '@codeconv/license'
 import { Package, PKG_FILE_NAME } from '@codeconv/package-resolver'
+import { ProjectType } from './runPrompts'
 
 export interface ActionData {
+  projectType: ProjectType;
   license: License;
   manifest: Package;
 }
@@ -48,6 +50,9 @@ export const runActions = async (data: ActionData, target: string): Promise<Majo
       s.meta = {
         ...data,
       }
+    })
+    .filter(filepath => {
+      return data.projectType !== 'package' || filepath.search(/^__\./) === -1
     })
     .use(unescape)
     .use(transform)

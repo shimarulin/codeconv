@@ -2,7 +2,7 @@ import * as prompts from 'prompts'
 import { PromptObject, Choice, PromptType } from 'prompts'
 import { licenseMap } from '@codeconv/license'
 
-type ProjectType = 'single' | 'monorepo' | 'package'
+export type ProjectType = 'single' | 'monorepo' | 'package'
 
 export interface PromptOverrides {
   type?: ProjectType;

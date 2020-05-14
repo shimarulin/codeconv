@@ -83,19 +83,20 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
       .replace('<copyright holders>', answers.author),
   }
 
-  const runner = new CommandRunner(target)
-  const status = await runner.exec('git status --porcelain')
-  console.log(status.stdout.length === 0)
+  // const runner = new CommandRunner(target)
+  // const status = await runner.exec('git status --porcelain')
+  // console.log(status.stdout.length === 0)
 
   await runActions({
+    projectType: answers.type,
     license,
     manifest,
   }, target)
 
-  await runner.spawn('git', [
-    'config',
-    '-l',
-  ])
-
-  console.log(status)
+  // await runner.spawn('git', [
+  //   'config',
+  //   '-l',
+  // ])
+  //
+  // console.log(status)
 }
