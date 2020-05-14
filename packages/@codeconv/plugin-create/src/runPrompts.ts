@@ -123,7 +123,7 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
   const answers = await prompts(questions)
 
   return {
-    namespace,
     ...answers,
+    namespace,
   }
 }

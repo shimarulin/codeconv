@@ -11,6 +11,7 @@ import { runActions } from './runActions'
 export interface AddCommandArguments {
   pkg?: string;
 }
+type GitCommitType = 'init' | 'done'
 
 export const command = 'create [pkg]'
 export const describe = 'Create standard project or package from template'
@@ -83,20 +84,62 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
       .replace('<copyright holders>', answers.author),
   }
 
-  // const runner = new CommandRunner(target)
-  // const status = await runner.exec('git status --porcelain')
-  // console.log(status.stdout.length === 0)
-
   await runActions({
     projectType: answers.type,
     license,
     manifest,
   }, target)
 
-  // await runner.spawn('git', [
-  //   'config',
-  //   '-l',
-  // ])
-  //
-  // console.log(status)
+  const runner = new CommandRunner(target)
+  const isNewProject = answers.type !== 'package'
+  const devDependencies: string[] = []
+
+  if (isNewProject) {
+    devDependencies.push(
+      'husky',
+      'lint-staged',
+      'eslint',
+      '@codeconv/eslint-config-base',
+      '@commitlint/cli',
+      '@commitlint/config-conventional',
+      'format-package',
+      'prettier',
+    )
+  }
+
+  // if (answers.type === 'monorepo') {
+  //   devDependencies.push(
+  //     '@codeconv/codeconv',
+  //     '@codeconv/plugin-create',
+  //     '@codeconv/plugin-add',
+  //     '@codeconv/plugin-extend',
+  //   )
+  // }
+
+  const install = async (): Promise<void> => {
+    if (devDependencies.length > 0) {
+      await runner.exec(`yarn add -D --silent ${[
+        ...devDependencies,
+      ].join(' ')}`)
+    }
+  }
+
+  const commit = async (type: GitCommitType): Promise<void> => {
+    const gitStatus = await runner.exec('git status --porcelain')
+    if (gitStatus.stdout.length > 0) {
+      const commitMsgPrefix = `chore${!isNewProject ? `(${manifest.name})` : ''}:`
+      const commitMsgHeaders: {[key in GitCommitType]: string} = {
+        init: 'init',
+        done: `${devDependencies.length > 0 ? 'add development dependencies and' : ''} apply code style`,
+      }
+      await runner.exec('git add .')
+      await runner.exec(`git commit --quiet -m "${commitMsgPrefix} ${commitMsgHeaders[type]}"`)
+    }
+  }
+
+  isNewProject && await runner.exec('git init --quiet')
+  isNewProject && answers.origin && await runner.exec(`git remote add origin ${gitUrl.repository.url}`)
+  isNewProject && await commit('init')
+  isNewProject && await install()
+  await commit(isNewProject ? 'done' : 'init')
 }
