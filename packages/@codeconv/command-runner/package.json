@@ -3,6 +3,17 @@
   "description": "CodeConv shell command runner",
   "license": "MIT",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint --ext js,md ."
   },
@@ -15,5 +26,10 @@
     "type": "git",
     "url": "git@github.com:shimarulin/codeconv.git",
     "directory": "packages/@codeconv/command-runner"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "execa": "^4.0.1",
+    "ora": "^4.0.4"
   }
 }
