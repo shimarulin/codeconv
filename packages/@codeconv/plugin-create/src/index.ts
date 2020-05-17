@@ -75,6 +75,9 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     },
     homepage: gitUrl.homepage,
     author: `${answers.author} <${answers.email}>`,
+    workspaces: answers.type === 'monorepo' ? [
+      `packages/@${answers.name}/*`,
+    ] : undefined,
   }
   const year = new Date().getFullYear()
   const license = {
@@ -118,7 +121,14 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const install = async (): Promise<void> => {
     if (devDependencies.length > 0) {
-      await runner.exec(`yarn add -D --silent ${[
+      const flags = [
+        '--silent',
+        '-D',
+      ]
+
+      answers.type === 'monorepo' && flags.push('-W')
+      await runner.exec(`yarn add ${[
+        ...flags,
         ...devDependencies,
       ].join(' ')}`)
     }
