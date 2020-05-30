@@ -27,10 +27,29 @@ export interface Answers extends Required<PromptOverrides>, Required<PromptDefau
   publish: boolean;
 }
 
-const licenseChoiceList: ListChoiceOptions[] = Object.keys(licenseMap).map((key) => ({
-  name: `${key} - ${licenseMap[key].name}`,
-  value: key,
-}))
+const licenseChoiceList: ListChoiceOptions[] = [
+  'AGPL-3.0',
+  'Apache-2.0',
+  'BSD-2-Clause',
+  'BSD-2-Clause-FreeBSD',
+  'BSD-3-Clause',
+  'BSD-4-Clause',
+  'GPL-2.0',
+  'GPL-2.0+',
+  'GPL-3.0',
+  'GPL-3.0+',
+  'ISC',
+  'LGPL-2.1',
+  'LGPL-2.1+',
+  'LGPL-3.0',
+  'LGPL-3.0+',
+  'MIT',
+  'MPL-2.0',
+]
+  .map((key) => ({
+    name: `${key} - ${licenseMap[key].name}`,
+    value: key,
+  }))
 
 export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, data: PromptData): Promise<Answers> => {
   const namespace: ListQuestion = {
