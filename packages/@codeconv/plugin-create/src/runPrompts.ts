@@ -1,5 +1,4 @@
-import * as prompts from 'prompts'
-import { PromptObject, Choice, PromptType } from 'prompts'
+import { prompt, ListChoiceOptions, ListQuestion, InputQuestion, ConfirmQuestion } from 'inquirer'
 import { licenseMap } from '@codeconv/license'
 
 export type ProjectType = 'single' | 'monorepo' | 'package'
@@ -28,102 +27,122 @@ export interface Answers extends Required<PromptOverrides>, Required<PromptDefau
   publish: boolean;
 }
 
-type AddCommandAnswerKeys = Extract<keyof Answers, string>
-
-const licenseChooseList: Choice[] = Object.keys(licenseMap).map((key) => ({
-  title: `${key} - ${licenseMap[key].name}`,
+const licenseChoiceList: ListChoiceOptions[] = Object.keys(licenseMap).map((key) => ({
+  name: `${key} - ${licenseMap[key].name}`,
   value: key,
 }))
 
 export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDefaults, data: PromptData): Promise<Answers> => {
-  prompts.override(overrides)
+  const namespace: ListQuestion = {
+    type: 'list',
+    name: 'namespace',
+    message: 'Select the namespace',
+    choices: data.namespaces ? data.namespaces.map((ns): ListChoiceOptions => ({
+      name: ns,
+      value: ns,
+    })) : [],
+    when: !overrides.namespace,
+  }
 
-  const { namespace } = await prompts([
-    {
-      type: data.namespaces ? 'select' : null,
-      name: 'namespace',
-      message: 'Select the namespace',
-      choices: data.namespaces?.map((ns): Choice => ({
-        title: ns,
-        value: ns,
-      })),
+  const type: ListQuestion = {
+    type: 'list',
+    name: 'type',
+    message: 'Project type',
+    choices: [
+      {
+        name: 'Single',
+        value: 'single',
+      },
+      {
+        name: 'Monorepo',
+        value: 'monorepo',
+      },
+    ],
+    when: !overrides.type,
+  }
+
+  const name: InputQuestion = {
+    type: 'input',
+    name: 'name',
+    message (answers) {
+      return `${answers.type ? 'Project' : 'Package'} name${answers.namespace ? ` in "${answers.namespace}" namespace` : ''}`
     },
+    default: defaults.name,
+    validate (input): boolean {
+      return input.length > 0
+    },
+  }
+
+  const description: InputQuestion = {
+    type: 'input',
+    name: 'description',
+    message: 'Project description',
+  }
+
+  const version: InputQuestion = {
+    type: 'input',
+    name: 'version',
+    message: 'Project version',
+    default: defaults.version,
+    when: !overrides.version,
+  }
+
+  const author: InputQuestion = {
+    type: 'input',
+    name: 'author',
+    message: 'Author name',
+    default: defaults.author,
+  }
+
+  const email: InputQuestion = {
+    type: 'input',
+    name: 'email',
+    message: 'Author email',
+    default: defaults.email,
+  }
+
+  const origin: InputQuestion = {
+    type: 'input',
+    name: 'origin',
+    message: 'Git origin URL',
+    when: !overrides.origin,
+  }
+
+  // TODO: add autocomplete
+  const license: ListQuestion = {
+    type: 'list',
+    name: 'license',
+    message: 'Choose a license',
+    choices: licenseChoiceList,
+    default: defaults.license,
+  }
+
+  // TODO: add prompt
+  const publish: ConfirmQuestion = {
+    type: 'confirm',
+    name: 'publish',
+    message: 'Do you want to publish package?',
+    default: true,
+    when (answers) {
+      return answers.type !== 'monorepo'
+    },
+  }
+
+  const answers = await prompt<Answers>([
+    namespace,
+    type,
+    name,
+    description,
+    version,
+    author,
+    email,
+    origin,
+    license,
+    publish,
   ])
 
-  const questions: Array<PromptObject<AddCommandAnswerKeys>> = [
-    {
-      type: 'select',
-      name: 'type',
-      message: 'Package type',
-      choices: [
-        {
-          title: 'Single',
-          value: 'single',
-        },
-        {
-          title: 'Monorepo',
-          value: 'monorepo',
-        },
-      ],
-    },
-    {
-      type: 'text',
-      name: 'name',
-      message: `Package name${namespace ? ` in "${namespace}" namespace` : ''}`,
-      initial: defaults.name,
-      validate (prev): boolean {
-        return prev.length > 0
-      },
-    },
-    {
-      type: 'text',
-      name: 'description',
-      message: 'Project description',
-    },
-    {
-      type: 'text',
-      name: 'version',
-      message: 'Project version',
-      initial: defaults.version,
-    },
-    {
-      type: 'text',
-      name: 'author',
-      message: 'Author name',
-      initial: defaults.author,
-    },
-    {
-      type: 'text',
-      name: 'email',
-      message: 'Author email',
-      initial: defaults.email,
-    },
-    {
-      type: 'text',
-      name: 'origin',
-      message: 'Git origin URL',
-    },
-    {
-      type: 'autocomplete',
-      name: 'license',
-      message: 'Choose a license',
-      initial: defaults.license,
-      choices: licenseChooseList,
-    },
-    {
-      type: (prev, values): PromptType | null => values.type !== 'monorepo' ? 'toggle' : null,
-      name: 'publish',
-      message: 'Do you want to publish package?',
-      initial: true,
-      active: 'yes',
-      inactive: 'no',
-    },
-  ]
-
-  const answers = await prompts(questions)
-
   return {
+    ...overrides,
     ...answers,
-    namespace,
   }
 }
