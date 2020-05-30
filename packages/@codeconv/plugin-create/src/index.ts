@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve, join } from 'path'
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { GitUrlParser } from '@codeconv/git-url-parser'
@@ -54,9 +54,10 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
   const answers = await runPrompts(overrides, defaults, data)
 
   const licenseSource = licenseMap[answers.license]
-  const gitUrl = new GitUrlParser(answers.origin)
+  const getLocalDir = (): string => join('packages', answers.namespace, (pkg || answers.name))
+  const gitUrl = new GitUrlParser(answers.origin, answers.type === 'package' ? getLocalDir() : '')
   const target = rootPkg
-    ? resolve(rootPkg?.path, 'packages', answers.namespace, (pkg || answers.name))
+    ? resolve(rootPkg?.path, getLocalDir())
     : resolve(process.cwd(), (pkg || answers.name))
   const manifest: Package = {
     name: answers.namespace ? `${answers.namespace}/${answers.name}` : answers.name,
