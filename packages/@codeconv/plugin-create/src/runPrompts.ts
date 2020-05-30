@@ -45,6 +45,7 @@ const licenseChoiceList: ListChoiceOptions[] = [
   'LGPL-3.0+',
   'MIT',
   'MPL-2.0',
+  'Unlicense',
 ]
   .map((key) => ({
     name: `${key} - ${licenseMap[key].name}`,
