@@ -34,8 +34,8 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint --ext .js .",
-    "sao": "sao ./",
+    "lint": "eslint --ext .js ",
+    "sao": "node_modules/.bin/sao ./",
     "test": "jest"
   },
   "dependencies": {
