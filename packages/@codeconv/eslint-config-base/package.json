@@ -29,7 +29,7 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard": "^15.0.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-markdown": "^1.0.2",
     "eslint-plugin-node": "^11.0.0",
