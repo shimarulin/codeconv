@@ -32,6 +32,6 @@
   "dependencies": {
     "@codeconv/eslint-config-base": "^0.6.0",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-vue": "^6.2.2"
+    "eslint-plugin-vue": "^7.0.0"
   }
 }
