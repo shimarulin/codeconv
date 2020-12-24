@@ -20,6 +20,16 @@
 - https://github.com/npm/node-semver
 - https://github.com/davidtheclark/cosmiconfig
 
+## Generate changelog
+
+```json
+{
+  "scripts": {
+    "changelog": "pnpm -r exec -- pwd | xargs -I{} conventional-changelog --preset angular --release-count 0 --commit-path {} --pkg {}/package.json --outfile {}/CHANGELOG.md --verbose"
+  }
+}
+```
+
 ## Monorepo run scripts
 
 - https://github.com/lerna/lerna/tree/master/commands/run
