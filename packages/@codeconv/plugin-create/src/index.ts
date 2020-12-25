@@ -65,9 +65,11 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     description: answers.description,
     license: answers.license,
     private: !answers.publish ? true : undefined,
-    publishConfig: answers.publish ? {
-      access: 'public',
-    } : undefined,
+    publishConfig: answers.publish
+      ? {
+          access: 'public',
+        }
+      : undefined,
     repository: {
       ...gitUrl.repository,
     },
@@ -76,13 +78,16 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     },
     homepage: gitUrl.homepage,
     author: `${answers.author} <${answers.email}>`,
-    workspaces: answers.type === 'monorepo' ? [
+    workspaces: answers.type === 'monorepo'
+      ? [
       `packages/@${answers.name}/*`,
-    ] : undefined,
+        ]
+      : undefined,
   }
   const year = new Date().getFullYear()
   const license = {
     ...licenseSource,
+    // TODO: Need alternative of spdx-license-list/spdx-full.json, because it's have inconsistent descriptor for year and author
     licenseText: licenseSource.licenseText
       .replace('<year>', year.toString())
       .replace('<copyright holders>', answers.author),
