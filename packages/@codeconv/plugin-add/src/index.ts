@@ -78,7 +78,7 @@ export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}
       type: 'list',
       name: 'target',
       message: `${getNotFoundPrefix(true, to)}Select the target package:`,
-      choices (answers): string[] {
+      choices (answers: Partial<AddCommandAnswers>): string[] {
         return packageChoices.filter(item => item !== answers.source && item !== source?.name)
       },
       when: !target,
@@ -90,6 +90,7 @@ export const handler = async ({ pkg, to }: Arguments<{pkg?: string; to?: string}
     target: target || getPackageDefs(answers.target),
   }
 
+  // TODO: write package file
   console.log('Run command add')
   console.log(resolvedPackages.source?.name, resolvedPackages.target?.name)
 }
