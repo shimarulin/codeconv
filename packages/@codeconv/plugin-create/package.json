@@ -19,20 +19,20 @@
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "devDependencies": {
-    "@types/ejs": "^3.0.3",
-    "@types/fs-extra": "^8.1.0",
-    "@types/inquirer": "^6.5.0",
-    "@types/yargs": "^15.0.5"
-  },
   "dependencies": {
     "@codeconv/command-runner": "0.6.1",
     "@codeconv/git-config-parser": "0.6.1",
     "@codeconv/git-url-parser": "0.6.1",
     "@codeconv/license": "0.6.1",
     "@codeconv/package-resolver": "0.6.1",
-    "ejs": "^3.1.2",
-    "inquirer": "^7.1.0",
-    "majo": "^0.9.1"
+    "ejs": "^3.1.5",
+    "inquirer": "^7.3.3",
+    "majo": "^0.10.1"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.5",
+    "@types/fs-extra": "^9.0.6",
+    "@types/inquirer": "^7.3.1",
+    "@types/yargs": "^15.0.12"
   }
 }

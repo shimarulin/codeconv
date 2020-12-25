@@ -1,25 +1,25 @@
 {
   "name": "@codeconv/license",
+  "version": "0.6.1",
   "description": "CodeConv license selector",
   "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/license",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/license#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --ext js,md .",
     "prepack": "rm -rf dist && tsc -b"
   },
-  "version": "0.6.1",
-  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/license#readme",
-  "bugs": {
-    "url": "https://github.com/shimarulin/codeconv/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:shimarulin/codeconv.git",
-    "directory": "packages/@codeconv/license"
-  },
+  "types": "dist/index.d.ts",
   "dependencies": {
-    "spdx-license-list": "^6.2.0"
+    "spdx-license-list": "^6.3.0"
   }
 }

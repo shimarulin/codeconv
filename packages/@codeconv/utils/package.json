@@ -1,29 +1,29 @@
 {
   "name": "@codeconv/utils",
+  "version": "0.6.1",
   "description": "CodeConv shared utils",
   "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/utils",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/utils#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --ext js,ts,md .",
     "prepack": "rm -rf dist && tsc -b"
   },
-  "version": "0.6.1",
-  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/utils#readme",
-  "bugs": {
-    "url": "https://github.com/shimarulin/codeconv/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:shimarulin/codeconv.git",
-    "directory": "packages/@codeconv/utils"
-  },
+  "types": "dist/index.d.ts",
   "dependencies": {
-    "execa": "^4.0.1",
-    "fs-extra": "^9.0.0"
+    "execa": "^5.0.0",
+    "fs-extra": "^9.0.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^8.1.0"
+    "@types/fs-extra": "^9.0.6"
   }
 }

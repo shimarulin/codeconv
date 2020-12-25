@@ -18,14 +18,14 @@
   "dependencies": {
     "@codeconv/conventional-changelog-codeconv": "^0.6.1",
     "add-stream": "^1.0.0",
-    "cac": "^6.5.9",
-    "conventional-changelog": "^3.1.21",
-    "conventional-recommended-bump": "^6.0.9",
-    "format-package": "^5.2.0",
-    "git-semver-tags": "^4.0.0",
+    "cac": "^6.7.1",
+    "conventional-changelog": "^3.1.24",
+    "conventional-recommended-bump": "^6.0.11",
+    "format-package": "^6.1.0",
+    "git-semver-tags": "^4.1.1",
     "replacestream": "^4.0.3",
-    "semver": "^7.3.2",
+    "semver": "^7.3.4",
     "tempfile": "^3.0.0",
-    "ultra-runner": "^3.3.0"
+    "ultra-runner": "^3.8.0"
   }
 }

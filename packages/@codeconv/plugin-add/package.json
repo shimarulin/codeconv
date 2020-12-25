@@ -21,16 +21,16 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@codeconv/utils": "0.6.1",
-    "chalk": "^4.0.0",
-    "fs-extra": "^9.0.0",
-    "inquirer": "^7.1.0",
-    "ultra-runner": "^3.3.0"
+    "chalk": "^4.1.0",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.3.3",
+    "ultra-runner": "^3.8.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^8.1.0",
-    "@types/inquirer": "^6.5.0",
-    "@types/yargs": "^15.0.5",
-    "execa": "^4.0.1",
-    "yargs": "^15.3.1"
+    "@types/fs-extra": "^9.0.6",
+    "@types/inquirer": "^7.3.1",
+    "@types/yargs": "^15.0.12",
+    "execa": "^5.0.0",
+    "yargs": "^16.2.0"
   }
 }
