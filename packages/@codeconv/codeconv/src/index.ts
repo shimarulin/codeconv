@@ -24,11 +24,13 @@ export const run = async (): Promise<void> => {
   plugins.forEach((pluginPath) => {
     program.commandDir(pluginPath, {
       recurse: true,
-      extensions: dev ? [
-        'ts',
-      ] : [
-        'js',
-      ],
+      extensions: dev
+        ? [
+            'ts',
+          ]
+        : [
+            'js',
+          ],
       include: new RegExp(`${pluginPath}/${dev ? 'src' : '(lib|dist)'}/.*`),
     })
   })

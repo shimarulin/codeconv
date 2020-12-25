@@ -61,6 +61,10 @@ export const findModules = (nodeModulesDirList: string[], predicate: string | st
 }
 
 export const getModuleList = (predicate: string | string[]): Promise<[string[], string[]]> => {
+  const resolveNodeModules = (nodeModulesDirList: string[]): Promise<string[]> => {
+    return nodeModulesDirList.length > 0 ? findModules(nodeModulesDirList, predicate) : Promise.resolve([])
+  }
+
   return Promise.all([
     execa('npm', [
       'prefix',
@@ -68,17 +72,13 @@ export const getModuleList = (predicate: string | string[]): Promise<[string[], 
       .then(getStdout)
       .then(resolveNodeModulesDir)
       .then(resolveParentNodeModulesDir)
-      .then((nodeModulesDirList) => {
-        return findModules(nodeModulesDirList, predicate)
-      }),
+      .then(resolveNodeModules),
     execa('npm', [
       'prefix',
       '-g',
     ])
       .then(getStdout)
       .then(resolveNodeModulesDir)
-      .then((nodeModulesDirList) => {
-        return findModules(nodeModulesDirList, predicate)
-      }),
+      .then(resolveNodeModules),
   ])
 }
