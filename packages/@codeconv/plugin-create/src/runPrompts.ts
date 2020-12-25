@@ -57,11 +57,13 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     type: 'list',
     name: 'namespace',
     message: 'Select the namespace',
-    choices: data.namespaces ? data.namespaces.map((ns): ListChoiceOptions => ({
-      name: ns,
-      value: ns,
-    })) : [],
-    when: !overrides.namespace,
+    choices: data.namespaces
+      ? data.namespaces.map((ns): ListChoiceOptions => ({
+          name: ns,
+          value: ns,
+        }))
+      : [],
+    when: !!(data.namespaces && data.namespaces.length > 1),
   }
 
   const type: ListQuestion = {
@@ -85,10 +87,10 @@ export const runPrompts = async (overrides: PromptOverrides, defaults: PromptDef
     type: 'input',
     name: 'name',
     message (answers) {
-      return `${answers.type ? 'Project' : 'Package'} name${answers.namespace ? ` in "${answers.namespace}" namespace` : ''}`
+      return `${answers.type ? 'Project' : 'Package'} name${answers.namespace ? ` in "${answers.namespace as string}" namespace` : ''}`
     },
     default: defaults.name,
-    validate (input): boolean {
+    validate (input: string): boolean {
       return input.length > 0
     },
   }
