@@ -10,7 +10,7 @@ cli
 
 cli.help()
 
-cli.version(require('../package').version)
+cli.version(require('../package.json').version)
 
 release(cli.parse())
   .catch((e) => {

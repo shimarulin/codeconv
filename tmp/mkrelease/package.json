@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/mkrelease#readme",
   "scripts": {
-    "lint": "eslint --ext js,md ."
+    "lint": "eslint --ext js,md "
   },
   "dependencies": {
     "@codeconv/conventional-changelog-codeconv": "^0.6.1",
