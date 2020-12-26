@@ -6,7 +6,8 @@
   "repository": "git@github.com:shimarulin/codeconv.git",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "workspaces": [
-    "packages/@codeconv/*"
+    "packages/@codeconv/*",
+    "docs"
   ],
   "scripts": {
     "expose": "mkdir -p ~/.node_modules && ln -s -f \"$(pwd)\"/node_modules/* ~/.node_modules && lerna exec -- yarn link",
