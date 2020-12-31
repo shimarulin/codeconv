@@ -9,14 +9,14 @@ const t = theme({
         file: 'ru-RU.js',
         name: 'Русский',
       },
-      {
-        code: 'en',
-        iso: 'en-US',
-        file: 'en-US.js',
-        name: 'English',
-      },
+      // {
+      //   code: 'en',
+      //   iso: 'en-US',
+      //   file: 'en-US.js',
+      //   name: 'English',
+      // },
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'ru',
     detectBrowserLanguage: {
       useCookie: true,
       alwaysRedirect: true,
