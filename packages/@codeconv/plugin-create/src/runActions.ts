@@ -21,6 +21,7 @@ const unescape = (stream: Majo): void => {
 }
 
 const renderPackageJson = (stream: Majo): void => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const contents = JSON.parse(stream.fileContents(PKG_FILE_NAME))
   stream.writeContents(PKG_FILE_NAME, JSON.stringify({
     ...contents,
@@ -43,7 +44,7 @@ export const runActions = async (data: ActionData, target: string): Promise<Majo
   const stream = majo()
 
   return stream
-    .source('*', {
+    .source('**/*', {
       baseDir: resolve(__dirname, '../template'),
     })
     .use((s) => {
