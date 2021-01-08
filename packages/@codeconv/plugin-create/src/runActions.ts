@@ -4,6 +4,8 @@ import { render } from 'ejs'
 import { License } from '@codeconv/license'
 import { Package, PKG_FILE_NAME } from '@codeconv/package-resolver'
 import { ProjectType } from './runPrompts'
+import * as fs from 'fs'
+import * as path from 'path'
 
 export interface ActionData {
   projectType: ProjectType;
@@ -14,7 +16,7 @@ export interface ActionData {
 /**
  * Remove double underscore from file name (used for config files)
  * */
-const unescape = (stream: Majo): void => {
+const unescapeFileNames = (stream: Majo): void => {
   stream.fileList.forEach((filePath) => {
     filePath.search(/__/) !== -1 && stream.rename(filePath, filePath.replace('__', ''))
   })
@@ -29,7 +31,7 @@ const renderPackageJson = (stream: Majo): void => {
   }, null, 2))
 }
 
-const transform = (stream: Majo): void => {
+const renderTemplates = (stream: Majo): void => {
   stream.fileList.forEach((relativePath) => {
     const ext = extname(relativePath)
     if (ext === '.ejs') {
@@ -55,8 +57,18 @@ export const runActions = async (data: ActionData, target: string): Promise<Majo
     .filter(filepath => {
       return data.projectType !== 'package' || filepath.search(/^__\./) === -1
     })
-    .use(unescape)
-    .use(transform)
+    .use(unescapeFileNames)
+    .use(renderTemplates)
     .use(renderPackageJson)
     .dest(target)
+    .then(instance => {
+      setImmediate(() => {
+        for (const filePath in instance.files) {
+          filePath.search(/hooks/) !== -1 && fs.chmod(path.resolve(target, filePath), 0o755, (err) => {
+            if (err) throw err
+          })
+        }
+      })
+      return instance
+    })
 }

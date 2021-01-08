@@ -53,6 +53,7 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const answers = await runPrompts(overrides, defaults, data)
 
+  const isNewProject = answers.type !== 'package'
   const licenseSource = licenseMap[answers.license]
   const getLocalDir = (): string => join('packages', answers.namespace, (pkg || answers.name))
   const gitUrl = new GitUrlParser(answers.origin, answers.type === 'package' ? getLocalDir() : '')
@@ -75,6 +76,9 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     },
     bugs: {
       ...gitUrl.bugs,
+    },
+    scripts: {
+      prepare: isNewProject ? 'git config core.hooksPath .hooks' : undefined,
     },
     homepage: gitUrl.homepage,
     author: `${answers.author} <${answers.email}>`,
@@ -100,19 +104,19 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
   }, target)
 
   const runner = new CommandRunner(target)
-  const isNewProject = answers.type !== 'package'
   const devDependencies: string[] = []
 
   if (isNewProject) {
     devDependencies.push(
-      'husky',
       'lint-staged',
       'eslint',
       '@codeconv/eslint-config-base',
+      // https://commitlint.js.org/#/
       '@commitlint/cli',
       '@commitlint/config-conventional',
-      'format-package',
+      // 'format-package',
       'prettier',
+      'prettier-plugin-packagejson',
     )
   }
 
