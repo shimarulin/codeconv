@@ -1,6 +1,7 @@
 # `@codeconv/conventional-changelog-codeconv`
 
-> conventional-changelog codeconv preset based on [conventional-changelog-conventionalcommits](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits)
+> conventional-changelog codeconv preset based on
+> [conventional-changelog-conventionalcommits](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits)
 
 ## Install
 
@@ -18,9 +19,11 @@ yarn add @codeconv/conventional-changelog-codeconv
 
 ## Credits
 
-Big thanks to [conventional-changelog team](https://github.com/conventional-changelog) and [Ben Coe](https://github.com/bcoe) for the original source code of
+Big thanks to [conventional-changelog team](https://github.com/conventional-changelog) and
+[Ben Coe](https://github.com/bcoe) for the original source code of
 [conventional-changelog-conventionalcommits](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits)
-written as part of the [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) project.
+written as part of the [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)
+project.
 
 ## License
 
