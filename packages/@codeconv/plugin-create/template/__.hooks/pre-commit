@@ -1,11 +1,8 @@
 #!/bin/sh
 
-echo 'pre-commit'
-# configure NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+DIR="$(dirname "$0")"
 
-# Set Node version
-[ -s "$PWD/.nvmrc" ] && nvm use
+# Setup Node.js environment
+. "$DIR/lib/nvm-setup.sh"
 
 npx --no-install lint-staged

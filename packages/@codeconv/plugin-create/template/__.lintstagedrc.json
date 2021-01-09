@@ -1,5 +1,5 @@
 {
   "**/*.json": ["prettier --write"],
-  "**/*.{js,ts}": ["eslint --cache --fix"],
-  "**/*.md": ["prettier --parser markdown --prose-wrap always --write", "eslint --cache --fix"]
+  "**/*.{js,ts}": ["eslint --fix"],
+  "**/*.md": ["prettier --write", "eslint --fix"]
 }
