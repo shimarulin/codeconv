@@ -4,9 +4,7 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "references": [
     { "path": "../git-config-parser/tsconfig.json" },
     { "path": "../git-url-parser/tsconfig.json" },
@@ -15,4 +13,3 @@
     { "path": "../command-runner/tsconfig.json" }
   ]
 }
-
