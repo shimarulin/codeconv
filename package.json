@@ -10,7 +10,6 @@
     "docs"
   ],
   "scripts": {
-    "expose": "mkdir -p ~/.node_modules && ln -s -f \"$(pwd)\"/node_modules/* ~/.node_modules && lerna exec -- yarn link",
     "format": "yarn format:json && yarn format:md && yarn format:pkg",
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
