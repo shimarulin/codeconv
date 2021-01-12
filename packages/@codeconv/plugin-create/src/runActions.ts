@@ -2,7 +2,7 @@ import { resolve, extname } from 'path'
 import { majo, Majo } from 'majo'
 import { render } from 'ejs'
 import { License } from '@codeconv/license'
-import { Package, PKG_FILE_NAME } from '@codeconv/package-resolver'
+import { PackageManifest, PKG_FILE_NAME } from '@codeconv/project-resolver'
 import { ProjectType } from './runPrompts'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -10,7 +10,7 @@ import * as path from 'path'
 export interface ActionData {
   projectType: ProjectType;
   license: License;
-  manifest: Package;
+  manifest: PackageManifest;
 }
 
 /**

@@ -8,6 +8,7 @@ import { PackageJson } from 'type-fest'
 export const PKG_FILE_NAME = 'package.json'
 
 export interface PackageManifest extends PackageJson {
+  name: string;
   publishConfig?: {
     access: 'public';
   };

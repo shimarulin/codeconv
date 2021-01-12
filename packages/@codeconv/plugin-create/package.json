@@ -24,7 +24,7 @@
     "@codeconv/git-config-parser": "0.6.1",
     "@codeconv/git-url-parser": "0.6.1",
     "@codeconv/license": "0.6.1",
-    "@codeconv/package-resolver": "0.6.1",
+    "@codeconv/project-resolver": "0.6.1",
     "ejs": "^3.1.5",
     "inquirer": "^7.3.3",
     "majo": "^0.10.1"

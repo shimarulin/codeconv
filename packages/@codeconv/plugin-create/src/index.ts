@@ -2,7 +2,7 @@ import { resolve, join } from 'path'
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { GitUrlParser } from '@codeconv/git-url-parser'
-import { Package, PackageDescriptor, resolvePackages } from '@codeconv/package-resolver'
+import { getRootPkg, PackageManifest } from '@codeconv/project-resolver'
 import { CommandRunner } from '@codeconv/command-runner'
 import { licenseMap } from '@codeconv/license'
 import { runPrompts, PromptDefaults, PromptOverrides, PromptData } from './runPrompts'
@@ -21,15 +21,19 @@ export const builder: { [key: string]: Options } = {}
 export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<void> => {
   const [
     git,
-    packages,
+    rootPkg,
   ] = await Promise.all([
     getGitConfig(),
-    resolvePackages(),
+    getRootPkg(),
   ])
-  const rootPkg: PackageDescriptor | undefined = packages.length > 0 ? packages[packages.length - 1] : undefined
+
+  const isProject = rootPkg !== undefined
+  // const hasWorkspaces = rootPkg && Array.isArray(rootPkg.manifest.workspaces) && rootPkg.manifest.workspaces.length > 0
+  const workspaces: string[] = (rootPkg && Array.isArray(rootPkg.manifest.workspaces) && rootPkg.manifest.workspaces) || []
+  const repositoryUrl = (rootPkg && typeof rootPkg.manifest.repository === 'object' && rootPkg.manifest.repository.url) || git.remote?.origin.url
 
   const data: PromptData = {
-    namespaces: rootPkg?.manifest.workspaces?.map(workspacePath => {
+    namespaces: workspaces.map(workspacePath => {
       const parts = workspacePath
         .replace('/*', '')
         .split('/')
@@ -38,8 +42,8 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     }),
   }
   const overrides: PromptOverrides = {
-    type: rootPkg ? 'package' : undefined,
-    origin: rootPkg?.manifest?.repository.url || git.remote?.origin.url,
+    type: isProject ? 'package' : undefined,
+    origin: repositoryUrl,
     namespace: Array.isArray(data.namespaces) && data.namespaces.length === 1 ? data.namespaces[0] : undefined,
     // version: '0.1.6',
   }
@@ -53,14 +57,20 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
 
   const answers = await runPrompts(overrides, defaults, data)
 
-  const isNewProject = answers.type !== 'package'
+  // TODO: simplify
+  const isNewProject = !isProject
+  // TODO: improve license package
   const licenseSource = licenseMap[answers.license]
   const getLocalDir = (): string => join('packages', answers.namespace, (pkg || answers.name))
   const gitUrl = new GitUrlParser(answers.origin, answers.type === 'package' ? getLocalDir() : '')
   const target = rootPkg
-    ? resolve(rootPkg?.path, getLocalDir())
+    ? resolve(rootPkg?.directory, getLocalDir())
     : resolve(process.cwd(), (pkg || answers.name))
-  const manifest: Package = {
+
+  const rootScripts = {
+    prepare: 'git config core.hooksPath .hooks',
+  }
+  const manifest: PackageManifest = {
     name: answers.namespace ? `${answers.namespace}/${answers.name}` : answers.name,
     version: answers.version,
     description: answers.description,
@@ -77,9 +87,7 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
     bugs: {
       ...gitUrl.bugs,
     },
-    scripts: {
-      prepare: isNewProject ? 'git config core.hooksPath .hooks' : undefined,
-    },
+    scripts: {},
     homepage: gitUrl.homepage,
     author: `${answers.author} <${answers.email}>`,
     workspaces: answers.type === 'monorepo'
@@ -88,6 +96,9 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
         ]
       : undefined,
   }
+
+  isNewProject && Object.assign(manifest.scripts, rootScripts)
+
   const year = new Date().getFullYear()
   const license = {
     ...licenseSource,
