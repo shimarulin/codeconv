@@ -1,0 +1,31 @@
+{
+  "name": "@codeconv/project-resolver",
+  "version": "0.6.1",
+  "description": "CodeConv helper to resolve project module(s) info",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/project-resolver",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/project-resolver#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --ext js,md .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "fast-glob": "^3.2.4",
+    "find-up": "^5.0.0",
+    "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.6",
+    "type-fest": "^0.20.2"
+  }
+}
