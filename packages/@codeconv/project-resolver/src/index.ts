@@ -19,12 +19,18 @@ export interface PackageInfo {
   directory: string;
 }
 
+export interface NpmScope {
+  name: string;
+  directories: string[];
+}
+
 // export interface ChildPackageInfo extends PackageInfo {
 //   scope?: string;
 // }
 
 export interface ProjectInfo extends PackageInfo {
   child?: PackageInfo[];
+  scopes?: NpmScope[];
 }
 
 export const getPkgInfoByPath = async (pkgFullPath: string): Promise<PackageInfo> => {
@@ -66,11 +72,42 @@ export const getRootPkg = async (cwd: string = process.cwd()): Promise<PackageIn
   return (pkgInfo && await getRootPkg(resolve(pkgInfo.directory, '../'))) || pkgInfo
 }
 
+export const getStrScopes = (workspaces: string[]): string[] => Array.from(
+  new Set(
+    workspaces
+      .map(workspacePath => /@[^/]+/.exec(workspacePath))
+      .flat()
+      .filter(nsString => typeof nsString === 'string') as string[],
+  ),
+)
+
+export const getScopes = (workspaces: string[], baseDir: string): NpmScope[] => workspaces
+  .map(workspacePath => /@[^/]+/.exec(workspacePath))
+  .reduce((result, val) => {
+    if (val) {
+      const name = val[0]
+      const directory = resolve(baseDir, val.input.replace('*', ''))
+      const knownScope = result.find((scope) => scope.name === name)
+      if (knownScope) {
+        knownScope.directories.push(directory)
+      } else {
+        result.push({
+          name,
+          directories: [
+            val.input,
+          ],
+        })
+      }
+    }
+    return result
+  }, [] as NpmScope[])
+
 export const getProjectInfo = async (): Promise<ProjectInfo | undefined> => {
   const projectInfo: ProjectInfo | undefined = await getRootPkg()
 
   if (projectInfo && Array.isArray(projectInfo.manifest.workspaces)) {
     projectInfo.child = await findPackagesDown(projectInfo.manifest.workspaces, projectInfo.directory)
+    projectInfo.scopes = getScopes(projectInfo.manifest.workspaces, projectInfo.directory)
   }
 
   return projectInfo

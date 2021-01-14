@@ -2,7 +2,7 @@ import { resolve, join } from 'path'
 import { Arguments, Options } from 'yargs'
 import { getGitConfig } from '@codeconv/git-config-parser'
 import { GitUrlParser } from '@codeconv/git-url-parser'
-import { getRootPkg, PackageManifest } from '@codeconv/project-resolver'
+import { getRootPkg, getStrScopes, PackageManifest } from '@codeconv/project-resolver'
 import { CommandRunner } from '@codeconv/command-runner'
 import { licenseMap } from '@codeconv/license'
 import { runPrompts, PromptDefaults, PromptOverrides, PromptData } from './runPrompts'
@@ -32,14 +32,9 @@ export const handler = async ({ pkg }: Arguments<AddCommandArguments>): Promise<
   const workspaces: string[] = (rootPkg && Array.isArray(rootPkg.manifest.workspaces) && rootPkg.manifest.workspaces) || []
   const repositoryUrl = (rootPkg && typeof rootPkg.manifest.repository === 'object' && rootPkg.manifest.repository.url) || git.remote?.origin.url
 
+  // TODO: refactor (delete?)
   const data: PromptData = {
-    namespaces: workspaces.map(workspacePath => {
-      const parts = workspacePath
-        .replace('/*', '')
-        .split('/')
-      const ns = parts.pop()
-      return ns || ''
-    }),
+    namespaces: getStrScopes(workspaces),
   }
   const overrides: PromptOverrides = {
     type: isProject ? 'package' : undefined,
