@@ -1,5 +1,7 @@
+### NodeJS
 # Dependency directories
-node_modules/
+node_modules
+node_modules/**
 
-# Configuration files
-!.*rc.js
+# Compiled code
+dist

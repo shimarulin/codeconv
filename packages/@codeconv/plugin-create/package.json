@@ -1,0 +1,38 @@
+{
+  "name": "@codeconv/plugin-create",
+  "version": "0.6.1",
+  "description": "CodeConv plugin to create standard project",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/plugin-create",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-create#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --ext js,md .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@codeconv/command-runner": "0.6.1",
+    "@codeconv/git-config-parser": "0.6.1",
+    "@codeconv/git-url-parser": "0.6.1",
+    "@codeconv/license": "0.6.1",
+    "@codeconv/project-resolver": "0.6.1",
+    "ejs": "^3.1.5",
+    "inquirer": "^7.3.3",
+    "majo": "^0.10.1"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.5",
+    "@types/fs-extra": "^9.0.6",
+    "@types/inquirer": "^7.3.1",
+    "@types/yargs": "^15.0.12"
+  }
+}

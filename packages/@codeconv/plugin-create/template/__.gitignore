@@ -1,0 +1,12 @@
+### NodeJS
+# Logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Compiled code
+dist
+
+# Cache
+.eslintcache

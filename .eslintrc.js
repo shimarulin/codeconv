@@ -1,6 +1,8 @@
 module.exports = {
   root: true,
   extends: [
-    '@codeconv/base'
-  ]
+    '@codeconv/typescript',
+    'plugin:jest/recommended',
+    'plugin:jest/style',
+  ],
 }

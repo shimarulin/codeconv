@@ -2,12 +2,18 @@
 
 > Code generation and linting toolbox
 
-## Linting
+Docs: [EN](docs/content/en/index.md), [RU](docs/content/ru/index.md)
 
-To lint Vue components you should add `.eslintrc.js` to module dir:
+## Development
 
-```js
-module.exports = {
-  extends: ['@codeconv/vue']
-}
+### Link packages to global namespace
+
+```shell
+yarn lnk
+```
+
+### Unlink packages to global namespace
+
+```shell
+yarn unlnk
 ```

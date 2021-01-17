@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DIR="$(dirname "$0")"
+
+# Setup Node.js environment
+. "$DIR/lib/nvm-setup.sh"
+
+npx --no-install commitlint --edit

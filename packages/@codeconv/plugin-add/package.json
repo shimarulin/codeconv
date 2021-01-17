@@ -1,0 +1,36 @@
+{
+  "name": "@codeconv/plugin-add",
+  "version": "0.6.1",
+  "description": "CodeConv plugin to add local package as dependency (used in monorepo)",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/plugin-add",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-add#readme",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --ext js,ts,md .",
+    "prepack": "rm -rf dist && tsc -b",
+    "test": "jest"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@codeconv/utils": "0.6.1",
+    "chalk": "^4.1.0",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.3.3",
+    "ultra-runner": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.6",
+    "@types/inquirer": "^7.3.1",
+    "@types/yargs": "^15.0.12",
+    "execa": "^5.0.0",
+    "yargs": "^16.2.0"
+  }
+}

@@ -1,0 +1,6 @@
+### Node.js
+node_modules
+
+# Nuxt
+.nuxt
+static/sw.js

@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../git-config-parser/tsconfig.json" },
+    { "path": "../git-url-parser/tsconfig.json" },
+    { "path": "../license/tsconfig.json" },
+    { "path": "../project-resolver/tsconfig.json" },
+    { "path": "../command-runner/tsconfig.json" }
+  ]
+}

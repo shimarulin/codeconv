@@ -1,0 +1,27 @@
+{
+  "name": "@codeconv/docs",
+  "version": "1.0.0",
+  "description": "Codeconv documentation",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "directory": "docs",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/docs#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "scripts": {
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "serve": "nuxt",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@nuxt/content-theme-docs": "^0.8.2",
+    "nuxt": "^2.14.12"
+  }
+}

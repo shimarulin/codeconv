@@ -12,6 +12,7 @@
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/eslint-config-typescript#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "keywords": [
     "eslint",
     "typescript"
@@ -30,7 +31,8 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0"
+    "@codeconv/eslint-config-base": "^0.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0"
   }
 }

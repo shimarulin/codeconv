@@ -1,0 +1,29 @@
+{
+  "name": "@codeconv/semantic-release-config",
+  "version": "0.6.1",
+  "description": "@codeconv/semantic-release-config package",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/semantic-release-config",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/semantic-release-config#readme",
+  "main": "lib/semantic-release-config.js",
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0"
+  }
+}

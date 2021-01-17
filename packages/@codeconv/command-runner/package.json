@@ -1,0 +1,35 @@
+{
+  "name": "@codeconv/command-runner",
+  "version": "0.6.1",
+  "description": "CodeConv shell command runner",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/command-runner",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/command-runner#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint --ext js,md ."
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "execa": "^5.0.0",
+    "ora": "^5.1.0"
+  }
+}
