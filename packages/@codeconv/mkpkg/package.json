@@ -41,7 +41,7 @@
     "voca": "^1.4.0"
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jest": "^25.0.0",
     "jest": "^25.1.0"
   }
 }
