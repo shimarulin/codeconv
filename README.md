@@ -1,13 +1,9 @@
 # codeconv
 
-> Code generation and linting toolbox
+> Code conventions and linting
 
-## Linting
+## Development
 
-To lint Vue components you should add `.eslintrc.js` to module dir:
-
-```js
-module.exports = {
-  extends: ['@codeconv/vue']
-}
+```shell
+git clone git@github.com:shimarulin/codeconv.git && cd ./codeconv && git config core.hooksPath .githooks
 ```
