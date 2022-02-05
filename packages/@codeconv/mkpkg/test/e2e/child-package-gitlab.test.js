@@ -35,6 +35,6 @@ describe('Add package to GitLab hosted monorepo', () => {
 
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.homepage).toEqual('https://gitlab.com/owner/project/-/tree/master/packages/@test/output')
+    expect(pkg.homepage).toBe('https://gitlab.com/owner/project/-/tree/master/packages/@test/output')
   })
 })

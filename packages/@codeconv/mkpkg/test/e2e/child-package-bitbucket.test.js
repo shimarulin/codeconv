@@ -35,6 +35,6 @@ describe('Add package to Bitbucket hosted monorepo', () => {
 
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.homepage).toEqual('https://bitbucket.org/owner/project/src/master/packages/@test/output')
+    expect(pkg.homepage).toBe('https://bitbucket.org/owner/project/src/master/packages/@test/output')
   })
 })

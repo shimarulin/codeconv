@@ -27,7 +27,7 @@ describe('License', () => {
     test('License field in "package.json"', async () => {
       const pkg = await readJsonFile(helper)
 
-      expect(pkg.license).toEqual('MIT')
+      expect(pkg.license).toBe('MIT')
     })
   })
 
@@ -56,7 +56,7 @@ describe('License', () => {
     test('License field in "package.json"', async () => {
       const pkg = await readJsonFile(helper)
 
-      expect(pkg.license).toEqual('Apache-2.0')
+      expect(pkg.license).toBe('Apache-2.0')
     })
   })
 })
