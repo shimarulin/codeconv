@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/shimarulin/codeconv/compare/v0.6.1...v0.7.0) (2022-02-05)
+
+
+### Bug Fixes
+
+* downgrade ora ([bbd71a2](https://github.com/shimarulin/codeconv/commit/bbd71a2fea9e90bfe8a66b9351088142016a4db1))
+* jest changes ([01265ee](https://github.com/shimarulin/codeconv/commit/01265ee00f2084ad35ac689753f136da43f892ac))
+* rename circleci/node to cimg/node ([c007789](https://github.com/shimarulin/codeconv/commit/c0077895acb4126759b663fdfeac3127e76251b9))
+* upgrade circleci/node ([9900879](https://github.com/shimarulin/codeconv/commit/9900879c517e4dcd62ff1c07a768fa0fe594a9f3))
+
+
+### Features
+
+* upgrade dependencies ([c1673cc](https://github.com/shimarulin/codeconv/commit/c1673cc10bef848fa2c646e9fad9851dc9571212))
+
+
+
+
+
 ## [0.6.1](https://github.com/shimarulin/codeconv/compare/v0.6.0...v0.6.1) (2020-03-29)
 
 

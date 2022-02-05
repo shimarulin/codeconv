@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/mkpkg",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "codeconv standard project template",
   "license": "MIT",
   "repository": {
