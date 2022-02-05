@@ -7,15 +7,12 @@ module.exports = {
       files: [
         '**/*.md',
       ],
-      processor: 'markdown/.markdown',
+      processor: 'markdown/markdown',
     },
   ],
   extends: [
     'standard',
   ],
-  env: {
-    node: true,
-  },
   rules: {
     'array-element-newline': [
       'error',
@@ -28,6 +25,7 @@ module.exports = {
         minItems: 1,
       },
     ],
+    // eslint-config-standard override
     'comma-dangle': [
       'error',
       {
@@ -38,6 +36,7 @@ module.exports = {
         functions: 'always-multiline',
       },
     ],
+    // eslint-config-standard override
     'object-curly-newline': [
       'error',
       {
@@ -54,10 +53,7 @@ module.exports = {
         },
       },
     ],
-    'object-curly-spacing': [
-      'error',
-      'always',
-    ],
+    // eslint-config-standard override
     'object-property-newline': [
       'error',
       {

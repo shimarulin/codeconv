@@ -1,14 +1,17 @@
 module.exports = {
   extends: [
     require.resolve('@codeconv/eslint-config-base'),
-    'plugin:vue/recommended',
+    'plugin:vue/vue3-recommended',
   ],
   env: {
     browser: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
   },
+  plugins: [
+    'vue',
+  ],
   rules: {
     'vue/html-closing-bracket-newline': [
       'error',

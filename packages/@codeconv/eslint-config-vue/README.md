@@ -1,7 +1,8 @@
 # `@codeconv/eslint-config-vue`
 
-> Vue ESLint config based on [StandardJS](https://standardjs.com/) and
-> [plugin:vue/recommended](https://github.com/vuejs/eslint-plugin-vue#priority-c-recommended-minimizing-arbitrary-choices-and-cognitive-overhead)
+> Vue ESLint config based on [eslint-config-standard](https://github.com/standard/eslint-config-standard) by
+> [StandardJS](https://standardjs.com/) and 'plugin:vue/vue3-recommended' from
+> [eslint-plugin-vue](https://eslint.vuejs.org/)
 
 ## Usage
 

@@ -35,12 +35,12 @@ describe('Use default values', () => {
 
   test('Version property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.version).toEqual('0.0.0-development')
+    expect(pkg.version).toBe('0.0.0-development')
   })
 
   test('Name property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.name).toEqual('output')
+    expect(pkg.name).toBe('output')
   })
 
   test('Property "private" in "package.json"', async () => {
@@ -64,7 +64,7 @@ describe('Set repository URL with default options', () => {
 
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.homepage).toEqual('https://github.com/owner/project#readme')
+    expect(pkg.homepage).toBe('https://github.com/owner/project#readme')
   })
 
   test('Property "bugs" in "package.json"', async () => {
@@ -98,6 +98,6 @@ describe('GitLab repository URL', () => {
 
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.homepage).toEqual('https://gitlab.com/owner/project')
+    expect(pkg.homepage).toBe('https://gitlab.com/owner/project')
   })
 })

@@ -35,6 +35,6 @@ describe('Add package to GitHub hosted monorepo', () => {
 
   test('Property "homepage" in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.homepage).toEqual('https://github.com/owner/project/tree/master/packages/@test/output#readme')
+    expect(pkg.homepage).toBe('https://github.com/owner/project/tree/master/packages/@test/output#readme')
   })
 })

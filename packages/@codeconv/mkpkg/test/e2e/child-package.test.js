@@ -44,12 +44,12 @@ describe('A call in the monorepo root with default values.', () => {
 
   test('Version property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.version).toEqual('0.1.2')
+    expect(pkg.version).toBe('0.1.2')
   })
 
   test('Name property in "package.json"', async () => {
     const pkg = await readJsonFile(helper)
-    expect(pkg.name).toEqual('@test/output')
+    expect(pkg.name).toBe('@test/output')
   })
 
   test('Property "bugs" in "package.json"', async () => {

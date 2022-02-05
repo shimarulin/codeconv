@@ -35,13 +35,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "cross-spawn": "^7.0.1",
-    "lookpath": "^1.0.5",
+    "cross-spawn": "^7.0.3",
+    "lookpath": "^1.2.2",
     "ora": "^4.0.3",
     "voca": "^1.4.0"
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^23.8.2",
-    "jest": "^25.1.0"
+    "eslint-plugin-jest": "^26.0.0",
+    "jest": "^27.5.0"
   }
 }

@@ -28,11 +28,11 @@ describe('Get GitHub URL\'s', () => {
   url.parse('git@github.com:username/project.git')
 
   test('Git remote URL', () => {
-    expect(url.remote).toEqual('git@github.com:username/project.git')
+    expect(url.remote).toBe('git@github.com:username/project.git')
   })
 
   test('Project homepage URL', () => {
-    expect(url.homepage).toEqual('https://github.com/username/project#readme')
+    expect(url.homepage).toBe('https://github.com/username/project#readme')
   })
 
   test('Project bugs URL object', () => {
@@ -54,11 +54,11 @@ describe('Get GitLab URL\'s', () => {
   url.parse('git@gitlab.com:username/project.git')
 
   test('Git remote URL', () => {
-    expect(url.remote).toEqual('git@gitlab.com:username/project.git')
+    expect(url.remote).toBe('git@gitlab.com:username/project.git')
   })
 
   test('Project homepage URL', () => {
-    expect(url.homepage).toEqual('https://gitlab.com/username/project')
+    expect(url.homepage).toBe('https://gitlab.com/username/project')
   })
 
   test('Project bugs URL object', () => {
@@ -80,11 +80,11 @@ describe('Get Bitbucket URL\'s', () => {
   url.parse('git@bitbucket.org:username/project.git')
 
   test('Git remote URL', () => {
-    expect(url.remote).toEqual('git@bitbucket.org:username/project.git')
+    expect(url.remote).toBe('git@bitbucket.org:username/project.git')
   })
 
   test('Project homepage URL', () => {
-    expect(url.homepage).toEqual('https://bitbucket.org/username/project')
+    expect(url.homepage).toBe('https://bitbucket.org/username/project')
   })
 
   test('Project bugs URL object', () => {
@@ -106,11 +106,11 @@ describe('Get unknown hosting URL\'s', () => {
   url.parse('git@git-example.com:username/project.git')
 
   test('Git remote URL', () => {
-    expect(url.remote).toEqual('git@git-example.com:username/project.git')
+    expect(url.remote).toBe('git@git-example.com:username/project.git')
   })
 
   test('Project homepage URL', () => {
-    expect(url.homepage).toEqual('https://git-example.com/username/project')
+    expect(url.homepage).toBe('https://git-example.com/username/project')
   })
 
   test('Project bugs URL object', () => {
@@ -132,7 +132,7 @@ describe('Get GitHub URL\'s for child package', () => {
   url.parse('git@github.com:username/project.git', 'packages/@test/output')
 
   test('Package homepage URL', () => {
-    expect(url.homepage).toEqual('https://github.com/username/project/tree/master/packages/@test/output#readme')
+    expect(url.homepage).toBe('https://github.com/username/project/tree/master/packages/@test/output#readme')
   })
 
   test('Package repository URL object', () => {
@@ -149,7 +149,7 @@ describe('Get GitLab URL\'s for child package', () => {
   url.parse('git@gitlab.com:username/project.git', 'packages/@test/output')
 
   test('Package homepage URL', () => {
-    expect(url.homepage).toEqual('https://gitlab.com/username/project/-/tree/master/packages/@test/output')
+    expect(url.homepage).toBe('https://gitlab.com/username/project/-/tree/master/packages/@test/output')
   })
 
   test('Package repository URL object', () => {
@@ -166,7 +166,7 @@ describe('Get Bitbucket URL\'s for child package', () => {
   url.parse('git@bitbucket.org:username/project.git', 'packages/@test/output')
 
   test('Package homepage URL', () => {
-    expect(url.homepage).toEqual('https://bitbucket.org/username/project/src/master/packages/@test/output')
+    expect(url.homepage).toBe('https://bitbucket.org/username/project/src/master/packages/@test/output')
   })
 
   test('Package repository URL object', () => {
@@ -183,7 +183,7 @@ describe('Get unknown hosting URL\'s for child package', () => {
   url.parse('git@git-example.com:username/project.git', 'packages/@test/output')
 
   test('Package homepage URL', () => {
-    expect(url.homepage).toEqual('https://git-example.com/username/project/-/tree/master/packages/@test/output')
+    expect(url.homepage).toBe('https://git-example.com/username/project/-/tree/master/packages/@test/output')
   })
 
   test('Package repository URL object', () => {
