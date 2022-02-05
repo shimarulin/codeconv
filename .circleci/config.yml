@@ -115,18 +115,18 @@ workflows:
       - setup:
           filters:
             branches:
-              only: master
+              only: main
       - test:
           requires:
             - setup
           filters:
             branches:
-              only: master
+              only: main
       - deploy:
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: main
             tags:
               ignore: /.*/
