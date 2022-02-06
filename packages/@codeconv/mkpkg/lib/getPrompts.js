@@ -21,7 +21,7 @@ const getPrompts = function ({
       name: 'name',
       message: `Name of the new ${moduleType}`,
       default: this.outFolder,
-      filter: val => {
+      filter: (val) => {
         const name = val.toLowerCase()
         return !isNewProject ? `${defaultPackagePath.split('/').pop()}/${name}` : name
       },

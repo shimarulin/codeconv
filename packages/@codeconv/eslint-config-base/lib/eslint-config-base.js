@@ -25,6 +25,18 @@ module.exports = {
         minItems: 1,
       },
     ],
+    'arrow-parens': [
+      'error',
+      'always',
+    ],
+    // eslint-config-standard override
+    'brace-style': [
+      'error',
+      '1tbs',
+      {
+        allowSingleLine: false,
+      },
+    ],
     // eslint-config-standard override
     'comma-dangle': [
       'error',

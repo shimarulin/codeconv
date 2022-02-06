@@ -47,7 +47,7 @@ module.exports = {
         name: 'name',
         message: `${voca.capitalize(moduleType)} name`,
         default: this.outFolder,
-        filter: val => {
+        filter: (val) => {
           const name = val.toLowerCase()
           return !isNewProject ? `${defaultPackagePath.split('/').pop()}/${name}` : name
         },
@@ -117,10 +117,10 @@ module.exports = {
       {
         type: 'modify',
         files: 'package.json',
-        handler: data => require('./lib/handlers/updatePkg')(data, context),
+        handler: (data) => require('./lib/handlers/updatePkg')(data, context),
       },
     ]
-      .map(action => ({
+      .map((action) => ({
         ...action,
         templateDir: 'templates/common',
       }))
@@ -148,10 +148,10 @@ module.exports = {
       {
         type: 'modify',
         files: 'lerna.json',
-        handler: data => require('./lib/handlers/updateLerna')(data, context),
+        handler: (data) => require('./lib/handlers/updateLerna')(data, context),
       },
     ]
-      .map(action => ({
+      .map((action) => ({
         ...action,
         templateDir: 'templates/configuration',
       }))
