@@ -1,17 +1,21 @@
+const hasEslintConfigTypescript = require('./has-eslint-config-typescript')
+
+const jsConfig = [
+  require.resolve('@codeconv/eslint-config-base'),
+  'plugin:vue/vue3-recommended',
+]
+
+const tsConfig = [
+  require.resolve('@codeconv/eslint-config-base'),
+  require.resolve('@codeconv/eslint-config-typescript'),
+  'plugin:vue/vue3-recommended',
+]
+
 module.exports = {
-  extends: [
-    require.resolve('@codeconv/eslint-config-base'),
-    'plugin:vue/vue3-recommended',
-  ],
-  env: {
-    browser: true,
-  },
+  extends: hasEslintConfigTypescript ? tsConfig : jsConfig,
   parserOptions: {
-    parser: '@babel/eslint-parser',
+    parser: hasEslintConfigTypescript ? '@typescript-eslint/parser' : '@babel/eslint-parser',
   },
-  plugins: [
-    'vue',
-  ],
   rules: {
     'vue/html-closing-bracket-newline': [
       'error',

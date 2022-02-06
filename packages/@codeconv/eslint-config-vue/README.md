@@ -15,3 +15,8 @@ Add this to your .eslintrc file:
 ```
 
 Note: We omitted the eslint-config- prefix since it is automatically assumed by ESLint.
+
+### TypeScript support
+
+If you add `@codeconv/eslint-config-typescript` to devDependencies, the TypeScript support will be enabled
+automatically.
