@@ -76,7 +76,7 @@ const licenseSpecs = [
 ]
 
 const resolveLicenseFile = (value) => {
-  const licensePath = licenseSpecs.find(l => l.value === value).template
+  const licensePath = licenseSpecs.find((l) => l.value === value).template
   return path.resolve(__dirname, licensePath)
 }
 

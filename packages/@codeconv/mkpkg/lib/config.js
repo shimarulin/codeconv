@@ -10,7 +10,7 @@ const DEFAULT_PROJECT_TYPE = 'Package'
 
 const hasMonorepo = lernaConfig && true
 const moduleType = packageConfig && lernaConfig ? 'package' : 'project'
-const workspaces = lernaConfig && packageConfig ? packageConfig.workspaces.map(workspace => workspace.replace('/*', '')) : []
+const workspaces = lernaConfig && packageConfig ? packageConfig.workspaces.map((workspace) => workspace.replace('/*', '')) : []
 const defaultPackagePath = lernaConfig ? workspaces[0] : ''
 
 module.exports = {
