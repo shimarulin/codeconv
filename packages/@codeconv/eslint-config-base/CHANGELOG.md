@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/shimarulin/codeconv/compare/v0.7.0...v0.8.0) (2022-02-06)
+
+
+### Features
+
+* add TypeScript support to eslint-config-vue ([9dc3189](https://github.com/shimarulin/codeconv/commit/9dc318949f69512d72ace24bfde5e4e4b130a379))
+
+
+### BREAKING CHANGES
+
+* no Vue2 support
+
+
+
+
+
 # [0.7.0](https://github.com/shimarulin/codeconv/compare/v0.6.1...v0.7.0) (2022-02-05)
 
 
