@@ -28,12 +28,6 @@ jobs:
           node-version: 17.8.0
           registry-url: https://registry.npmjs.org/
 
-      - name: Authenticate with Registry
-        run: |
-          npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: "Install dependencies"
         run: yarn install --immutable
 
