@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/eslint-config-typescript",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "codeconv ESLint TypeScript config",
   "license": "MIT",
   "repository": {
@@ -30,7 +30,7 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.10.2",
-    "@typescript-eslint/parser": "^5.10.2"
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0"
   }
 }

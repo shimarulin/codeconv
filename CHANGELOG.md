@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/shimarulin/codeconv/compare/v0.8.1...v0.8.2) (2022-03-31)
+
+
+### Bug Fixes
+
+* remove workflow dependencies ([d503b78](https://github.com/shimarulin/codeconv/commit/d503b78c007c0965fcac2eb0f9de047f1ff11c92))
+* upgrade babel-core ([645c04e](https://github.com/shimarulin/codeconv/commit/645c04e022bfc29b41837474e49cee714cdee074))
+* upgrade typescript-eslint ([59f197f](https://github.com/shimarulin/codeconv/commit/59f197ffa3242d1aba513e58caa8749c665efca3))
+
+
+
+
+
 ## [0.8.1](https://github.com/shimarulin/codeconv/compare/v0.8.0...v0.8.1) (2022-02-23)
 
 
