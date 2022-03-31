@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/shimarulin/codeconv/compare/v0.8.1...v0.8.2) (2022-03-31)
+
+
+### Bug Fixes
+
+* upgrade typescript-eslint ([59f197f](https://github.com/shimarulin/codeconv/commit/59f197ffa3242d1aba513e58caa8749c665efca3))
+
+
+
+
+
 # [0.8.0](https://github.com/shimarulin/codeconv/compare/v0.7.0...v0.8.0) (2022-02-06)
 
 **Note:** Version bump only for package @codeconv/eslint-config-typescript

@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/eslint-config-typescript",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "codeconv ESLint TypeScript config",
   "license": "MIT",
   "repository": {
