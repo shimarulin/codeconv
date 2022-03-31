@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/shimarulin/codeconv/compare/v0.8.3...v0.8.4) (2022-03-31)
+
+
+### Bug Fixes
+
+* upgrade eslint-plugin-jest ([4db44cd](https://github.com/shimarulin/codeconv/commit/4db44cdfca805592f1a2584ed95e2b6a5e9f59a7))
+
+
+
+
+
 # [0.8.0](https://github.com/shimarulin/codeconv/compare/v0.7.0...v0.8.0) (2022-02-06)
 
 **Note:** Version bump only for package @codeconv/mkpkg

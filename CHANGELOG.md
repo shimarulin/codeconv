@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/shimarulin/codeconv/compare/v0.8.3...v0.8.4) (2022-03-31)
+
+
+### Bug Fixes
+
+* remove npm whoami step ([16043ec](https://github.com/shimarulin/codeconv/commit/16043ec204f60914f3c4fe6325d302b4dfdaddcb))
+* upgrade eslint-plugin-jest ([4db44cd](https://github.com/shimarulin/codeconv/commit/4db44cdfca805592f1a2584ed95e2b6a5e9f59a7))
+
+
+
+
+
 ## [0.8.3](https://github.com/shimarulin/codeconv/compare/v0.8.2...v0.8.3) (2022-03-31)
 
 **Note:** Version bump only for package codeconv
