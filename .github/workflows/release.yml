@@ -48,6 +48,8 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor}}@users.noreply.github.com"
 
+          npm whoami
+
           yarn run publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
