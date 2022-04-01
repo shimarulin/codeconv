@@ -17,7 +17,7 @@
     "lint": "lerna run lint --parallel --",
     "mkpkg": "sao ./packages/@codeconv/mkpkg",
     "postinstall": "git config core.hooksPath .githooks",
-    "publish": "lerna publish",
+    "publish": "lerna publish --no-verify-access",
     "test": "lerna run test --parallel --"
   },
   "lint-staged": {
