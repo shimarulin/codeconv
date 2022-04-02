@@ -25,7 +25,7 @@ Add this to your .eslintrc file:
 }
 ```
 
-Note: We omitted the eslint-config- prefix since it is automatically assumed by ESLint.
+Note: We omitted the _eslint-config-_ prefix since it is automatically assumed by ESLint.
 
 ## Rules
 
