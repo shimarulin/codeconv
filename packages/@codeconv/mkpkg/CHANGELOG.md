@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/shimarulin/codeconv/compare/v0.8.6...v0.9.0) (2022-04-02)
+
+
+### Bug Fixes
+
+* update dependencies ([7ef4258](https://github.com/shimarulin/codeconv/commit/7ef4258856a81223a141c0238c7f9eccaef3d7b5))
+
+
+
+
+
 ## [0.8.6](https://github.com/shimarulin/codeconv/compare/v0.8.5...v0.8.6) (2022-04-01)
 
 **Note:** Version bump only for package @codeconv/mkpkg
