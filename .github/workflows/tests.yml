@@ -1,12 +1,14 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Release and publish NPM packages
+name: Run linting and tests
 
 on:
   pull_request:
     types:
-      - closed
+      - opened
+      - synchronize
+      - reopened
     branches:
       - main
 
@@ -34,15 +36,3 @@ jobs:
 
       - name: "Run tests"
         run: yarn run test
-
-      - name: "Create version and publish NPM packages"
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor}}@users.noreply.github.com"
-
-          npm whoami
-
-          yarn run publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
