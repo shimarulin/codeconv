@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/shimarulin/codeconv/compare/v0.9.0...v0.10.0) (2022-05-02)
+
+
+### Features
+
+* **@codeconv/eslint-config-base:** add ignore patterns ([454dec6](https://github.com/shimarulin/codeconv/commit/454dec67f7f23db54abb85854b5be809e1bdc306))
+* **@codeconv/eslint-config-typescript:** add parserOptions to eslint-config-typescript to correct resolve tsconfig ([4744522](https://github.com/shimarulin/codeconv/commit/474452219b04c6181caecb3753e0bbabf124c91f))
+
+
+
+
+
 # [0.9.0](https://github.com/shimarulin/codeconv/compare/v0.8.6...v0.9.0) (2022-04-02)
 
 

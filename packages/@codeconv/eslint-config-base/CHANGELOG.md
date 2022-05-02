@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/shimarulin/codeconv/compare/v0.9.0...v0.10.0) (2022-05-02)
+
+
+### Features
+
+* **@codeconv/eslint-config-base:** add ignore patterns ([454dec6](https://github.com/shimarulin/codeconv/commit/454dec67f7f23db54abb85854b5be809e1bdc306))
+
+
+
+
+
 # [0.9.0](https://github.com/shimarulin/codeconv/compare/v0.8.6...v0.9.0) (2022-04-02)
 
 
