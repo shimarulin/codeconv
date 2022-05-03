@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/shimarulin/codeconv/compare/v0.10.0...v0.10.1) (2022-05-03)
+
+
+### Bug Fixes
+
+* revert ora ([cd97f93](https://github.com/shimarulin/codeconv/commit/cd97f93e9ad4b4a230be24315a4c7e800cc6eb03))
+* upgrade dependencies ([e51ff90](https://github.com/shimarulin/codeconv/commit/e51ff90a9996d9228956b81c4f059d934ae1023d))
+
+
+
+
+
 # [0.10.0](https://github.com/shimarulin/codeconv/compare/v0.9.0...v0.10.0) (2022-05-02)
 
 
