@@ -2,9 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "importHelpers": true,
-    "module": "commonjs",
+    "module": "ES2020",
     "strict": true,
-    "target": "es2017",
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
     "baseUrl": "./packages",
     "resolveJsonModule": true,
     "paths": {

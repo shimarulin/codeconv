@@ -1,0 +1,39 @@
+{
+  "name": "@codeconv/packages-resolver",
+  "version": "0.10.1",
+  "description": "CodeConv CLI core",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/packages-resolver",
+    "type": "git",
+    "url": "git+https://github.com/shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/packages-resolver/#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "lint": "eslint --ext js,ts,md .",
+    "prepack": "rm -rf dist && tsup"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "execa": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "tsup": "^5.12.7",
+    "typescript": "^4.6.4"
+  }
+}

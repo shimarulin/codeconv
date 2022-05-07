@@ -1,0 +1,32 @@
+{
+  "name": "@codeconv/create",
+  "version": "0.10.1",
+  "description": "CLI tool to create a standard CodeConv project",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/create",
+    "type": "git",
+    "url": "git+https://github.com/shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/create/#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "bin": {
+    "codeconv-create": "./bin/run"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint --ext js,ts,md .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "yargs": "^17.4.1"
+  }
+}

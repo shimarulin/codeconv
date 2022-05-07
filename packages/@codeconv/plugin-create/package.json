@@ -1,0 +1,26 @@
+{
+  "name": "@codeconv/plugin-create",
+  "version": "0.10.1",
+  "description": "CodeConv plugin to create standard project",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/plugin-create",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-create#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --ext js,md .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "yargs": "^17.4.1"
+  },
+  "devDependencies": {}
+}
