@@ -4,10 +4,11 @@
 
 # Dependency directories
 node_modules/
+**/node_modules/
 
 # Compiled code
-dist
-**/tsconfig.tsbuildinfo
+**/dist/
+**/*.tsbuildinfo
 
 ### JetBrains IDE's
 .idea
