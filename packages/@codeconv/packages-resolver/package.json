@@ -23,6 +23,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "tsc -b -w",
     "lint": "eslint --ext js,ts,md .",
     "prepack": "rm -rf dist && tsc -b"
   },

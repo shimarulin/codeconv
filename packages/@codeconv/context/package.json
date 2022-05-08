@@ -1,22 +1,23 @@
 {
-  "name": "@codeconv/codeconv",
+  "name": "@codeconv/context",
   "version": "0.10.1",
-  "description": "CodeConv CLI core",
+  "description": "Get CodeConv CLI context",
   "license": "MIT",
   "repository": {
-    "directory": "packages/@codeconv/codeconv",
+    "directory": "packages/@codeconv/context",
     "type": "git",
     "url": "git+https://github.com/shimarulin/codeconv.git"
   },
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/codeconv/#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/context/#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
-  "bin": {
-    "codeconv": "./bin/run.js"
-  },
   "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js"
+  },
   "files": [
     "bin",
     "dist"
@@ -28,10 +29,8 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@codeconv/context": "0.10.1",
-    "@codeconv/packages-resolver": "0.10.1",
     "execa": "^6.1.0",
-    "yargs": "^17.4.1"
+    "find-up": "^6.3.0"
   },
   "devDependencies": {}
 }

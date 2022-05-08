@@ -9,6 +9,7 @@
     "packages/@codeconv/*"
   ],
   "scripts": {
+    "dev": "lerna run dev --parallel --",
     "format": "yarn format:json && yarn format:md && yarn format:pkg",
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
