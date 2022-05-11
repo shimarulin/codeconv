@@ -13,7 +13,10 @@
   },
   "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-create#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
-  "main": "dist/index.js",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js"
+  },
   "scripts": {
     "lint": "eslint --ext js,md .",
     "prepack": "rm -rf dist && tsc -b"

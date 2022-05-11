@@ -1,9 +1,17 @@
+import path from 'path'
 import fg from 'fast-glob'
 import { execa } from 'execa'
 
 interface NpmRoots {
   globalNpmRoot: string
   localNpmRoot: string
+}
+
+interface PkgDefaultImport {
+  default: {
+    name: string,
+    version: string,
+  }
 }
 
 export const getNpmRoots = async (): Promise<NpmRoots> => {
@@ -33,7 +41,7 @@ export const resolvePackagesFromDir = async (patterns: string[], basePath: strin
 }
 
 export const getPackageDirs = async (patterns: string[], scope: 'global' | 'local'): Promise<string[]> => {
-  const packages: string[] = []
+  const packageDirs: string[] = []
   const { globalNpmRoot, localNpmRoot } = await getNpmRoots()
 
   const [
@@ -45,13 +53,32 @@ export const getPackageDirs = async (patterns: string[], scope: 'global' | 'loca
   ])
 
   if (scope === 'global') {
-    packages.push(...globalPackages)
+    packageDirs.push(...globalPackages)
   } else if (scope === 'local') {
-    packages.push(...localPackages)
+    packageDirs.push(...localPackages)
   } else {
     // All packages
     // Prefer local packages
   }
 
-  return packages
+  return packageDirs
+}
+
+export const getPackageList = async (patterns: string[], scope: 'global' | 'local'): Promise<string[]> => {
+  const packageNameImports: Promise<string>[] = []
+  const packageDirs = await getPackageDirs(patterns, scope)
+
+  packageDirs.forEach((dir) => {
+    const packageImport: Promise<PkgDefaultImport> = import(path.resolve(dir, 'package.json'), {
+      assert: {
+        type: 'json',
+      },
+    }) as Promise<PkgDefaultImport>
+
+    packageNameImports.push(
+      packageImport.then((pkg) => pkg.default.name),
+    )
+  })
+
+  return Promise.all(packageNameImports)
 }
