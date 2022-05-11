@@ -18,6 +18,7 @@
     "import": "./dist/index.js"
   },
   "scripts": {
+    "dev": "tsc -b -w",
     "lint": "eslint --ext js,md .",
     "prepack": "rm -rf dist && tsc -b"
   },
