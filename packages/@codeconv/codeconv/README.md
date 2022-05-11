@@ -34,11 +34,14 @@ yarn add @codeconv/codeconv
 
 ## Usage
 
-CodeConv CLI can be extended with plugins. CodeConv plugin system will resolve plugins automatically, follow by this
+CodeConv CLI can be extended with plugins. The CodeConv plugin system automatically resolves plugins by following this
 naming convention:
 
 - `@codeconv/plugin-*`
 - `codeconv-plugin-*`
+
+It looks for plugins in the global NPM scope when creating a new project, and in the local NPM scope for existing
+projects.
 
 ## License
 

@@ -1,6 +1,6 @@
 # `@codeconv/create`
 
-> CLI tool to create a standard CodeConv project
+> CLI [codeconv](../codeconv/README.md) tool wrapper to create a standard CodeConv project
 
 ## Usage
 

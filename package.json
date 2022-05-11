@@ -15,11 +15,11 @@
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
     "lint": "lerna run lint --parallel --",
-    "lnk:yarn": "yarn && ln -s -f \"$(pwd)\"/node_modules/* \"$(npm prefix -g)\"/lib/node_modules && lerna exec -- yarn link",
+    "lnk": "yarn && ./scripts/lnk.sh",
     "postinstall": "git config core.hooksPath .githooks",
     "publish": "lerna publish --no-verify-access",
     "test": "lerna run test --parallel --",
-    "unlnk:yarn": "lerna exec -- yarn unlink && rm -rf node_modules && find \"$(npm prefix -g)\"/lib/node_modules -type l -delete"
+    "unlnk": "./scripts/unlnk.sh"
   },
   "lint-staged": {
     "**/*.js": [

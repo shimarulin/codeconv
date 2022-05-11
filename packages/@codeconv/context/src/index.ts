@@ -1,9 +1,5 @@
-import { findUp } from 'find-up'
 import path from 'path'
-
-// interface CodeConvContext {
-//   type: 'init' | 'project'
-// }
+import { findUp } from 'find-up'
 
 interface BaseFsContext {
   manifest: string
@@ -17,6 +13,10 @@ interface ReverseFsContext extends BaseFsContext {
 interface FsContext extends BaseFsContext {
   root: boolean
   child?: FsContext
+}
+
+interface CodeConvContext {
+  project?: FsContext
 }
 
 export async function pkgUp (cwd: string | URL = process.cwd()) {
@@ -75,7 +75,10 @@ export async function getFsContext (cwd: string | URL = process.cwd()): Promise<
   return reverseFsContext && normalizeFsContext(reverseFsContext)
 }
 
-export const getContext = async (): Promise<string[]> => {
-  console.log(await getFsContext())
-  return []
+export const getContext = async (): Promise<CodeConvContext> => {
+  const fsContext = await getFsContext()
+
+  return {
+    project: fsContext,
+  }
 }

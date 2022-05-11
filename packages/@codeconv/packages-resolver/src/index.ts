@@ -1,36 +1,57 @@
+import fg from 'fast-glob'
 import { execa } from 'execa'
 
-interface YarnTreeItem {
-  name: string,
-  children: YarnTreeItem[],
-  hint: null,
-  color: string,
-  depth: number
+interface NpmRoots {
+  globalNpmRoot: string
+  localNpmRoot: string
 }
 
-interface YarnList {
-  type: 'tree',
-  data: {
-    type: 'list',
-    trees: YarnTreeItem[]
-  }
+export const getNpmRoots = async (): Promise<NpmRoots> => {
+  return Promise.all([
+    execa('npm', [
+      'root',
+      '--global',
+    ]).then(({ stdout }) => stdout),
+    execa('npm', [
+      'root',
+    ]).then(({ stdout }) => stdout),
+  ]).then(([
+    globalNpmRoot,
+    localNpmRoot,
+  ]) => ({
+    globalNpmRoot,
+    localNpmRoot,
+  }))
 }
 
-const yarnList = async (pattern: string): Promise<string[]> => {
-  const { stdout } = await execa('yarn', [
-    'list',
-    '--json',
-    '--pattern',
-    pattern,
+export const resolvePackagesFromDir = async (patterns: string[], basePath: string): Promise<string[]> => {
+  return fg(patterns, {
+    absolute: true,
+    onlyDirectories: true,
+    cwd: basePath,
+  })
+}
+
+export const getPackageDirs = async (patterns: string[], scope: 'global' | 'local'): Promise<string[]> => {
+  const packages: string[] = []
+  const { globalNpmRoot, localNpmRoot } = await getNpmRoots()
+
+  const [
+    globalPackages,
+    localPackages,
+  ] = await Promise.all([
+    resolvePackagesFromDir(patterns, globalNpmRoot),
+    resolvePackagesFromDir(patterns, localNpmRoot),
   ])
 
-  const tree = JSON.parse(stdout) as YarnList
+  if (scope === 'global') {
+    packages.push(...globalPackages)
+  } else if (scope === 'local') {
+    packages.push(...localPackages)
+  } else {
+    // All packages
+    // Prefer local packages
+  }
 
-  return tree.data.trees.map((item) => item.name)
-}
-
-export const resolveCommandDirs = async (patterns: string[]): Promise<string[]> => {
-  console.log((await yarnList('@codeconv/plugin|codeconv-plugin')))
-
-  return []
+  return packages
 }
