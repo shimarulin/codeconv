@@ -1,4 +1,4 @@
-# `@codeconv/codeconv`
+# `@codeconv/cli`
 
 > CodeConv CLI core
 
@@ -9,13 +9,13 @@
 Using npm:
 
 ```bash
-npm install -g @codeconv/codeconv
+npm install -g @codeconv/cli
 ```
 
 or using yarn:
 
 ```bash
-yarn global add @codeconv/codeconv
+yarn global add @codeconv/cli
 ```
 
 ### Installation per project
@@ -23,13 +23,13 @@ yarn global add @codeconv/codeconv
 With npm:
 
 ```bash
-npm install @codeconv/codeconv
+npm install @codeconv/cli
 ```
 
 or with yarn:
 
 ```bash
-yarn add @codeconv/codeconv
+yarn add @codeconv/cli
 ```
 
 ## Usage

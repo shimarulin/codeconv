@@ -1,17 +1,17 @@
 {
-  "name": "@codeconv/codeconv",
+  "name": "@codeconv/cli",
   "version": "0.10.1",
   "description": "CodeConv CLI core",
   "license": "MIT",
   "repository": {
-    "directory": "packages/@codeconv/codeconv",
+    "directory": "packages/@codeconv/cli",
     "type": "git",
     "url": "git+https://github.com/shimarulin/codeconv.git"
   },
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/codeconv/#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/cli/#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "bin": {
     "codeconv": "./bin/run.js"
