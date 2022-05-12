@@ -3,4 +3,7 @@ module.exports = {
   extends: [
     '@codeconv/typescript',
   ],
+  parserOptions: {
+    EXPERIMENTAL_useSourceOfProjectReferenceRedirect: true,
+  },
 }
