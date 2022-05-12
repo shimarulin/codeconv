@@ -38,6 +38,7 @@
     "cross-spawn": "^7.0.3",
     "lookpath": "^1.2.2",
     "ora": "^4.0.3",
+    "sao": "^1.7.1",
     "voca": "^1.4.0"
   },
   "devDependencies": {
