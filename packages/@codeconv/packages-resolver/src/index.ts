@@ -1,4 +1,5 @@
-import path from 'path'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import fg from 'fast-glob'
 import { execa } from 'execa'
 
@@ -8,10 +9,8 @@ interface NpmRoots {
 }
 
 interface PkgDefaultImport {
-  default: {
-    name: string,
-    version: string,
-  }
+  name: string,
+  version: string,
 }
 
 export const getNpmRoots = async (): Promise<NpmRoots> => {
@@ -56,9 +55,6 @@ export const getPackageDirs = async (patterns: string[], scope: 'global' | 'loca
     packageDirs.push(...globalPackages)
   } else if (scope === 'local') {
     packageDirs.push(...localPackages)
-  } else {
-    // All packages
-    // Prefer local packages
   }
 
   return packageDirs
@@ -69,14 +65,12 @@ export const getPackageList = async (patterns: string[], scope: 'global' | 'loca
   const packageDirs = await getPackageDirs(patterns, scope)
 
   packageDirs.forEach((dir) => {
-    const packageImport: Promise<PkgDefaultImport> = import(path.resolve(dir, 'package.json'), {
-      assert: {
-        type: 'json',
-      },
-    }) as Promise<PkgDefaultImport>
+    const packageImport: Promise<PkgDefaultImport> = readFile(path.resolve(dir, 'package.json'), {
+      encoding: 'utf8',
+    }).then((jsonStr) => JSON.parse(jsonStr) as PkgDefaultImport)
 
     packageNameImports.push(
-      packageImport.then((pkg) => pkg.default.name),
+      packageImport.then((pkg) => pkg.name),
     )
   })
 
