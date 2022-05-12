@@ -43,6 +43,36 @@ naming convention:
 It looks for plugins in the global NPM scope when creating a new project, and in the local NPM scope for existing
 projects.
 
+## Plugin development
+
+Example of a module with a named export:
+
+```ts
+export const command = 'command [arg]'
+export const describe = 'Command example'
+
+export const builder: { [key: string]: Options } = {}
+
+export const handler = ({ pkg }: Arguments<CreateCommandArguments>): void => {
+  console.log(pkg)
+}
+```
+
+Example of a module with a default export:
+
+```ts
+const commandModule: CommandModule = {
+  command: 'command [arg]',
+  describe: 'Command example',
+  builder: {},
+  handler: (args) => {
+    console.log(args)
+  },
+}
+
+export default commandModule
+```
+
 ## License
 
 [MIT](LICENSE)

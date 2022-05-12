@@ -1,15 +1,16 @@
-import { Arguments, Options } from 'yargs'
+import { ArgumentsCamelCase, CommandModule } from 'yargs'
 
 export interface CreateCommandArguments {
-  pkg?: string;
+  name?: string;
 }
 
-export const command = 'create [pkg]'
-export const describe = 'Create standard project or package from template'
-
-export const builder: { [key: string]: Options } = {}
-
-export const handler = async ({ pkg }: Arguments<CreateCommandArguments>): Promise<void> => {
-  await Promise.resolve()
-  console.log(pkg)
+const commandModule: CommandModule = {
+  command: 'create [name]',
+  describe: 'Create standard project or package from template',
+  builder: {},
+  handler: (args: ArgumentsCamelCase<CreateCommandArguments>) => {
+    console.log(args)
+  },
 }
+
+export default commandModule
