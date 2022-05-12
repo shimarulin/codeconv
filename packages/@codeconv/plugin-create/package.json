@@ -17,6 +17,9 @@
   "exports": {
     "import": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "tsc -b -w",
     "lint": "eslint --ext js,md .",
