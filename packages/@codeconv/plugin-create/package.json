@@ -27,8 +27,8 @@
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "yargs": "^17.5.0"
-  },
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@types/yargs": "^17.0.10"
+  }
 }

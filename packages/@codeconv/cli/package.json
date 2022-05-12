@@ -33,5 +33,7 @@
     "@codeconv/packages-resolver": "0.10.1",
     "yargs": "^17.5.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/yargs": "^17.0.10"
+  }
 }

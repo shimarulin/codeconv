@@ -1,4 +1,4 @@
-import { ArgumentsCamelCase, CommandModule } from 'yargs'
+import type { ArgumentsCamelCase, CommandModule } from 'yargs'
 
 export interface CreateCommandArguments {
   name?: string;
