@@ -31,7 +31,7 @@
   "dependencies": {
     "@codeconv/context": "0.10.1",
     "@codeconv/packages-resolver": "0.10.1",
-    "yargs": "^17.4.1"
+    "yargs": "^17.5.0"
   },
   "devDependencies": {}
 }
