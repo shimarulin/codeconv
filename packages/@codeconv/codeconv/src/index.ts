@@ -10,7 +10,7 @@ export const run = async (): Promise<void> => {
     .help('h')
     .alias('h', 'help')
 
-  program.command('$0', 'Print this message', {}, async (argv) => {
+  program.command('$0', 'Print this message', {}, async () => {
     console.info(`${await program.getHelp()}`)
   })
 
