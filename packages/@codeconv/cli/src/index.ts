@@ -8,7 +8,7 @@ interface CommandModuleExportDefault {
   default: CommandModule
 }
 
-const validateCommandModule = (commandModule: CommandModuleExportDefault | CommandModule): boolean => {
+const validateCommandModule = (commandModule: CommandModule): boolean => {
   return ('command' in commandModule && typeof commandModule.command === 'string') &&
     ('describe' in commandModule && typeof commandModule.describe === 'string') &&
     'builder' in commandModule &&
