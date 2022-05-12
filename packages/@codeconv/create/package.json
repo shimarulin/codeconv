@@ -24,7 +24,7 @@
   "scripts": {
     "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
     "dev": "tsc -b -w",
-    "lint": "eslint --ext js,ts,md .",
+    "lint": "eslint --ext js,ts .",
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",

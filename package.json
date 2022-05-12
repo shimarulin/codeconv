@@ -15,7 +15,7 @@
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
-    "lint": "eslint --ext js,ts,md .",
+    "lint": "eslint --ext js,ts .",
     "lnk": "yarn && ./scripts/lnk.sh",
     "postinstall": "git config core.hooksPath .githooks",
     "publish": "lerna publish --no-verify-access",
