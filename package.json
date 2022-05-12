@@ -9,12 +9,13 @@
     "packages/@codeconv/*"
   ],
   "scripts": {
+    "clear": "lerna run clear --parallel --",
     "dev": "lerna run dev --parallel --",
     "format": "yarn format:json && yarn format:md && yarn format:pkg",
     "format:json": "prettier --write \"**/*.json\"",
     "format:md": "prettier --parser markdown --prose-wrap always --write \"**/*.md\"",
     "format:pkg": "format-package --write",
-    "lint": "lerna run lint --parallel --",
+    "lint": "eslint --ext js,ts,md .",
     "lnk": "yarn && ./scripts/lnk.sh",
     "postinstall": "git config core.hooksPath .githooks",
     "publish": "lerna publish --no-verify-access",

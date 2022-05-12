@@ -10,5 +10,6 @@ export const describe = 'Create standard project or package from template'
 export const builder: { [key: string]: Options } = {}
 
 export const handler = async ({ pkg }: Arguments<CreateCommandArguments>): Promise<void> => {
+  await Promise.resolve()
   console.log(pkg)
 }
