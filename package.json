@@ -17,7 +17,7 @@
     "format:pkg": "format-package --write",
     "lint": "eslint --ext js,ts .",
     "lnk": "yarn && ./scripts/lnk.sh",
-    "postinstall": "git config core.hooksPath .githooks",
+    "postinstall": "ln -s -f \"$(pwd)\"/.githooks/* \"$(pwd)\"/.git/hooks",
     "publish": "lerna publish --no-verify-access",
     "test": "lerna run test --parallel --",
     "unlnk": "./scripts/unlnk.sh"
