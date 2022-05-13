@@ -35,8 +35,8 @@ export const run = async (): Promise<void> => {
     return import(commandModuleName) as Promise<CommandModuleExportDefault | CommandModule>
   }))
 
-  commandModules.forEach((commandModuleStructure, index) => {
-    const commandModule = 'default' in commandModuleStructure ? commandModuleStructure.default : commandModuleStructure
+  commandModules.forEach((commandModuleExports, index) => {
+    const commandModule = 'default' in commandModuleExports ? commandModuleExports.default : commandModuleExports
 
     if (validateCommandModule(commandModule)) {
       program.command(commandModule)
