@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import type { CommandModule } from 'yargs'
 import { getPackageList } from '@codeconv/packages-resolver'
-import { getContext } from '@codeconv/context'
+import { pkgUp } from '@codeconv/context'
 
 interface CommandModuleExportDefault {
   default: CommandModule
@@ -25,11 +25,11 @@ export const run = async (): Promise<void> => {
     console.info(`${await program.getHelp()}`)
   })
 
-  const context = await getContext()
+  const isProjectScope = !!await pkgUp()
   const commandModuleNames = await getPackageList([
     '**/@codeconv/plugin-*',
     '**/codeconv-plugin-*',
-  ], context.project ? 'local' : 'global')
+  ], isProjectScope ? 'local' : 'global')
 
   const commandModules = await Promise.all(commandModuleNames.map((commandModuleName) => {
     return import(commandModuleName) as Promise<CommandModuleExportDefault | CommandModule>
