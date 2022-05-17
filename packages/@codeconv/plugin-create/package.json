@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/tree/master/packages/@codeconv/plugin-create#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/plugin-create#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "type": "module",
   "exports": {
@@ -27,8 +27,11 @@
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  },
   "devDependencies": {
+    "@types/inquirer": "^8.2.1",
     "@types/yargs": "^17.0.10"
   }
 }

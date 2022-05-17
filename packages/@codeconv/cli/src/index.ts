@@ -1,12 +1,12 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import type { CommandModule } from 'yargs'
-import { getPackageList } from '@codeconv/packages-resolver'
+import { getModuleList, getModuleMetaInfoList } from '@codeconv/packages-resolver'
 import { pkgUp } from '@codeconv/context'
 
-interface CommandModuleExportDefault {
-  default: CommandModule
-}
+// function isNotNullableCommandModule (module: CommandModuleExportDefault | CommandModule | null | undefined): module is CommandModuleExportDefault | CommandModule {
+//   return !!module
+// }
 
 const validateCommandModule = (commandModule: CommandModule): boolean => {
   return ('command' in commandModule && typeof commandModule.command === 'string') &&
@@ -21,27 +21,27 @@ export const run = async (): Promise<void> => {
     .help('h')
     .alias('h', 'help')
 
-  program.command('$0', 'Print this message', {}, async () => {
-    console.info(`${await program.getHelp()}`)
+  program.command('$0', 'Select available command from list', {}, async () => {
+    /**
+     * TODO: Select command from list by 'inquirer'
+     * */
+    // console.info(`${await program.getHelp()}`)
   })
 
   const isProjectScope = !!await pkgUp()
-  const commandModuleNames = await getPackageList([
+  const commandMetaInfoList = await getModuleMetaInfoList([
     '**/@codeconv/plugin-*',
     '**/codeconv-plugin-*',
   ], isProjectScope ? 'local' : 'global')
 
-  const commandModules = await Promise.all(commandModuleNames.map((commandModuleName) => {
-    return import(commandModuleName) as Promise<CommandModuleExportDefault | CommandModule>
-  }))
+  const commandModules = await getModuleList<CommandModule>(commandMetaInfoList)
 
-  commandModules.forEach((commandModuleExports, index) => {
-    const commandModule = 'default' in commandModuleExports ? commandModuleExports.default : commandModuleExports
-
-    if (validateCommandModule(commandModule)) {
-      program.command(commandModule)
+  commandModules.forEach((commandModule) => {
+    if (validateCommandModule(commandModule.module)) {
+      program.command(commandModule.module)
     } else {
-      console.error(`Validate module "${commandModuleNames[index]}" failed`)
+      // TODO: print module name
+      console.error(`Command "${commandModule.manifest.name}" has incompatible format`)
     }
   })
 

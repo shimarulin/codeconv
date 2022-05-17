@@ -2,15 +2,39 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import fg from 'fast-glob'
 import { execa } from 'execa'
+import type { PackageJson } from 'type-fest'
 
-interface NpmRoots {
+export interface NpmRoots {
   globalNpmRoot: string
   localNpmRoot: string
 }
 
-interface PkgDefaultImport {
-  name: string,
-  version: string,
+export type ModuleScope = 'global' | 'local'
+
+export interface ExportDefault<T> {
+  default: T
+}
+
+export interface Manifest extends PackageJson {
+  /**
+   The name of the package.
+   */
+  name: string
+
+  /**
+   Package version, parseable by [`node-semver`](https://github.com/npm/node-semver).
+   */
+  version: string
+}
+
+export interface ModuleMeta {
+  modulePath: string
+  manifest: Manifest
+  scope: ModuleScope
+}
+
+export interface Module<T> extends ModuleMeta {
+  module: T
 }
 
 export const getNpmRoots = async (): Promise<NpmRoots> => {
@@ -39,7 +63,7 @@ export const resolvePackagesFromDir = async (patterns: string[], basePath: strin
   })
 }
 
-export const getPackageDirs = async (patterns: string[], scope: 'global' | 'local'): Promise<string[]> => {
+export const getModulePathList = async (patterns: string[], scope: ModuleScope): Promise<string[]> => {
   const packageDirs: string[] = []
   const { globalNpmRoot, localNpmRoot } = await getNpmRoots()
 
@@ -60,19 +84,39 @@ export const getPackageDirs = async (patterns: string[], scope: 'global' | 'loca
   return packageDirs
 }
 
-export const getPackageList = async (patterns: string[], scope: 'global' | 'local'): Promise<string[]> => {
-  const packageNameImports: Promise<string>[] = []
-  const packageDirs = await getPackageDirs(patterns, scope)
+export const getModuleMetaInfoList = async (patterns: string[], scope: ModuleScope): Promise<ModuleMeta[]> => {
+  const modulePathList = await getModulePathList(patterns, scope)
 
-  packageDirs.forEach((dir) => {
-    const packageImport: Promise<PkgDefaultImport> = readFile(path.resolve(dir, 'package.json'), {
+  return Promise.all(modulePathList.map((modulePath) => {
+    return readFile(path.resolve(modulePath, 'package.json'), {
       encoding: 'utf8',
-    }).then((jsonStr) => JSON.parse(jsonStr) as PkgDefaultImport)
-
-    packageNameImports.push(
-      packageImport.then((pkg) => pkg.name),
-    )
-  })
-
-  return Promise.all(packageNameImports)
+    }).then((jsonStr) => {
+      return JSON.parse(jsonStr) as Manifest
+    }).then((manifest): ModuleMeta => {
+      return {
+        modulePath,
+        manifest,
+        scope,
+      }
+    })
+  }))
 }
+
+export const getModuleList = async <T>(moduleMetaList: ModuleMeta[]) => {
+  return Promise.all(moduleMetaList.map((moduleMeta) => {
+    return import(moduleMeta.manifest.name)
+      .then((templateModuleExport: ExportDefault<T> | T) => {
+        return 'default' in templateModuleExport ? templateModuleExport.default : templateModuleExport
+      })
+      .then((templateModule) => {
+        return {
+          ...moduleMeta,
+          module: templateModule,
+        }
+      })
+  }))
+}
+
+// export function hasModule<T> (meta: ModuleMeta<T>): meta is ModuleMeta<T> {
+//   return !!meta.module
+// }

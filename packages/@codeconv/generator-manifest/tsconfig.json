@@ -5,6 +5,5 @@
     "rootDir": "src",
     "composite": true
   },
-  "include": ["src/**/*"],
-  "references": [{ "path": "../packages-resolver/tsconfig.json" }, { "path": "../context/tsconfig.json" }]
+  "include": ["src/**/*"]
 }

@@ -1,17 +1,17 @@
 {
-  "name": "@codeconv/packages-resolver",
+  "name": "@codeconv/template-library",
   "version": "0.10.1",
-  "description": "CodeConv CLI core",
+  "description": "CodeConv library template",
   "license": "MIT",
   "repository": {
-    "directory": "packages/@codeconv/packages-resolver",
+    "directory": "packages/@codeconv/template-library",
     "type": "git",
-    "url": "git+https://github.com/shimarulin/codeconv.git"
+    "url": "git@github.com:shimarulin/codeconv.git"
   },
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/packages-resolver/#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/template-library#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "type": "module",
   "exports": {
@@ -27,11 +27,6 @@
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "execa": "^6.1.0",
-    "fast-glob": "^3.2.11"
-  },
-  "devDependencies": {
-    "type-fest": "^2.12.2"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
