@@ -29,9 +29,11 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "execa": "^6.1.0",
-    "fast-glob": "^3.2.11"
+    "fast-glob": "^3.2.11",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
+    "@types/ramda": "^0.28.12",
     "type-fest": "^2.12.2"
   }
 }

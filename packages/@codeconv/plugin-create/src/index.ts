@@ -1,6 +1,6 @@
 import type { ArgumentsCamelCase, CommandModule } from 'yargs'
 import inquirer from 'inquirer'
-import { getModuleList, getModuleMetaInfoList } from '@codeconv/packages-resolver'
+import { getModuleListOld, getModuleMetaInfoList } from '@codeconv/packages-resolver'
 
 const { prompt } = inquirer
 
@@ -51,7 +51,7 @@ const commandModule: CommandModule = {
       '**/codeconv-plugin-*',
     ], 'local')
 
-    const templateModules = await getModuleList<TemplateModule>(templateMetaInfoList)
+    const templateModules = await getModuleListOld<TemplateModule>(templateMetaInfoList)
 
     // const validTemplateModules = templateModules
     //   .filter((templateModule, index) => {
