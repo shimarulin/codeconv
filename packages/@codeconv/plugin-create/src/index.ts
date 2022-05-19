@@ -1,6 +1,6 @@
 import type { ArgumentsCamelCase, CommandModule } from 'yargs'
 import inquirer from 'inquirer'
-import { getModuleListOld, getModuleMetaInfoList } from '@codeconv/packages-resolver'
+import { resolveModuleList } from '@codeconv/packages-resolver'
 
 const { prompt } = inquirer
 
@@ -11,6 +11,8 @@ export interface TemplateArgs {
 export type TemplateRender = (args: TemplateArgs) => void
 
 export interface TemplateModule {
+  name: string
+  description: string
   render: TemplateRender
 }
 
@@ -46,12 +48,12 @@ const commandModule: CommandModule = {
      * */
 
     // TODO: get context
-    const templateMetaInfoList = await getModuleMetaInfoList([
+    const templateModules = await resolveModuleList<TemplateModule>([
       '**/@codeconv/template-*',
       '**/codeconv-plugin-*',
-    ], 'local')
+    ], false)
 
-    const templateModules = await getModuleListOld<TemplateModule>(templateMetaInfoList)
+    // const templateModules = await getModuleListOld<TemplateModule>(templateMetaInfoList)
 
     // const validTemplateModules = templateModules
     //   .filter((templateModule, index) => {
@@ -66,7 +68,7 @@ const commandModule: CommandModule = {
     //
 
     if (templateModules.length === 1) {
-      templateModules[0].module.render(args)
+      templateModules[0].render(args)
     } else if (templateModules.length > 1) {
       const selectedTemplateModule = await prompt<{template: TemplateModule}>([
         {
@@ -75,8 +77,8 @@ const commandModule: CommandModule = {
           type: 'list',
           choices: templateModules.map((templateModule) => {
             return {
-              name: `${templateModule.manifest.name} > ${templateModule.manifest.description || ''}`,
-              value: templateModule.module,
+              name: `${templateModule.name} > ${templateModule.description || ''}`,
+              value: templateModule,
             }
           }),
         },
