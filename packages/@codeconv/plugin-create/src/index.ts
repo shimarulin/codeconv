@@ -5,7 +5,7 @@ import { resolveModuleList } from '@codeconv/packages-resolver'
 const { prompt } = inquirer
 
 export interface TemplateArgs {
-  name?: string
+  name: string
 }
 
 export type TemplateRender = (args: TemplateArgs) => void
@@ -20,9 +20,29 @@ export interface CreateCommandArguments {
   name?: string;
 }
 
-// const validateTemplateModule = (templateModule: TemplateModule): boolean => {
-//   return ('render' in templateModule && typeof templateModule.render === 'function')
-// }
+const validateTemplateModule = (templateModule: TemplateModule): boolean => {
+  return ('render' in templateModule && typeof templateModule.render === 'function')
+}
+
+async function getName (name?:string) {
+  return name
+    ? Promise.resolve(name)
+    : prompt<{name: string}>([
+      {
+        name: 'name',
+        message: 'Enter package name',
+        type: 'input',
+      },
+    ]).then(({ name }) => name)
+}
+
+async function getModules (global?: boolean) {
+  return resolveModuleList<TemplateModule>([
+    '**/@codeconv/template-*',
+    '**/codeconv-plugin-*',
+  ], global)
+    .then((resolvedModules) => resolvedModules.filter(validateTemplateModule))
+}
 
 const commandModule: CommandModule = {
   command: 'create [name]',
@@ -48,29 +68,23 @@ const commandModule: CommandModule = {
      * */
 
     // TODO: get context
-    const templateModules = await resolveModuleList<TemplateModule>([
-      '**/@codeconv/template-*',
-      '**/codeconv-plugin-*',
-    ], false)
+    const [
+      templateModules,
+      name,
+    ] = await Promise.all([
+      getModules(false),
+      getName(args.name),
+    ])
 
-    // const templateModules = await getModuleListOld<TemplateModule>(templateMetaInfoList)
-
-    // const validTemplateModules = templateModules
-    //   .filter((templateModule, index) => {
-    //     const isTemplateModuleValid = validateTemplateModule(templateModule.module)
-    //
-    //     if (!isTemplateModuleValid) {
-    //       console.info(`Template "${templateModule.manifest.name}" has incompatible format`)
-    //     }
-    //
-    //     return isTemplateModuleValid
-    //   })
-    //
+    const resolvedArgs: TemplateArgs = {
+      ...args,
+      name,
+    }
 
     if (templateModules.length === 1) {
-      templateModules[0].render(args)
+      templateModules[0].render(resolvedArgs)
     } else if (templateModules.length > 1) {
-      const selectedTemplateModule = await prompt<{template: TemplateModule}>([
+      await prompt<{template: TemplateModule}>([
         {
           name: 'template',
           message: 'Select the template',
@@ -82,9 +96,9 @@ const commandModule: CommandModule = {
             }
           }),
         },
-      ])
-
-      selectedTemplateModule.template.render(args)
+      ]).then(({ template }) => {
+        template.render(resolvedArgs)
+      })
     } else {
       console.log('No template installed')
     }
