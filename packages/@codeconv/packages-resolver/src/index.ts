@@ -86,13 +86,13 @@ export function normalizeExportList <T> (arg: (ExportDefault<T> | T)[]): T[] {
   return map(normalizeExport, arg)
 }
 
-export async function resolveModuleList <T> (patterns: string[], global?: boolean) {
+export async function resolveModuleList <T> (patterns: string[], global?: boolean): Promise<T[]> {
   return pipe(
     getNpmRoot,
     andThen(curryGetModulesPathList(patterns)),
     andThen(getManifestList),
     andThen(getModuleNameList),
-    andThen<string[], Array<ExportDefault<T> | T | null>>(getModuleList),
+    andThen((x) => getModuleList<T>(x)),
     andThen(filterNullable),
     andThen(normalizeExportList),
   )(global)
