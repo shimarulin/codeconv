@@ -1,6 +1,0 @@
-{
-  "name": "@codeconv/plugin-lint",
-  "version": "0.10.1",
-  "description": "CodeConv plugin to lint standard project",
-  "license": "MIT"
-}
