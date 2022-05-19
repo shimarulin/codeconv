@@ -47,11 +47,11 @@ export async function getManifest (modulePath: string) {
 }
 
 export async function getManifestList (modulePathList: string[]) {
-  return Promise.all(modulePathList.map((modulePath) => getManifest(modulePath)))
+  return Promise.all(map(getManifest, modulePathList))
 }
 
 export function getModuleNameList (manifestList: Manifest[]) {
-  return manifestList.map((manifest) => manifest.name)
+  return map((m) => m.name, manifestList)
 }
 
 export async function getModule <T> (moduleName: string) {
@@ -63,7 +63,7 @@ export async function getModule <T> (moduleName: string) {
 }
 
 export async function getModuleList <T> (moduleNameList: string[]) {
-  return Promise.all(moduleNameList.map((moduleName) => getModule<T>(moduleName)))
+  return Promise.all(map((n) => getModule<T>(n), moduleNameList))
 }
 
 export function normalizeExport <T> (moduleExport: ExportDefault<T> | T) {
