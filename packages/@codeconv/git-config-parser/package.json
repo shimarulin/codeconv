@@ -1,17 +1,17 @@
 {
-  "name": "@codeconv/generator-manifest",
+  "name": "@codeconv/git-config-parser",
   "version": "0.10.1",
-  "description": "CodeConv package.json generator",
+  "description": "Git config parser",
   "license": "MIT",
   "repository": {
-    "directory": "packages/@codeconv/generator-manifest",
+    "directory": "packages/@codeconv/git-config-parser",
     "type": "git",
     "url": "git@github.com:shimarulin/codeconv.git"
   },
   "bugs": {
     "url": "https://github.com/shimarulin/codeconv/issues"
   },
-  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/generator-manifest#readme",
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/git-config-parser#readme",
   "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
   "type": "module",
   "exports": {
@@ -20,6 +20,12 @@
   "files": [
     "dist"
   ],
+  "directories": {
+    "lib": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
     "dev": "tsc -b -w",
@@ -28,9 +34,10 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "execa": "^6.1.0",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "@types/inquirer": "^8.2.1"
+    "@types/ramda": "^0.28.12"
   }
 }

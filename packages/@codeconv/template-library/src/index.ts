@@ -1,10 +1,16 @@
+import manifestGen from '@codeconv/generator-manifest'
+
 import type { TemplateModule } from '@codeconv/plugin-create'
 
 const template: TemplateModule = {
   name: 'Library',
-  description: 'Create common lib',
-  render (args) {
-    console.log(args.name)
+  describe: 'Create common lib',
+  handler ({ name }) {
+    const manifest = manifestGen.generate({
+      name,
+    })
+
+    console.log(manifest)
   },
 }
 

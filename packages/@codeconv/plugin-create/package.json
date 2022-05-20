@@ -28,6 +28,8 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@codeconv/git-config-parser": "0.10.1",
+    "@codeconv/packages-resolver": "0.10.1",
     "inquirer": "^8.2.4"
   },
   "devDependencies": {

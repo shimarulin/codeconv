@@ -1,6 +1,7 @@
 import type { ArgumentsCamelCase, CommandModule } from 'yargs'
 import inquirer from 'inquirer'
 import { resolveModuleList } from '@codeconv/packages-resolver'
+import { getGitConfig } from '@codeconv/git-config-parser'
 
 const { prompt } = inquirer
 
@@ -12,8 +13,8 @@ export type TemplateRender = (args: TemplateArgs) => void
 
 export interface TemplateModule {
   name: string
-  description: string
-  render: TemplateRender
+  handler: TemplateRender
+  describe?: string
 }
 
 export interface CreateCommandArguments {
@@ -21,7 +22,8 @@ export interface CreateCommandArguments {
 }
 
 const validateTemplateModule = (templateModule: TemplateModule): boolean => {
-  return ('render' in templateModule && typeof templateModule.render === 'function')
+  return 'name' in templateModule &&
+    ('handler' in templateModule && typeof templateModule.handler === 'function')
 }
 
 async function getName (name?:string) {
@@ -71,10 +73,14 @@ const commandModule: CommandModule = {
     const [
       templateModules,
       name,
+      gitConfig,
     ] = await Promise.all([
       getModules(false),
       getName(args.name),
+      getGitConfig(),
     ])
+
+    console.log(gitConfig)
 
     const resolvedArgs: TemplateArgs = {
       ...args,
@@ -82,7 +88,7 @@ const commandModule: CommandModule = {
     }
 
     if (templateModules.length === 1) {
-      templateModules[0].render(resolvedArgs)
+      templateModules[0].handler(resolvedArgs)
     } else if (templateModules.length > 1) {
       await prompt<{template: TemplateModule}>([
         {
@@ -91,13 +97,13 @@ const commandModule: CommandModule = {
           type: 'list',
           choices: templateModules.map((templateModule) => {
             return {
-              name: `${templateModule.name} > ${templateModule.description || ''}`,
+              name: `${templateModule.name} > ${templateModule.describe || ''}`,
               value: templateModule,
             }
           }),
         },
       ]).then(({ template }) => {
-        template.render(resolvedArgs)
+        template.handler(resolvedArgs)
       })
     } else {
       console.log('No template installed')

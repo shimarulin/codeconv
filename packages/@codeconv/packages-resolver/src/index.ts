@@ -9,7 +9,7 @@ export interface ExportDefault<T> {
   default: T
 }
 
-export interface Manifest extends PackageJson {
+export interface PackageManifest extends PackageJson {
   /**
    The name of the package.
    */
@@ -42,7 +42,7 @@ export async function getManifest (modulePath: string) {
   return readFile(path.resolve(modulePath, 'package.json'), {
     encoding: 'utf8',
   }).then((jsonStr) => {
-    return JSON.parse(jsonStr) as Manifest
+    return JSON.parse(jsonStr) as PackageManifest
   })
 }
 
@@ -50,7 +50,7 @@ export async function getManifestList (modulePathList: string[]) {
   return Promise.all(map(getManifest, modulePathList))
 }
 
-export function getModuleNameList (manifestList: Manifest[]) {
+export function getModuleNameList (manifestList: PackageManifest[]) {
   return map((m) => m.name, manifestList)
 }
 

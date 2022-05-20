@@ -6,5 +6,5 @@
     "composite": true
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../packages-resolver/tsconfig.json" }, { "path": "../context/tsconfig.json" }]
+  "references": [{ "path": "../packages-resolver" }, { "path": "../context" }, { "path": "../git-config-parser" }]
 }

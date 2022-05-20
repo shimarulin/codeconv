@@ -27,6 +27,8 @@
     "prepack": "rm -rf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@codeconv/generator-manifest": "0.10.1"
+  },
   "devDependencies": {}
 }
