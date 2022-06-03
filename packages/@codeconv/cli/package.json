@@ -31,9 +31,11 @@
   "dependencies": {
     "@codeconv/context": "0.10.1",
     "@codeconv/packages-resolver": "0.10.1",
+    "inquirer": "^8.2.4",
     "yargs": "^17.5.0"
   },
   "devDependencies": {
+    "@types/inquirer": "^8.2.1",
     "@types/yargs": "^17.0.10"
   }
 }
