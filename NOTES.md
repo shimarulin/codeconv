@@ -1,5 +1,41 @@
 # Development notes
 
+## WebStorm tips
+
+### Fix EJS indentation
+
+.idea/codeStyles/codeStyleConfig.xml
+
+```xml
+<component name="ProjectCodeStyleConfiguration">
+  <state>
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+  </state>
+</component>
+```
+
+.idea/codeStyles/Project.xml
+
+```xml
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="AUTODETECT_INDENTS" value="false" />
+    <option name="OTHER_INDENT_OPTIONS">
+      <value>
+        <option name="INDENT_SIZE" value="2" />
+        <option name="TAB_SIZE" value="2" />
+      </value>
+    </option>
+
+    <codeStyleSettings language="EJS">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="2" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>
+```
+
 ## Цели и процессы
 
 Цель -> подцели -> процессы -> перечень необходимых действий -> инструменты -> решения
