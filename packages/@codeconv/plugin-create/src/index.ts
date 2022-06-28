@@ -1,15 +1,19 @@
 import type { ArgumentsCamelCase, CommandModule } from 'yargs'
 import inquirer from 'inquirer'
 import { resolveModuleList } from '@codeconv/packages-resolver'
-import { getGitConfig } from '@codeconv/git-config-parser'
+import { getGitConfig, GitConfig } from '@codeconv/git-config-parser'
 
 const { prompt } = inquirer
 
 export interface TemplateArgs {
-  name: string
+  name?: string
 }
 
-export type TemplateRender = (args: TemplateArgs) => void
+export interface Context {
+  gitConfig: GitConfig
+}
+
+export type TemplateRender = (args: TemplateArgs, ctx: Context) => Promise<void>
 
 export interface TemplateModule {
   name: string
@@ -26,18 +30,6 @@ const validateTemplateModule = (templateModule: TemplateModule): boolean => {
     ('handler' in templateModule && typeof templateModule.handler === 'function')
 }
 
-async function getName (name?:string) {
-  return name
-    ? Promise.resolve(name)
-    : prompt<{name: string}>([
-      {
-        name: 'name',
-        message: 'Enter package name',
-        type: 'input',
-      },
-    ]).then(({ name }) => name)
-}
-
 async function getModules (global?: boolean) {
   return resolveModuleList<TemplateModule>([
     '**/@codeconv/template-*',
@@ -51,6 +43,21 @@ const commandModule: CommandModule = {
   describe: 'Create standard project or package from template',
   builder: {},
   handler: async (args: ArgumentsCamelCase<CreateCommandArguments>) => {
+    /**
+     * if (!name) {
+     *   input name >
+     *     if (ctx.project) {
+     *       message for package in project
+     *     } else {
+     *       message for project
+     *     }
+     * }
+     * if (ctx.project) {
+     *   select namespace if ctx.namespaces.length > 1
+     * }
+     *
+     * */
+
     /**
      * 0. [ ] get context
      * 1. [x] find templates by pattern ['**\/@codeconv/template-*', '**\/codeconv-template-*']
@@ -68,27 +75,25 @@ const commandModule: CommandModule = {
      *    - name (or reused from 'generator-manifest')
      *    - description (or reused from 'generator-manifest')
      * */
+    const [
+      gitConfig,
+    ] = await Promise.all([
+      getGitConfig(),
+    ])
+
+    const ctx: Context = {
+      gitConfig,
+    }
 
     // TODO: get context
     const [
       templateModules,
-      name,
-      gitConfig,
     ] = await Promise.all([
       getModules(false),
-      getName(args.name),
-      getGitConfig(),
     ])
 
-    console.log(gitConfig)
-
-    const resolvedArgs: TemplateArgs = {
-      ...args,
-      name,
-    }
-
     if (templateModules.length === 1) {
-      templateModules[0].handler(resolvedArgs)
+      await templateModules[0].handler(args, ctx)
     } else if (templateModules.length > 1) {
       await prompt<{template: TemplateModule}>([
         {
@@ -103,7 +108,7 @@ const commandModule: CommandModule = {
           }),
         },
       ]).then(({ template }) => {
-        template.handler(resolvedArgs)
+        return template.handler(args, ctx)
       })
     } else {
       console.log('No template installed')
