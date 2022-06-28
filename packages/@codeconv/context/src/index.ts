@@ -26,16 +26,15 @@ export async function pkgUp (cwd: string | URL = process.cwd()) {
 }
 
 export async function getBaseFsContext (cwd: string | URL = process.cwd()): Promise<BaseFsContext | undefined> {
-  const packageManifestPath = await pkgUp(cwd)
-
-  if (packageManifestPath) {
-    const packageDirectory = path.dirname(packageManifestPath)
-
-    return {
-      manifest: packageManifestPath,
-      directory: packageDirectory,
-    }
-  }
+  return pkgUp(cwd)
+    .then((packageManifestPath) => {
+      return packageManifestPath
+        ? {
+            manifest: packageManifestPath,
+            directory: path.dirname(packageManifestPath),
+          }
+        : undefined
+    })
 }
 
 export async function getReverseFsContext (cwd: string | URL = process.cwd()): Promise<ReverseFsContext | undefined> {
