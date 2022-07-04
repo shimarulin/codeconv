@@ -30,9 +30,9 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
-    "@babel/core": "^7.17.10",
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/core": "^7.18.6",
+    "@babel/eslint-parser": "^7.18.2",
     "@codeconv/eslint-config-base": "^0.10.1",
-    "eslint-plugin-vue": "^8.7.1"
+    "eslint-plugin-vue": "^9.1.1"
   }
 }
