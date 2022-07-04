@@ -1,0 +1,31 @@
+{
+  "name": "@codeconv/types",
+  "version": "0.10.1",
+  "description": "CodeConv common types",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/types",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/types#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "lib/index.d.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "type-fest": "^2.12.2"
+  }
+}
