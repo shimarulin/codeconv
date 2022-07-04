@@ -1,0 +1,37 @@
+{
+  "name": "@codeconv/tpl-ejs-handler",
+  "version": "0.10.1",
+  "description": "CodeConv library template",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/tpl-ejs-handler",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/tpl-ejs-handler#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "ejs": "^3.1.8"
+  },
+  "devDependencies": {
+    "@codeconv/tpl": "0.10.1",
+    "@types/ejs": "^3.1.1"
+  }
+}
