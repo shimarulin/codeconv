@@ -18,7 +18,8 @@
     "import": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
     "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
@@ -28,7 +29,12 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@codeconv/generator-manifest": "0.10.1"
+    "@codeconv/generator-manifest": "0.10.1",
+    "@codeconv/tpl": "0.10.1",
+    "@codeconv/tpl-ejs-handler": "0.10.1",
+    "inquirer": "^9.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/inquirer": "^8.2.1"
+  }
 }
