@@ -30,7 +30,7 @@
   "dependencies": {
     "@codeconv/git-config-parser": "0.10.1",
     "@codeconv/packages-resolver": "0.10.1",
-    "inquirer": "^8.2.4"
+    "inquirer": "^9.0.0"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.1",

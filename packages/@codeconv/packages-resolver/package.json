@@ -33,7 +33,7 @@
     "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "@types/ramda": "^0.28.12",
-    "type-fest": "^2.12.2"
+    "@types/ramda": "^0.28.14",
+    "type-fest": "^2.16.0"
   }
 }
