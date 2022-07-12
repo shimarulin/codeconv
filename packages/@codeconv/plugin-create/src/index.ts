@@ -22,7 +22,10 @@ export interface TemplateModule {
 }
 
 export interface CreateCommandArguments {
-  name?: string;
+  name?: string
+  template?: string
+  global?: boolean
+  local?: boolean
 }
 
 const validateTemplateModule = (templateModule: TemplateModule): boolean => {
@@ -41,8 +44,26 @@ async function getModules (global?: boolean) {
 const commandModule: CommandModule = {
   command: 'create [name]',
   describe: 'Create standard project or package from template',
-  builder: {},
-  handler: async (args: ArgumentsCamelCase<CreateCommandArguments>) => {
+  builder (yargs) {
+    return yargs
+      .option('t', {
+        alias: 'template',
+        type: 'string',
+        describe: 'the template name to create new project',
+      })
+      .option('g', {
+        alias: 'global',
+        type: 'boolean',
+        describe: 'search templates in global installation scope',
+      })
+      .option('l', {
+        alias: 'local',
+        type: 'boolean',
+        describe: 'search templates in local installation scope',
+      })
+  },
+  async handler (args: ArgumentsCamelCase<CreateCommandArguments>) {
+    console.log(args.template, args)
     /**
      * if (!name) {
      *   input name >
@@ -86,6 +107,13 @@ const commandModule: CommandModule = {
     }
 
     // TODO: get context
+    /**
+     * if new -> global only
+     * if monorepo -> prefer local,
+     *   if -g -> global only,
+     *   if -l -> local only,
+     *   if -gl -> global and local,
+     * */
     const [
       templateModules,
     ] = await Promise.all([

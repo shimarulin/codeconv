@@ -1,6 +1,6 @@
 # `@codeconv/plugin-create`
 
-> CodeConv &#39;create&#39; command plugin
+> CodeConv 'create' command plugin
 
 ## Install
 
