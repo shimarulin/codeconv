@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import fg from 'fast-glob'
 import { execa } from 'execa'
-import { pipe, andThen, pipeWith, curry, map, filter } from 'ramda'
+import { pipe, andThen, pipeWith, curry, map, filter, complement, isNil } from 'ramda'
 import type { PackageJson } from 'type-fest'
 
 export interface ExportDefault<T> {
@@ -20,6 +20,9 @@ export interface PackageManifest extends PackageJson {
    */
   version: string
 }
+
+export const isNotNil: <T> (x: T | null) => x is T = complement(isNil)
+export const filterNotNil: <T> (x: (T | null)[]) => T[] = curry(filter)(isNotNil)
 
 export async function getNpmRoot (global?: boolean): Promise<string> {
   const npmArgs = [
@@ -74,14 +77,6 @@ export function curryGetModulesPathList (patterns: string[]) {
   return curry(getModulesPathList)(patterns)
 }
 
-export function isNotNullable <T> (x: T | null): x is T {
-  return !!x
-}
-
-export function filterNullable <T> (x: (T | null)[]): T[] {
-  return filter(isNotNullable, x)
-}
-
 export function normalizeExportList <T> (arg: (ExportDefault<T> | T)[]): T[] {
   return map(normalizeExport, arg)
 }
@@ -92,8 +87,8 @@ export async function resolveModuleList <T> (patterns: string[], global?: boolea
     andThen(curryGetModulesPathList(patterns)),
     andThen(getManifestList),
     andThen(getModuleNameList),
-    andThen((x) => getModuleList<T>(x)),
-    andThen(filterNullable),
+    andThen(getModuleList<T>),
+    andThen(filterNotNil),
     andThen(normalizeExportList),
   )(global)
 }
@@ -106,6 +101,6 @@ export async function resolveModuleListWith <T> (patterns: string[], global?: bo
     getModuleNameList,
     getModuleList,
     curry(map)(normalizeExport),
-    curry(filter)(isNotNullable),
+    curry(filter)(isNotNil),
   ])(global)
 }
