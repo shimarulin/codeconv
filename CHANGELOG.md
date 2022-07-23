@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/shimarulin/codeconv/compare/v0.10.1...v0.10.2) (2022-07-23)
+
+
+### Bug Fixes
+
+* **eslint-config-base:** upgrade dependencies ([766e822](https://github.com/shimarulin/codeconv/commit/766e822f46de5ea786e1a3b3aa7aad5785359021))
+* **eslint-config-typescript:** add eslint-config-base to dependencies ([f7beef3](https://github.com/shimarulin/codeconv/commit/f7beef3dee397be6d8336b582e242dd2edefda00))
+* **eslint-config-typescript:** upgrade dependencies ([469312f](https://github.com/shimarulin/codeconv/commit/469312f291470c5af71ddee739a1a97f9dfd4295))
+* **eslint-config-vue:** upgrade dependencies ([c0a1dca](https://github.com/shimarulin/codeconv/commit/c0a1dcaf5aab8293d21c342935ad8e7389512ccd))
+* upgrade dependencies ([fe9c116](https://github.com/shimarulin/codeconv/commit/fe9c1164ab83b52a50f363cfc755dc9076a45b81))
+
+
+
+
+
 ## [0.10.1](https://github.com/shimarulin/codeconv/compare/v0.10.0...v0.10.1) (2022-05-03)
 
 
