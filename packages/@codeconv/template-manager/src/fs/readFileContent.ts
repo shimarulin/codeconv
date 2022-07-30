@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises'
-import { formatParsedPath } from './formatParsedPath.js'
+import { parsedPathToAbsolutePath } from '../path/parsedPathToAbsolutePath.js'
 import type { FileMeta } from './readFsThree.js'
 
 export interface FileDescription extends FileMeta {
@@ -10,7 +10,7 @@ export interface FileDescription extends FileMeta {
 }
 
 export const readFileContent = async (parsedPath: FileMeta): Promise<FileDescription> => {
-  const content = await readFile(formatParsedPath(parsedPath), 'utf8')
+  const content = await readFile(parsedPathToAbsolutePath(parsedPath), 'utf8')
   return {
     ...parsedPath,
     content,

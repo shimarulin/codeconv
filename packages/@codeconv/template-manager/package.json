@@ -24,7 +24,8 @@
     "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
     "dev": "tsc -b -w",
     "lint": "eslint --ext js,ts .",
-    "prepack": "rm -rf dist && tsc -b"
+    "prepack": "rm -rf dist && tsc -b",
+    "test": "jest"
   },
   "types": "dist/index.d.ts",
   "dependencies": {

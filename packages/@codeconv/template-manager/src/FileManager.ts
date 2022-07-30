@@ -1,10 +1,10 @@
-import { fileURLToPath } from 'url'
 import { andThen, clone, curry, pipeWith } from 'ramda'
 import { readFsThreeList } from './fs/readFsThreeList.js'
 import { readFileContentList } from './fs/readFileContentList.js'
 import { writeFileDescriptionList } from './fs/writeFileDescriptionList.js'
 import { type TemplateData, type TemplateHandler } from './handler/handleFileDescription.js'
 import { handleFileDescriptionList } from './handler/handleFileDescriptionList.js'
+import { getPathFromStringOrURL } from './path/getPathFromStringOrURL.js'
 
 export type PathOrURL = string | URL
 
@@ -28,7 +28,7 @@ export class FileManager {
     }
 
     if (!this.hasOutputDir) {
-      throw new Error('No output directory specified')
+      throw new Error('No output directory specified.')
     }
 
     return this.isAtLeastOneInputDir && this.hasOutputDir
@@ -42,7 +42,7 @@ export class FileManager {
   }
 
   readFromDir (dir: PathOrURL): FileManager {
-    this.inputDirList.push(fileURLToPath(dir))
+    this.inputDirList.push(getPathFromStringOrURL(dir))
 
     return this
   }
@@ -76,7 +76,7 @@ export class FileManager {
   }
 
   writeToDir (dir: PathOrURL): FileManager {
-    this.outputDir = fileURLToPath(dir)
+    this.outputDir = getPathFromStringOrURL(dir)
 
     return this
   }
