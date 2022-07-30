@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/cli",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "CodeConv CLI core",
   "license": "MIT",
   "repository": {
@@ -29,8 +29,8 @@
   },
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@codeconv/context": "0.10.1",
-    "@codeconv/packages-resolver": "0.10.1",
+    "@codeconv/context": "0.11.0",
+    "@codeconv/packages-resolver": "0.11.0",
     "inquirer": "^9.0.0",
     "yargs": "^17.5.1"
   },

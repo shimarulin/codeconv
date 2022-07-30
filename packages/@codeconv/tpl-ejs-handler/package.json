@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/tpl-ejs-handler",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "CodeConv library template",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,7 @@
     "ejs": "^3.1.8"
   },
   "devDependencies": {
-    "@codeconv/tpl": "0.10.1",
+    "@codeconv/tpl": "0.11.0",
     "@types/ejs": "^3.1.1"
   }
 }

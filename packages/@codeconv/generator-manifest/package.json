@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/generator-manifest",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "CodeConv package.json generator",
   "license": "MIT",
   "repository": {

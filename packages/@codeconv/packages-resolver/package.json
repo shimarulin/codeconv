@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/packages-resolver",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "CodeConv CLI core",
   "license": "MIT",
   "repository": {
