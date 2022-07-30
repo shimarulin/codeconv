@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/shimarulin/codeconv/compare/v0.10.2...v0.11.0) (2022-07-30)
+
+
+### Features
+
+* **eslint-config-typescript:** add support to additional tsc config for ESLint tsconfig.eslint.json ([ea58099](https://github.com/shimarulin/codeconv/commit/ea58099934065420c86bbd74be72ee7cb38f5b33))
+
+
+
+
+
 ## [0.10.2](https://github.com/shimarulin/codeconv/compare/v0.10.1...v0.10.2) (2022-07-23)
 
 

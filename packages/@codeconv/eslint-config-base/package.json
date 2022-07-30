@@ -1,6 +1,6 @@
 {
   "name": "@codeconv/eslint-config-base",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "codeconv ESLint base config",
   "license": "MIT",
   "repository": {
