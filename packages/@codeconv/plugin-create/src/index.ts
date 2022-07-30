@@ -35,8 +35,8 @@ const validateTemplateModule = (templateModule: TemplateModule): boolean => {
 
 async function getModules (global?: boolean) {
   return resolveModuleList<TemplateModule>([
-    '**/@codeconv/template-*',
-    '**/codeconv-plugin-*',
+    '**/@codeconv/create-*',
+    '**/create-codeconv-*',
   ], global)
     .then((resolvedModules) => resolvedModules.filter(validateTemplateModule))
 }
