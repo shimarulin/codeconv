@@ -10,5 +10,8 @@ node_modules/
 **/dist/
 **/*.tsbuildinfo
 
+# Coverage report
+**/coverage/
+
 ### JetBrains IDE's
 .idea
