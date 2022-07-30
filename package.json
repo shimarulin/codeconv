@@ -19,7 +19,7 @@
     "lnk": "yarn && ./scripts/lnk.sh",
     "postinstall": "git config core.hooksPath .githooks",
     "publish": "lerna publish --no-verify-access",
-    "test": "lerna run test --parallel --",
+    "test": "jest",
     "unlnk": "./scripts/unlnk.sh"
   },
   "lint-staged": {
