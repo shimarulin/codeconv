@@ -12,6 +12,11 @@ module.exports = {
       parserOptions: {
         project: [
           '**/tsconfig.json',
+
+          /**
+           * Additional ESLint configuration
+           * */
+          '**/tsconfig.eslint.json',
         ],
         projectFolderIgnoreList: [
           'node_modules',
