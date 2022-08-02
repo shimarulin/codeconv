@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../plugin-create/tsconfig.json" },
+    { "path": "../tpl/tsconfig.json" },
+    { "path": "../tpl-ejs-handler/tsconfig.json" },
+    { "path": "../generator-manifest/tsconfig.json" }
+  ]
+}

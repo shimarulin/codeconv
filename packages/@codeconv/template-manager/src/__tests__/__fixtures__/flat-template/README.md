@@ -1,0 +1,1 @@
+# Template manager test assets

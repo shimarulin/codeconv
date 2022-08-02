@@ -1,0 +1,10 @@
+<%- license.licenseText -%>
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+<p><%=: users | map: 'name' | join %></p>
+<ul>
+  <li>Escaped value <%= value %></li>
+  <li>Unescaped value <%== value %></li>
+  <li>Generated escaped tag <%%= value %></li>
+</ul>

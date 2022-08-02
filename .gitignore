@@ -4,6 +4,14 @@
 
 # Dependency directories
 node_modules/
+**/node_modules/
+
+# Compiled code
+**/dist/
+**/*.tsbuildinfo
+
+# Coverage report
+**/coverage/
 
 ### JetBrains IDE's
 .idea

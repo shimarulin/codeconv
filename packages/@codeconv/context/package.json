@@ -1,0 +1,34 @@
+{
+  "name": "@codeconv/context",
+  "version": "0.11.0",
+  "description": "Get CodeConv CLI context",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/context",
+    "type": "git",
+    "url": "git+https://github.com/shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/context/#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "find-up": "^6.3.0"
+  },
+  "devDependencies": {}
+}

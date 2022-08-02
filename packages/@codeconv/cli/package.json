@@ -1,0 +1,41 @@
+{
+  "name": "@codeconv/cli",
+  "version": "0.11.0",
+  "description": "CodeConv CLI core",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/cli",
+    "type": "git",
+    "url": "git+https://github.com/shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/cli/#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "bin": {
+    "codeconv": "./bin/run.js"
+  },
+  "type": "module",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@codeconv/context": "0.11.0",
+    "@codeconv/packages-resolver": "0.11.0",
+    "inquirer": "^9.0.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.1",
+    "@types/yargs": "^17.0.10"
+  }
+}

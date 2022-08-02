@@ -1,0 +1,38 @@
+{
+  "name": "@codeconv/create-lib",
+  "version": "0.11.0",
+  "description": "CodeConv library template",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/create-lib",
+    "type": "git",
+    "url": "git@github.com:shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/create-lib#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "inquirer": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.1",
+    "@codeconv/plugin-create": "0.11.0"
+  }
+}

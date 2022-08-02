@@ -1,0 +1,39 @@
+{
+  "name": "@codeconv/packages-resolver",
+  "version": "0.11.0",
+  "description": "CodeConv CLI core",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/@codeconv/packages-resolver",
+    "type": "git",
+    "url": "git+https://github.com/shimarulin/codeconv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shimarulin/codeconv/issues"
+  },
+  "homepage": "https://github.com/shimarulin/codeconv/tree/main/packages/@codeconv/packages-resolver/#readme",
+  "author": "Vyacheslav Shimarulin <shimarulin@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clear": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "dev": "tsc -b -w",
+    "lint": "eslint --ext js,ts .",
+    "prepack": "rm -rf dist && tsc -b"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "execa": "^6.1.0",
+    "fast-glob": "^3.2.11",
+    "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.28.14",
+    "type-fest": "^2.16.0"
+  }
+}
