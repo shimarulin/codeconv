@@ -32,27 +32,23 @@ export const readFsThree = async (root: string, relativeDirPath?: string): Promi
   const currentDir = relativeDirPath ? join(root, relativeDirPath) : root
   const fileList: FileMeta[] = []
 
-  try {
-    const dir = await opendir(currentDir)
-    for await (const dirent of dir) {
-      const relativePath = typeof relativeDirPath === 'string' ? join(relativeDirPath, dirent.name) : dirent.name
+  const dir = await opendir(currentDir)
+  for await (const dirent of dir) {
+    const relativePath = typeof relativeDirPath === 'string' ? join(relativeDirPath, dirent.name) : dirent.name
 
-      if (dirent.isFile()) {
-        const ext = extname(dirent.name)
+    if (dirent.isFile()) {
+      const ext = extname(dirent.name)
 
-        fileList.push({
-          root,
-          dir: relativeDirPath ? `./${relativeDirPath}` : './',
-          base: dirent.name,
-          ext,
-          name: basename(dirent.name, ext),
-        })
-      } else if (dirent.isDirectory()) {
-        fileList.push(...await readFsThree(root, relativePath))
-      }
+      fileList.push({
+        root,
+        dir: relativeDirPath ? `./${relativeDirPath}` : './',
+        base: dirent.name,
+        ext,
+        name: basename(dirent.name, ext),
+      })
+    } else if (dirent.isDirectory()) {
+      fileList.push(...await readFsThree(root, relativePath))
     }
-  } catch (err) {
-    console.error(err)
   }
 
   return fileList

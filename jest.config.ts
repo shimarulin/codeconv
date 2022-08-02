@@ -11,6 +11,10 @@ const config: InitialOptionsTsJest = {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/__fixtures__/',
+  ],
 }
 
 export default config

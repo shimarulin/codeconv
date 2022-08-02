@@ -1,7 +1,7 @@
 import { andThen, clone, mergeDeepRight, pipeWith } from 'ramda'
 import { mergeFileLists, readFsThreeList } from './fs/readFsThreeList.js'
 import { readFileContentList } from './fs/readFileContentList.js'
-import { writeFileDescriptionList } from './fs/writeFileDescriptionList.js'
+import { writeFileDescriptionListTo } from './fs/writeFileDescriptionListTo.js'
 import { FileDescription } from './fs/readFileContent'
 import { type TemplateData, type TemplateHandler } from './handler/handleFileDescription.js'
 import { handleFileDescriptionList } from './handler/handleFileDescriptionList.js'
@@ -164,7 +164,7 @@ export class TemplateManager {
     }
 
     if (typeof this.outputDir === 'string' && this.outputDir.length > 0) {
-      await writeFileDescriptionList(this.outputDir, this.outputList)
+      await writeFileDescriptionListTo(this.outputDir, this.outputList)
     } else {
       throw new Error('No output directory specified.')
     }

@@ -2,8 +2,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { type FileDescription } from './readFileContent.js'
 
-export const writeFileDescription = async (file: FileDescription) => {
-  const dirPath = join(file.root, file.dir)
+export const writeFileDescriptionTo = async (targetDir:string, file: FileDescription) => {
+  const dirPath = join(targetDir, file.dir)
   const filePath = join(dirPath, file.base)
 
   await mkdir(dirPath, {
